@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>A4A 핸즈온 교육 · Agent for Agent</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --ink:#1a2230;--ink-soft:#424d60;--ink-mute:#727e92;
+    --line:#dde3ee;--line-soft:rgba(120,140,180,.14);
+    --paper:rgba(255,255,255,.55);--paper-strong:rgba(255,255,255,.7);--paper-solid:#fff;
+    --bg:#e6edf7;--accent:#1f5fbf;--accent-deep:#174a99;--accent-soft:rgba(31,95,191,.08);
+    --ok:#1f9d6b;--warn:#c8861a;--radius:16px;--blur:saturate(180%) blur(22px);
+    --shadow:0 1px 1px rgba(255,255,255,.4) inset,0 12px 36px -20px rgba(20,40,90,.3);
+    --sb-w:300px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;word-break:keep-all;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:
+    radial-gradient(700px 460px at 2% -6%,#c5d9f4 0%,transparent 56%),
+    radial-gradient(640px 480px at 112% 2%,#cfe6f3 0%,transparent 54%),
+    radial-gradient(700px 600px at 60% 116%,#d4e4f5 0%,transparent 56%),
+    linear-gradient(170deg,#e7eefa 0%,#eaf1fb 55%,#e6f1f7 100%)}
+  a{color:inherit}
+
+  /* ===== layout ===== */
+  .app{display:grid;grid-template-columns:var(--sb-w) 1fr;min-height:100vh}
+
+  /* ===== sidebar ===== */
+  .sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;padding:18px 14px;border-right:1px solid var(--line);
+    background:rgba(255,255,255,.42);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+  .sb-brand{padding:8px 10px 14px;border-bottom:1px solid var(--line);margin-bottom:12px}
+  .sb-brand .ms{font-size:12px;font-weight:600;color:var(--ink)}
+  .sb-brand .ms .div{color:var(--line);font-weight:300;margin:0 4px}
+  .sb-brand .ms .prog{color:var(--ink-mute);font-weight:500}
+  .sb-brand .t{font-size:15px;font-weight:700;letter-spacing:-.02em;margin-top:6px}
+  .sb-brand .sub{font-size:11.5px;color:var(--ink-mute);margin-top:2px}
+
+  .sb-prog{margin:10px 0 16px;padding:0 10px}
+  .sb-prog .bar{height:6px;border-radius:999px;background:rgba(31,95,191,.12);overflow:hidden}
+  .sb-prog .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-deep));border-radius:999px;transition:width .35s ease}
+  .sb-prog .lbl{font-size:11px;color:var(--ink-mute);margin-top:6px;font-variant-numeric:tabular-nums}
+
+  .sb-group{margin-bottom:6px}
+  .sb-group .gh{display:flex;align-items:center;gap:8px;padding:8px 10px;font-size:11px;font-weight:700;color:var(--ink-mute);letter-spacing:.03em;text-transform:uppercase}
+  .sb-group .gh .tt{margin-left:auto;font-size:10.5px;font-weight:600;color:var(--accent);text-transform:none;letter-spacing:0}
+  .sb-link{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;font-size:13px;color:var(--ink-soft);text-decoration:none;cursor:pointer;transition:.13s;font-weight:500}
+  .sb-link .dot{flex:0 0 auto;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-size:10.5px;font-weight:700;color:var(--ink-mute);background:rgba(120,140,180,.12);font-variant-numeric:tabular-nums}
+  .sb-link:hover{background:rgba(255,255,255,.6);color:var(--ink)}
+  .sb-link.active{background:var(--accent);color:#fff}
+  .sb-link.active .dot{background:rgba(255,255,255,.22);color:#fff}
+  .sb-link.done .dot{background:rgba(31,157,107,.16);color:var(--ok)}
+  .sb-link.done .dot::before{content:"✓"}
+  .sb-link.done .dot span{display:none}
+
+  /* ===== main ===== */
+  .main{display:flex;flex-direction:column;min-height:100vh;max-width:880px;width:100%;margin:0 auto;padding:0 36px}
+  .topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:12px;padding:14px 0;
+    background:linear-gradient(180deg,rgba(231,238,250,.9),rgba(231,238,250,.5));backdrop-filter:blur(8px)}
+  .crumb{font-size:12.5px;color:var(--ink-mute)}
+  .crumb b{color:var(--accent);font-weight:600}
+  .topbar .menu-btn{display:none}
+
+  .content{flex:1;padding:8px 0 24px;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .unit{display:none}
+  .unit.show{display:block}
+
+  /* footer nav */
+  .navfoot{position:sticky;bottom:0;display:flex;gap:12px;align-items:center;padding:16px 0 22px;
+    background:linear-gradient(0deg,rgba(231,238,250,.95),rgba(231,238,250,.4))}
+  .navbtn{display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border-radius:12px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:.16s;background:none}
+  .navbtn.prev{background:var(--paper);border-color:rgba(255,255,255,.6);color:var(--ink-soft);backdrop-filter:var(--blur)}
+  .navbtn.prev:hover{background:var(--paper-strong)}
+  .navbtn.next{margin-left:auto;background:var(--accent);color:#fff;box-shadow:0 10px 26px -10px rgba(31,95,191,.7)}
+  .navbtn.next:hover{transform:translateY(-2px);background:var(--accent-deep)}
+  .navbtn.disabled{opacity:.4;pointer-events:none}
+  .navfoot .pos{font-size:12px;color:var(--ink-mute);font-variant-numeric:tabular-nums}
+
+  /* ===== content components ===== */
+  h1{font-size:clamp(28px,3.6vw,40px);line-height:1.18;letter-spacing:-.025em;font-weight:700}
+  .unit h2.utitle{font-size:24px;font-weight:700;letter-spacing:-.025em;margin-bottom:4px}
+  .unit .ulead{font-size:15px;color:var(--ink-soft);margin:10px 0 22px;max-width:680px}
+  .eyebrow{font-size:12.5px;font-weight:600;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .eyebrow .tag{background:var(--accent);color:#fff;padding:3px 11px;border-radius:999px;font-size:11.5px}
+
+  .lead{max-width:640px;font-size:16px;color:var(--ink-soft)}
+  .factbar{display:flex;gap:24px;flex-wrap:wrap;margin-top:24px;padding:18px 22px;background:var(--paper);backdrop-filter:var(--blur);border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .fact{display:flex;flex-direction:column;gap:2px}
+  .fact .k{font-size:11.5px;color:var(--ink-mute);font-weight:500}
+  .fact .v{font-size:15px;font-weight:700;letter-spacing:-.01em}
+
+  .panel{background:var(--paper);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .pad{padding:24px}
+  .gap{display:flex;flex-direction:column;gap:14px}
+
+  .pains{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .pain{padding:24px 20px}
+  .pain .ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:20px;margin-bottom:14px;background:linear-gradient(150deg,rgba(255,255,255,.85),rgba(255,255,255,.35));border:1px solid rgba(255,255,255,.7);box-shadow:0 6px 16px -8px rgba(31,95,191,.4),0 1px 1px rgba(255,255,255,.6) inset}
+  .pain h4{font-size:15px;font-weight:700;margin-bottom:5px;letter-spacing:-.01em}
+  .pain p{font-size:13px;color:var(--ink-soft)}
+
+  .flow{display:grid;grid-template-columns:repeat(4,1fr)}
+  .fstep{padding:22px 18px;border-right:1px solid var(--line-soft)}
+  .fstep:last-child{border-right:0}
+  .fstep .n{font-size:12px;font-weight:700;color:var(--accent)}
+  .fstep h4{font-size:14px;font-weight:700;margin:9px 0 5px;letter-spacing:-.01em}
+  .fstep p{font-size:12px;color:var(--ink-mute)}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .io h4{font-size:13px;font-weight:700;color:var(--ink-mute);margin-bottom:14px}
+  .io ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .io li{display:flex;gap:11px;font-size:13.5px;align-items:flex-start}
+  .io li .b{flex:0 0 auto;width:21px;height:21px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font-size:11.5px;display:grid;place-items:center;font-weight:700;margin-top:1px}
+  .codecard{background:#0f1b2e;border-radius:var(--radius);color:#d7deeb;padding:22px;font-family:Consolas,'Courier New',monospace;box-shadow:var(--shadow)}
+  .codecard .cap{font-size:11.5px;color:#7fa3d8;margin-bottom:10px}
+  .codecard pre{white-space:pre-wrap;font-size:12.5px;line-height:1.75}
+  .codecard .c{color:#74e0a4}.codecard .y{color:#ffd47a}
+
+  .ks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .krow{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border:1px solid rgba(255,255,255,.6);border-radius:12px;background:var(--paper);backdrop-filter:var(--blur);box-shadow:var(--shadow)}
+  .krow .ico{font-size:18px;margin-top:1px}
+  .krow h4{font-size:13.5px;font-weight:700}
+  .krow p{font-size:12px;color:var(--ink-mute);margin-top:1px}
+  .krow .num{margin-left:auto;font-size:11px;color:var(--ink-mute);font-weight:600}
+
+  /* lab steps */
+  .lab{counter-reset:step;display:flex;flex-direction:column;gap:14px}
+  .step-card{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px 22px}
+  .step-card .sn{counter-increment:step;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:14px;color:#fff;background:linear-gradient(150deg,var(--accent),var(--accent-deep));box-shadow:0 6px 16px -8px rgba(31,95,191,.6);align-self:start}
+  .step-card .sn::before{content:counter(step)}
+  .step-card .st h4{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px}
+  .step-card .st p{font-size:13.5px;color:var(--ink-soft);margin-bottom:6px}
+  .step-card .st p:last-child{margin-bottom:0}
+  .step-card .st ul{margin:6px 0 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+  .step-card .st ul li{font-size:13px;color:var(--ink-soft);padding-left:16px;position:relative}
+  .step-card .st ul li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+  .ui{font-family:Consolas,monospace;font-size:.92em;background:rgba(31,95,191,.1);color:var(--accent-deep);padding:1px 7px;border-radius:6px;font-weight:600;white-space:nowrap}
+  .path{font-family:Consolas,monospace;font-size:12.5px;color:var(--ink-soft);background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;display:inline-block}
+  .kbd{font-family:Consolas,monospace;font-size:11px;background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink-soft)}
+
+  .note{display:flex;gap:12px;padding:14px 18px;border-radius:12px;margin:14px 0;font-size:13.5px;line-height:1.6}
+  .note .ic{flex:0 0 auto;font-size:16px;margin-top:1px}
+  .note.tip{background:rgba(31,157,107,.09);border:1px solid rgba(31,157,107,.22)}.note.tip b{color:var(--ok)}
+  .note.warn{background:rgba(200,134,26,.1);border:1px solid rgba(200,134,26,.26)}.note.warn b{color:var(--warn)}
+  .note.info{background:var(--accent-soft);border:1px solid rgba(31,95,191,.2)}.note.info b{color:var(--accent-deep)}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl thead th{background:var(--accent);color:#fff;font-weight:600;text-align:left;padding:10px 14px;font-size:12.5px}
+  .tbl td{padding:10px 14px;border-bottom:1px solid var(--line-soft);background:var(--paper);color:var(--ink-soft)}
+  .tbl tr:last-child td{border-bottom:0}
+  .tbl td:first-child{font-weight:600;color:var(--ink)}
+  .tbl-wrap{border:1px solid rgba(255,255,255,.6);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);margin:8px 0;backdrop-filter:var(--blur)}
+
+  .objective{padding:18px 22px}
+  .objective h4{font-size:13px;color:var(--ink-mute);font-weight:700;margin-bottom:10px}
+  .objective ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .objective li{font-size:13.5px;color:var(--ink-soft);padding-left:24px;position:relative}
+  .objective li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ok);font-weight:700}
+
+  .dls{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .dl{display:flex;align-items:center;gap:14px;padding:16px 18px;text-decoration:none;color:inherit;border:1px solid rgba(255,255,255,.6);border-radius:12px;background:var(--paper);backdrop-filter:var(--blur);box-shadow:var(--shadow);transition:.15s}
+  .dl:hover{background:var(--paper-strong);transform:translateY(-1px)}
+  .dl .ico{font-size:22px}.dl .t{flex:1}.dl .t h4{font-size:14px;font-weight:700}.dl .t p{font-size:12px;color:var(--ink-mute)}
+  .dl .arrow{color:var(--accent);font-weight:700}
+
+  .copy{font-size:12px;color:var(--ink-mute);line-height:1.7;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+  .copy b{color:var(--ink-soft);font-weight:600}
+
+  .block-label{font-size:14px;font-weight:700;color:var(--ink-soft);margin:26px 0 12px;letter-spacing:-.01em}
+  .agenda{background:var(--paper);backdrop-filter:var(--blur);border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  .agenda .row{display:grid;grid-template-columns:50px 1fr auto;gap:18px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line-soft);text-decoration:none;color:inherit;cursor:pointer;transition:.15s}
+  .agenda .row:last-child{border-bottom:0}
+  .agenda .row:hover{background:rgba(255,255,255,.55)}
+  .agenda .seq{font-size:19px;font-weight:700;color:var(--accent);text-align:center}
+  .agenda .body h4{font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .agenda .body p{font-size:13px;color:var(--ink-mute);margin-top:2px}
+  .agenda .meta{font-size:12px;color:var(--ink-mute);text-align:right;white-space:nowrap}
+  .agenda .meta .t{font-weight:600;color:var(--ink-soft)}
+
+  .scrim{display:none}
+
+  @media(max-width:920px){
+    .app{grid-template-columns:1fr}
+    .sidebar{position:fixed;left:0;top:0;z-index:50;width:84vw;max-width:320px;transform:translateX(-100%);transition:transform .25s ease;border-right:1px solid var(--line)}
+    .sidebar.open{transform:none}
+    .scrim.show{display:block;position:fixed;inset:0;background:rgba(20,30,50,.35);z-index:40}
+    .main{padding:0 20px}
+    .topbar .menu-btn{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--paper);cursor:pointer;font-size:17px}
+    .pains,.flow,.split,.ks,.dls{grid-template-columns:1fr}
+    .fstep{border-right:0;border-bottom:1px solid var(--line-soft)}
+    .step-card{grid-template-columns:36px 1fr;gap:12px;padding:18px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <div class="ms">Microsoft <span class="div">|</span> <span class="prog">Copilot 에이전트 핸즈온</span></div>
+      <div class="t">A4A · Agent for Agent</div>
+      <div class="sub">에이전트 제작 코치 만들기</div>
+    </div>
+    <div class="sb-prog">
+      <div class="bar"><i id="progBar"></i></div>
+      <div class="lbl"><span id="progNow">1</span> / <span id="progTot">18</span> 단계</div>
+    </div>
+    <nav id="sbnav"></nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="목차">☰</button>
+      <div class="crumb" id="crumb"></div>
+    </div>
+
+    <div class="content" id="content"><!-- units injected --></div>
+
+    <div class="navfoot">
+      <a class="navbtn prev" id="btnPrev">← 이전</a>
+      <span class="pos" id="posLbl"></span>
+      <a class="navbtn next" id="btnNext">다음 →</a>
+    </div>
+  </main>
+</div>
+
+<!-- ===================== UNIT TEMPLATES ===================== -->
+<div id="units" hidden>
+
+  <!-- U0 : 과정 소개 -->
+  <section class="unit" data-group="과정 소개" data-title="과정 소개">
+    <div class="eyebrow"><span class="tag">시작</span> Agent for Agent · 에이전트 제작 코치</div>
+    <h1>대화 한 번으로,<br>누구나 자신의 업무에 맞는 에이전트를 설계합니다</h1>
+    <p class="lead" style="margin-top:18px">업무 고충을 입력하면 인터뷰 → 사내 지식 그라운딩 → 설계 추천 → 담당자 승인 과정을 거쳐, 코드 없이 실행 가능한 에이전트 제작 패키지를 받는 실습 과정입니다. M365 Copilot의 Agent Builder로 가볍게 시작해, Copilot Studio로 본격적인 에이전트까지 직접 만들어 봅니다.</p>
+    <div class="factbar">
+      <div class="fact"><span class="k">교육 시간</span><span class="v">2시간 30분</span></div>
+      <div class="fact"><span class="k">난이도</span><span class="v">입문</span></div>
+      <div class="fact"><span class="k">사전 지식</span><span class="v">불필요</span></div>
+      <div class="fact"><span class="k">실습 도구</span><span class="v">M365 Copilot · Copilot Studio</span></div>
+    </div>
+    <div class="block-label">오늘의 학습 흐름</div>
+    <div class="agenda">
+      <div class="row" data-goto="1"><div class="seq">1</div><div class="body"><h4>A4A 소개</h4><p>A4A가 무엇이고 왜 필요한지, 전체 동작 흐름과 실습 자료를 이해합니다.</p></div><div class="meta"><span class="t">개념</span> · 30분</div></div>
+      <div class="row" data-goto="3"><div class="seq">2</div><div class="body"><h4>Agent Builder 핸즈온</h4><p>M365 Copilot의 Agent Builder로 노코드 A4A Lite 에이전트를 직접 만듭니다.</p></div><div class="meta"><span class="t">실습</span> · 50분</div></div>
+      <div class="row" data-goto="9"><div class="seq">3</div><div class="body"><h4>Copilot Studio 핸즈온</h4><p>Knowledge·Tools·Topics·생성형 오케스트레이션을 갖춘 풀버전 A4A를 구현합니다.</p></div><div class="meta"><span class="t">실습</span> · 70분</div></div>
+    </div>
+    <div class="note tip"><span class="ic">👉</span><div>준비되셨으면 아래 <b>다음 →</b> 버튼을 누르거나, 왼쪽 목차에서 원하는 단계를 클릭하세요.</div></div>
+  </section>
+
+  <!-- ============ PART 1 ============ -->
+  <!-- U1 -->
+  <section class="unit" data-group="PART 1 · A4A 소개" data-time="개념 · 30분" data-title="A4A가 필요한 이유">
+    <div class="eyebrow"><span class="tag">PART 1</span> A4A 소개</div>
+    <h2 class="utitle">A4A가 필요한 이유와 동작 흐름</h2>
+    <p class="ulead">A4A(Agent for Agent)는 대화를 통해 에이전트 제작의 허들을 넘고, 즉시 실행 가능한 제작 패키지를 제공하는 “능동형 제작 코치”입니다.</p>
+    <div class="block-label">에이전트 제작을 막는 세 가지 허들</div>
+    <div class="pains">
+      <div class="panel pain"><div class="ico">🧭</div><h4>시작의 막막함</h4><p>어떤 에이전트를, 어디서부터 만들어야 할지 모르는 상태</p></div>
+      <div class="panel pain"><div class="ico">⚙️</div><h4>기술적 어려움</h4><p>프롬프트 작성과 설계의 기술적 진입 장벽</p></div>
+      <div class="panel pain"><div class="ico">🔒</div><h4>보안에 대한 우려</h4><p>사내 규정 준수 여부에 대한 불확실성</p></div>
+    </div>
+    <div class="block-label">A4A 동작 흐름 — 진단 → 설계 → 패키지 → 승인</div>
+    <div class="panel flow">
+      <div class="fstep"><div class="n">단계 1</div><h4>대화형 진단</h4><p>업무 고충을 듣고 필요한 에이전트를 제안합니다.</p></div>
+      <div class="fstep"><div class="n">단계 2</div><h4>사내 최적화 설계</h4><p>사내 시스템 연동과 보안 규정을 설계에 반영합니다.</p></div>
+      <div class="fstep"><div class="n">단계 3</div><h4>제작 패키지 생성</h4><p>설계서·프롬프트·매뉴얼을 자동으로 생성합니다.</p></div>
+      <div class="fstep"><div class="n">단계 4</div><h4>담당자 승인</h4><p>검토(HITL) 후 산출물을 전달·배포합니다.</p></div>
+    </div>
+  </section>
+
+  <!-- U2 -->
+  <section class="unit" data-group="PART 1 · A4A 소개" data-time="개념 · 30분" data-title="입력·결과와 실습 자료">
+    <div class="eyebrow"><span class="tag">PART 1</span> A4A 소개</div>
+    <h2 class="utitle">입력과 결과, 그리고 실습 자료</h2>
+    <p class="ulead">자유 텍스트 한 줄을 입력하면, 사내 규정에 맞춘 에이전트 설계서(.docx)가 나옵니다.</p>
+    <div class="split">
+      <div class="panel pad io">
+        <h4>입력 — 사용자가 제공하는 것</h4>
+        <ul>
+          <li><span class="b">1</span> 업무 고충 인터뷰 응답 (자유 텍스트, 5~8턴)</li>
+          <li><span class="b">2</span> 사내 Knowledge Source 4종 (그라운딩 자료)</li>
+          <li><span class="b">3</span> 에이전트 설계서 Word 템플릿</li>
+        </ul>
+      </div>
+      <div class="codecard"><div class="cap">입력 예시 및 산출물</div>
+<pre>입력: "매주 보고서 작성에 <span class="y">4시간</span>씩
+       쓰는데, AI로 자동화하고 싶어요"
+
+   → A4A 설계 엔진
+
+산출:
+<span class="c">·</span> 지침 · 토픽 구조
+<span class="c">·</span> 지식 매핑 · 테스트 시나리오
+<span class="c">·</span> 보안 체크리스트  <span class="y">(.docx)</span></pre>
+      </div>
+    </div>
+    <div class="block-label">실습에 쓰이는 Knowledge Source 4종</div>
+    <div class="ks">
+      <div class="krow"><span class="ico">🔒</span><div><h4>Security_Rule</h4><p>보안 규정 및 데이터 등급 기준</p></div><span class="num">자료 1</span></div>
+      <div class="krow"><span class="ico">🗺️</span><div><h4>Legacy_System_Map</h4><p>사내 시스템 연동 및 데이터 접근성</p></div><span class="num">자료 2</span></div>
+      <div class="krow"><span class="ico">⚖️</span><div><h4>Platform_Rule</h4><p>에이전트 제작 플랫폼 선정 기준</p></div><span class="num">자료 3</span></div>
+      <div class="krow"><span class="ico">📚</span><div><h4>MarketCase_Knowledge</h4><p>사내 우수·실패 사례 모음</p></div><span class="num">자료 4</span></div>
+    </div>
+    <div class="note info"><span class="ic">ℹ️</span><div>네 개 자료는 마지막 <b>실습 자료</b> 단계에서 내려받아 Knowledge로 등록합니다. 모두 교육용 예시(mock) 문서입니다.</div></div>
+  </section>
+
+  <!-- ============ PART 2 : Agent Builder ============ -->
+  <!-- U3 -->
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="실습 개요·준비물">
+    <div class="eyebrow"><span class="tag">PART 2</span> Agent Builder 핸즈온</div>
+    <h2 class="utitle">A4A Lite 만들기 — 실습 개요</h2>
+    <p class="ulead">M365 Copilot에 내장된 <b>Agent Builder</b>로 코드 한 줄 없이 5~10분 만에 동작하는 “에이전트 제작 코치(A4A Lite)”를 만듭니다. 별도 라이선스·환경 구축이 필요 없는 노코드 선언형 에이전트입니다.</p>
+    <div class="panel objective">
+      <h4>이 실습을 마치면</h4>
+      <ul>
+        <li>M365 Copilot에서 <span class="ui">New agent</span>로 에이전트를 생성할 수 있습니다</li>
+        <li>안내(Instructions)·지식(Knowledge)·기능(Capabilities)·시작 프롬프트를 설정할 수 있습니다</li>
+        <li><span class="ui">Try it</span> 미리보기로 검증하고 <span class="ui">Create</span> 후 공유할 수 있습니다</li>
+      </ul>
+    </div>
+    <div class="note info"><span class="ic">🧰</span><div><b>준비물</b> — M365 Copilot 라이선스 계정, 웹 브라우저. 접속: <span class="path">microsoft365.com/chat</span> 또는 Teams의 Microsoft 365 Copilot 앱 (모바일은 미지원).</div></div>
+  </section>
+
+  <!-- U4 -->
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.1 에이전트 생성 진입">
+    <div class="eyebrow"><span class="tag">PART 2</span> 2.1 · 에이전트 생성 진입</div>
+    <h2 class="utitle">에이전트 생성 진입 — New agent</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Microsoft 365 Copilot 열기</h4>
+        <p>브라우저에서 <span class="path">microsoft365.com/chat</span> 에 접속하거나 Teams에서 <span class="ui">Microsoft 365 Copilot</span> 앱을 엽니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>왼쪽 창에서 New agent 선택</h4>
+        <p>좌측 패널의 <span class="ui">New agent</span>(에이전트 만들기)를 클릭하면 에이전트 생성 화면이 열립니다.</p>
+        <div class="note warn"><span class="ic">⚠️</span><div>예전 문서의 <b>“Create agent”</b>는 현재 <span class="ui">New agent</span>로 명칭이 바뀌었습니다.</div></div>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>생성 방식 이해하기 — Describe vs Configure</h4>
+        <p>생성 화면에는 두 개의 탭이 있습니다. 이번 실습은 정확한 학습을 위해 <span class="ui">Configure</span>(직접 설정)를 사용합니다.</p>
+        <ul>
+          <li><span class="ui">Describe</span> — 자연어로 설명하면 이름·설명·지침·지식을 자동 생성(빠른 경로)</li>
+          <li><span class="ui">Configure</span> — 각 항목을 직접 입력(이번 실습 권장)</li>
+        </ul>
+        <p>상단에서 <span class="ui">Configure</span> 탭을 선택합니다. (Describe 화면이면 <span class="ui">Skip to configure</span>를 클릭)</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- U5 -->
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.2 이름·안내 작성">
+    <div class="eyebrow"><span class="tag">PART 2</span> 2.2 · 이름·안내 작성</div>
+    <h2 class="utitle">이름·설명·안내(Instructions) 작성</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>이름과 설명 입력</h4>
+        <ul>
+          <li><span class="ui">Name</span> : <b>A4A 에이전트 제작 코치</b> (최대 30자)</li>
+          <li><span class="ui">Description</span> : “구성원의 업무 고충을 듣고 사내 규정에 맞는 에이전트 설계서를 제안하는 코치” (최대 1,000자)</li>
+        </ul>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>안내(Instructions) 작성</h4>
+        <p><span class="ui">Instructions</span> 칸은 곧 시스템 프롬프트입니다. 아래 Markdown 구조로 작성합니다 (최대 8,000자).</p>
+        <div class="codecard"><div class="cap">Instructions 예시 — 붙여넣어 사용</div>
+<pre>## 목적
+당신은 사내 구성원이 업무 고충을 말하면, 자동화 가능한
+에이전트를 제안하고 제작 설계서를 만들어 주는 코치입니다.
+
+## 일반 가이드라인
+- 먼저 5~8개의 분기 질문으로 업무 고충을 구체화한다.
+- 사내 보안 규정(Security_Rule)을 항상 우선 확인한다.
+- 추측 대신 등록된 지식에 근거해 답한다.
+- 정중하고 간결한 존댓말로 답한다.
+
+## 주요 스킬
+1. 업무 Pain-point 인터뷰 및 구조화
+2. 적합한 플랫폼 추천 (Agent Builder vs Copilot Studio)
+3. 지침·토픽·지식·테스트 시나리오가 담긴 설계서 초안 생성</pre>
+        </div>
+        <div class="note tip"><span class="ic">💡</span><div><b>핵심</b> — 목적·가이드라인·스킬을 명확히 분리할수록 응답 품질이 올라갑니다. 모호한 지시 → 모호한 응답.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- U6 -->
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.3 지식(Knowledge) 추가">
+    <div class="eyebrow"><span class="tag">PART 2</span> 2.3 · 지식 추가</div>
+    <h2 class="utitle">지식(Knowledge) 추가</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Knowledge 자료 등록</h4>
+        <p><span class="ui">Configure</span> 탭의 <span class="ui">Knowledge</span> 영역에서 실습 문서를 등록합니다.</p>
+        <ul>
+          <li><b>Upload</b> — 내려받은 <span class="ui">Security_Rule.docx</span> 등 4종 파일을 끌어다 놓거나 클릭 업로드</li>
+          <li><b>Enter URL</b> — SharePoint/OneDrive 링크 (2단계 이하 경로, 쿼리 파라미터 없이)</li>
+          <li><b>Search all websites</b> — 공개 웹 검색(Bing) 토글 (기본값)</li>
+        </ul>
+      </div></div>
+    </div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>지식 원본</th><th>등록 한도(에이전트당)</th></tr></thead>
+      <tbody>
+        <tr><td>업로드 파일</td><td>최대 20개</td></tr>
+        <tr><td>SharePoint 파일</td><td>최대 100개</td></tr>
+        <tr><td>OneDrive 파일</td><td>최대 50개</td></tr>
+        <tr><td>공개 웹사이트 URL</td><td>최대 4개 (2단계 이하)</td></tr>
+        <tr><td>전체 지식 원본(합계)</td><td>최대 20개</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note warn"><span class="ic">⚠️</span><div>관리자가 <b>“Allow web search in Copilot”</b> 정책을 끈 경우, 화면 토글이 켜져 있어도 웹 검색이 동작하지 않습니다.</div></div>
+  </section>
+
+  <!-- U7 -->
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.4 기능·시작 프롬프트">
+    <div class="eyebrow"><span class="tag">PART 2</span> 2.4 · 기능·시작 프롬프트</div>
+    <h2 class="utitle">기능(Capabilities)·시작 프롬프트</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Capabilities 토글 켜기</h4>
+        <ul>
+          <li><span class="ui">Code interpreter</span> — “문서, 차트 및 코드 만들기” ON (Word 설계서 생성에 필요)</li>
+          <li><span class="ui">Image generator</span> — “이미지 만들기” (선택)</li>
+        </ul>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>시작 프롬프트(Starter Prompts) 3개 등록</h4>
+        <p>사용자가 첫 화면에서 클릭 한 번으로 시작할 수 있도록 등록합니다.</p>
+        <ul>
+          <li>① “현재 업무에서 가장 어려운 점을 말씀해 주세요.”</li>
+          <li>② “이 고충을 해결할 에이전트가 있다면 어떤 것이 좋을까요?”</li>
+          <li>③ “Word 설계서 템플릿으로 제작 과정을 안내해 주세요.”</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- U8 -->
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.5 테스트·생성·공유">
+    <div class="eyebrow"><span class="tag">PART 2</span> 2.5 · 테스트·생성·공유</div>
+    <h2 class="utitle">테스트 · 생성 · 공유</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Try it 미리보기로 검증</h4>
+        <p>오른쪽 <span class="ui">Try it</span> 탭에서 시작 프롬프트를 눌러 대화해 봅니다. (이름·설명·안내가 채워지면 활성화) “매주 보고서 작성에 4시간씩 써요” 같은 입력으로 응답을 확인합니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Create로 생성</h4>
+        <p>우측 상단 <span class="ui">Create</span>를 클릭합니다. 생성 직후에는 <b>“비공개 — 나만 사용 가능”</b> 상태입니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Share로 공유 범위 설정</h4>
+        <ul>
+          <li><b>Only you</b> — 작성자만(기본)</li>
+          <li><b>Specific users</b> — 지정 사용자·보안 그룹·팀</li>
+          <li><b>Anyone in your organization</b> — 조직 전체</li>
+        </ul>
+        <div class="note tip"><span class="ic">✅</span><div>여기까지 완료하면 <b>5~10분 만에 동작하는 A4A Lite</b>가 완성됩니다. 정식 운영은 PART 3의 Copilot Studio로 확장합니다.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ============ PART 3 : Copilot Studio ============ -->
+  <!-- U9 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="실습 개요">
+    <div class="eyebrow"><span class="tag">PART 3</span> Copilot Studio 핸즈온</div>
+    <h2 class="utitle">풀버전 A4A 구현 — 실습 개요</h2>
+    <p class="ulead"><b>Microsoft Copilot Studio</b>(구 Power Virtual Agents)로 Knowledge 그라운딩, Tools, Topics, 생성형 오케스트레이션, 그리고 사람의 승인(HITL)까지 갖춘 본격 에이전트를 만듭니다.</p>
+    <div class="panel objective">
+      <h4>이 실습을 마치면</h4>
+      <ul>
+        <li>Copilot Studio에서 에이전트를 생성하고 Knowledge 4종을 등록할 수 있습니다</li>
+        <li>인터뷰용 Topic과 설계서 생성용 Tool(프롬프트/플로우)을 만들 수 있습니다</li>
+        <li>생성형 오케스트레이션을 이해하고 <span class="ui">Test</span> 후 <span class="ui">Publish</span>할 수 있습니다</li>
+      </ul>
+    </div>
+    <div class="note warn"><span class="ic">📝</span><div><b>용어 안내</b> — 이 도구는 더 이상 “Power Virtual Agents”가 아닌 <b>Copilot Studio</b>이며, 예전의 <b>Actions/Plugins</b>는 모두 <span class="ui">Tools</span>로 통합되었습니다. 챗봇은 <b>에이전트(Agent)</b>로 부릅니다.</div></div>
+  </section>
+
+  <!-- U10 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.1 에이전트 생성">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.1 · 에이전트 생성</div>
+    <h2 class="utitle">에이전트 생성</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Copilot Studio 접속</h4>
+        <p>브라우저에서 <span class="path">copilotstudio.microsoft.com</span> 에 접속합니다. 홈 화면에 “에이전트가 무엇을 하길 원하는지 설명하세요” 자연어 입력 상자가 보입니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>빈 에이전트로 시작</h4>
+        <p>정확한 학습을 위해 자연어 생성 대신 직접 만듭니다. 홈의 <span class="ui">Create an agent</span> 또는 <span class="ui">Agents</span> 페이지에서 <span class="ui">Create blank agent</span>를 선택합니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>기본 정보 입력</h4>
+        <ul>
+          <li><span class="ui">Name</span> : <b>A4A 제작 코치</b> (최대 42자, <span class="kbd">&lt;</span> <span class="kbd">&gt;</span> 불가)</li>
+          <li><span class="ui">Description</span> : 에이전트 용도 한 줄 (최대 1,024자)</li>
+          <li><span class="ui">Instructions</span> : PART 2의 안내 프롬프트 재사용 (최대 8,000자)</li>
+        </ul>
+        <p>생성 후 <span class="ui">Overview</span> 페이지가 열립니다.</p>
+      </div></div>
+    </div>
+    <div class="note info"><span class="ic">🧭</span><div><b>에이전트 좌측 메뉴</b> — <span class="ui">Overview</span> · <span class="ui">Knowledge</span> · <span class="ui">Topics</span> · <span class="ui">Tools</span> · <span class="ui">Agents</span> · <span class="ui">Activity/Analytics</span> · <span class="ui">Channels</span> · <span class="ui">Settings</span>. 상단에는 <span class="ui">Test</span>·<span class="ui">Publish</span> 버튼이 있습니다.</div></div>
+  </section>
+
+  <!-- U11 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.2 Knowledge 추가">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.2 · Knowledge 추가</div>
+    <h2 class="utitle">Knowledge 추가 — 사내 4종 그라운딩</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Add knowledge 열기</h4>
+        <p>좌측 <span class="ui">Knowledge</span> → <span class="ui">Add knowledge</span>를 선택합니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>원본 유형 선택 후 4종 등록</h4>
+        <p>아래 유형 중 하나로 실습 문서를 올립니다.</p>
+        <ul>
+          <li><b>Documents</b> — Security_Rule 등 4종 파일 업로드(Dataverse 저장)</li>
+          <li><b>SharePoint</b> — 사내 사이트 URL (Graph 검색, Entra 인증 필요)</li>
+          <li><b>Public website</b> — 공개 도메인</li>
+          <li><b>Dataverse</b> — 테이블 직접 연결(고급)</li>
+        </ul>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>이름·설명 정리</h4>
+        <p>각 지식 원본의 <b>Description</b>을 구체적으로 작성합니다. 생성형 오케스트레이션이 이 설명을 보고 어떤 자료를 검색할지 결정합니다.</p>
+      </div></div>
+    </div>
+    <div class="note tip"><span class="ic">💡</span><div><b>Work IQ</b> 토글을 켜면 M365 시맨틱 인덱스로 SharePoint 검색 품질이 크게 향상됩니다. (에이전트 인증이 <span class="ui">Authenticate with Microsoft</span>일 때)</div></div>
+  </section>
+
+  <!-- U12 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.3 생성형 오케스트레이션">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.3 · 생성형 오케스트레이션</div>
+    <h2 class="utitle">생성형 오케스트레이션 확인</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Settings → Generative AI</h4>
+        <p>좌측 <span class="ui">Settings</span> → <span class="ui">Generative AI</span>에서 “Use generative AI orchestration…”이 <b>Yes</b>인지 확인합니다(신규 에이전트 기본값).</p>
+        <ul>
+          <li><b>생성형(ON)</b> — 토픽·도구·지식을 자동 선택, 트리거 문구 불필요(Description 기반)</li>
+          <li><b>클래식(OFF)</b> — 토픽마다 트리거 문구 5~10개로 매칭</li>
+        </ul>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Allow ungrounded responses 검토</h4>
+        <p>같은 화면에서 이 토글을 <b>OFF</b>로 두면, 지식·도구에 근거하지 않은 답변을 차단해 환각을 줄일 수 있습니다.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- U13 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.4 인터뷰 Topic">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.4 · 인터뷰 Topic</div>
+    <h2 class="utitle">인터뷰 Topic 만들기 — Pain-point 수집</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>새 토픽 생성</h4>
+        <p>좌측 <span class="ui">Topics</span> → <span class="ui">Add a topic</span> → <span class="ui">From blank</span>. 빈 캔버스에 <b>Trigger</b> 노드가 나타납니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>트리거 설정</h4>
+        <ul>
+          <li><b>생성형 모드</b> — Trigger가 “The agent chooses”로 표시됩니다. 토픽 <b>Description</b>에 “사용자의 업무 고충을 인터뷰로 구체화한다”처럼 명확히 적습니다.</li>
+          <li><b>클래식 모드</b> — Trigger의 <span class="ui">...</span> → <span class="ui">Properties</span> → <span class="ui">Phrases</span>에 “업무가 힘들어요”, “자동화하고 싶어요” 등 5~10개 입력.</li>
+        </ul>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>질문 노드 추가</h4>
+        <p><span class="ui">+ (Add node)</span> → <span class="ui">Question</span>으로 분기 질문을 추가하고, 답변을 변수(예: <span class="kbd">painPoints</span>)에 저장합니다.</p>
+        <ul>
+          <li>“어떤 업무가 가장 반복적인가요?”</li>
+          <li>“그 업무에서 주로 어떤 데이터를 참조하나요?”</li>
+          <li>“결과물은 어떤 형태(보고서·메일 등)인가요?”</li>
+        </ul>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>지식 기반 답변</h4>
+        <p>마지막에 <span class="ui">+</span> → <span class="ui">Advanced</span> → <span class="ui">Generative answers</span> 노드를 추가하면, 등록한 Knowledge 4종을 검색해 사내 규정에 맞는 설계 방향을 답합니다.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- U14 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.5 설계서 생성 Tool">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.5 · 설계서 생성 Tool</div>
+    <h2 class="utitle">설계서 생성 Tool 추가</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Tools 페이지에서 도구 추가</h4>
+        <p>좌측 <span class="ui">Tools</span> → <span class="ui">Add a tool</span> → <span class="ui">New tool</span>. 도구 유형을 고릅니다.</p>
+        <div class="tbl-wrap"><table class="tbl">
+          <thead><tr><th>도구 유형</th><th>용도</th></tr></thead>
+          <tbody>
+            <tr><td>Prompt</td><td>단일 LLM 프롬프트 — 인터뷰 결과를 설계서 형식으로 구조화</td></tr>
+            <tr><td>Agent flow</td><td>로우코드 자동화 — Word 생성·SharePoint 업로드·승인</td></tr>
+            <tr><td>Custom connector</td><td>외부 API/서비스 연결</td></tr>
+            <tr><td>MCP</td><td>Model Context Protocol 서버 연결(신규)</td></tr>
+          </tbody>
+        </table></div>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Prompt 도구로 설계서 구조화</h4>
+        <p><span class="ui">New tool</span> → <span class="ui">Prompt</span>를 선택하면 프롬프트 편집기가 열립니다. 인터뷰 변수(<span class="kbd">painPoints</span> 등)를 입력으로 받아 “지침·토픽·지식 매핑·테스트 시나리오” 형식의 설계서를 생성하도록 작성하고 <span class="ui">Test</span>로 확인합니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>(선택) Agent flow로 Word·승인 연결</h4>
+        <p>좌측 <span class="ui">Flows</span> → <span class="ui">New flow</span> → <span class="ui">Agent flow</span>. 트리거 <span class="ui">When an agent calls the flow</span>, 마지막에 <span class="ui">Respond to the agent</span>가 있어야 하며 <b>100초 내</b> 응답·<b>Publish</b> 필수입니다.</p>
+        <ul>
+          <li>Word 템플릿 채우기 → SharePoint 업로드</li>
+          <li><b>Human in the loop</b> 액션으로 승인 요청(다음 단계)</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- U15 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.6 사람의 승인(HITL)">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.6 · 사람의 승인(HITL)</div>
+    <h2 class="utitle">사람의 승인(HITL) 추가</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>승인 요청 단계 넣기</h4>
+        <p>Agent flow의 <span class="ui">Human in the loop</span> 액션 범주에서 <b>Approval</b> 요청을 추가합니다. 설계서가 완성되면 담당자에게 Teams 승인/이메일로 검토를 요청합니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>승인 후 재개</h4>
+        <p>담당자가 승인하면 플로우가 재개되어 결과를 에이전트에 반환하고, 사용자에게 최종 설계서 링크를 전달합니다. (거절 시 수정 안내)</p>
+      </div></div>
+    </div>
+    <div class="note info"><span class="ic">🙋</span><div>사람 상담사로의 전환이 필요하면 시스템 토픽 <span class="ui">Escalate</span>에 <span class="ui">Topic Management</span> → <span class="ui">Transfer conversation</span> 노드를 추가합니다.</div></div>
+  </section>
+
+  <!-- U16 -->
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.7 테스트·게시">
+    <div class="eyebrow"><span class="tag">PART 3</span> 3.7 · 테스트·게시</div>
+    <h2 class="utitle">테스트와 게시</h2>
+    <div class="lab">
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Test your agent</h4>
+        <p>상단 <span class="ui">Test</span>를 눌러 오른쪽 패널에서 대화합니다. 생성형 모드에서는 <b>Activity map</b>이 어떤 토픽·도구·지식이 선택됐는지 실시간으로 보여줍니다. 응답을 클릭하면 해당 노드로 이동합니다.</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Publish</h4>
+        <p>상단 <span class="ui">Publish</span> → 확인 → 게시 완료(수 분 소요).</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>Channels 연결</h4>
+        <p><span class="ui">Channels</span>에서 <span class="ui">Teams and Microsoft 365 Copilot</span>을 추가하면 사내에서 바로 사용할 수 있습니다. 조직 배포는 <span class="ui">Submit for admin approval</span>로 관리자 승인을 받습니다.</p>
+        <div class="note tip"><span class="ic">🎉</span><div>축하합니다 — 인터뷰부터 설계서 생성·승인·게시까지 이어지는 <b>풀버전 A4A</b>를 완성했습니다.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ============ PART 4 ============ -->
+  <!-- U17 -->
+  <section class="unit" data-group="실습 자료" data-title="실습 자료 다운로드">
+    <div class="eyebrow"><span class="tag">자료</span> Knowledge Source 4종</div>
+    <h2 class="utitle">실습 자료 다운로드</h2>
+    <p class="ulead">아래 4종 문서를 내려받아 Agent Builder / Copilot Studio의 Knowledge로 등록하세요. 모두 교육용 예시(mock) 문서입니다.</p>
+    <div class="dls">
+      <a class="dl" href="KnowledgeSource/Security_Rule.docx" download><span class="ico">🔒</span><div class="t"><h4>Security_Rule.docx</h4><p>보안 규정·데이터 등급 기준</p></div><span class="arrow">↓</span></a>
+      <a class="dl" href="KnowledgeSource/Legacy_System_Map.docx" download><span class="ico">🗺️</span><div class="t"><h4>Legacy_System_Map.docx</h4><p>사내 시스템 연동·접근성</p></div><span class="arrow">↓</span></a>
+      <a class="dl" href="KnowledgeSource/Platform_Rule.docx" download><span class="ico">⚖️</span><div class="t"><h4>Platform_Rule.docx</h4><p>플랫폼 선정 기준</p></div><span class="arrow">↓</span></a>
+      <a class="dl" href="KnowledgeSource/MarketCase_Knowledge.docx" download><span class="ico">📚</span><div class="t"><h4>MarketCase_Knowledge.docx</h4><p>우수·실패 사례 모음</p></div><span class="arrow">↓</span></a>
+    </div>
+    <div class="note warn"><span class="ic">⚠️</span><div>포함된 시나리오·수치는 실제 조직 정보가 아닌 <b>예시(mock)</b>입니다. 실습 외 용도로 사용하지 마세요.</div></div>
+    <div class="copy">
+      © 2026 <b>Microsoft Corporation</b>. All rights reserved.<br>
+      본 교육 자료는 Microsoft Copilot 에이전트 핸즈온 교육 목적으로 제작되었습니다. 포함된 시나리오와 데이터는 실제 조직 정보가 아닌 예시(mock)이며, 무단 복제·배포를 금합니다. UI 명칭은 2026년 6월 기준이며 제품 업데이트에 따라 달라질 수 있습니다.
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const units = [...document.querySelectorAll('#units .unit')];
+  const content = document.getElementById('content');
+  const sbnav = document.getElementById('sbnav');
+  const crumb = document.getElementById('crumb');
+  const posLbl = document.getElementById('posLbl');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const progBar = document.getElementById('progBar');
+  const progNow = document.getElementById('progNow');
+  const progTot = document.getElementById('progTot');
+  const sidebar = document.getElementById('sidebar');
+  const scrim = document.getElementById('scrim');
+  const total = units.length;
+  progTot.textContent = total;
+  let cur = 0;
+  const visited = new Set();
+
+  // move units into content
+  units.forEach(u => content.appendChild(u));
+
+  // build sidebar grouped
+  const groups = [];
+  units.forEach((u, i) => {
+    const g = u.dataset.group;
+    let grp = groups.find(x => x.name === g);
+    if (!grp) { grp = { name: g, time: u.dataset.time || '', items: [] }; groups.push(grp); }
+    grp.items.push({ i, title: u.dataset.title });
+  });
+  const linkEls = [];
+  groups.forEach(grp => {
+    const gd = document.createElement('div');
+    gd.className = 'sb-group';
+    const gh = document.createElement('div');
+    gh.className = 'gh';
+    gh.innerHTML = `<span>${grp.name}</span>${grp.time ? `<span class="tt">${grp.time}</span>` : ''}`;
+    gd.appendChild(gh);
+    grp.items.forEach(it => {
+      const a = document.createElement('a');
+      a.className = 'sb-link';
+      a.dataset.idx = it.i;
+      a.innerHTML = `<span class="dot"><span>${it.i + 1}</span></span><span>${it.title}</span>`;
+      a.addEventListener('click', () => { go(it.i); closeSb(); });
+      gd.appendChild(a);
+      linkEls[it.i] = a;
+    });
+    sbnav.appendChild(gd);
+  });
+
+  function go(idx) {
+    if (idx < 0 || idx >= total) return;
+    units[cur].classList.remove('show');
+    cur = idx;
+    visited.add(cur);
+    const u = units[cur];
+    u.classList.add('show');
+    // sidebar state
+    linkEls.forEach((a, i) => {
+      a.classList.toggle('active', i === cur);
+      a.classList.toggle('done', visited.has(i) && i !== cur);
+    });
+    // crumb + pos
+    crumb.innerHTML = `${u.dataset.group} <b>›</b> ${u.dataset.title}`;
+    posLbl.textContent = `${cur + 1} / ${total}`;
+    progNow.textContent = cur + 1;
+    progBar.style.width = ((cur + 1) / total * 100) + '%';
+    btnPrev.classList.toggle('disabled', cur === 0);
+    btnNext.classList.toggle('disabled', cur === total - 1);
+    btnNext.textContent = cur === total - 1 ? '완료 ✓' : '다음 →';
+    // scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('.main').scrollTop = 0;
+    location.hash = 'u' + cur;
+  }
+
+  btnPrev.addEventListener('click', () => go(cur - 1));
+  btnNext.addEventListener('click', () => { if (cur < total - 1) go(cur + 1); });
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') go(cur + 1);
+    if (e.key === 'ArrowLeft') go(cur - 1);
+  });
+  // agenda quick links
+  content.addEventListener('click', e => {
+    const row = e.target.closest('[data-goto]');
+    if (row) go(parseInt(row.dataset.goto, 10));
+  });
+  // mobile sidebar
+  const menuBtn = document.getElementById('menuBtn');
+  function openSb() { sidebar.classList.add('open'); scrim.classList.add('show'); }
+  function closeSb() { sidebar.classList.remove('open'); scrim.classList.remove('show'); }
+  menuBtn.addEventListener('click', openSb);
+  scrim.addEventListener('click', closeSb);
+
+  // init from hash
+  const h = location.hash.match(/^#u(\d+)$/);
+  go(h ? Math.min(parseInt(h[1], 10), total - 1) : 0);
+</script>
+</body>
+</html>
