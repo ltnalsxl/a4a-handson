@@ -236,9 +236,10 @@
 
   <!-- U0 : 과정 소개 -->
   <section class="unit" data-group="과정 소개" data-title="과정 소개">
-    <div class="eyebrow"><span class="tag">시작</span> Agent for Agent · 에이전트 제작 코치</div>
-    <h1>대화 한 번으로,<br>누구나 자신의 업무에 맞는 에이전트를 설계합니다</h1>
-    <p class="lead" style="margin-top:18px">업무 고충을 입력하면 인터뷰 → 사내 지식 그라운딩 → 설계 추천 → 담당자 승인 과정을 거쳐, 코드 없이 실행 가능한 에이전트 제작 패키지를 받는 실습 과정입니다. M365 Copilot의 Agent Builder로 가볍게 시작해, Copilot Studio로 본격적인 에이전트까지 직접 만들어 봅니다.</p>
+    <div class="eyebrow"><span class="tag">시작</span> Agent for Agent · 에이전트를 만드는 에이전트</div>
+    <h1>AI 에이전트를 만들어주는<br>AI 에이전트를 직접 만듭니다</h1>
+    <p class="lead" style="margin-top:18px"><b>A4A(Agent for Agent)</b>는 이름 그대로 <b>“에이전트를 만들어주는 에이전트”</b>입니다. 구성원이 업무 고충을 말하면, A4A가 인터뷰 → 사내 지식 그라운딩 → 설계 추천 → 담당자 승인을 거쳐 <b>또 다른 에이전트의 제작 패키지(설계서)</b>를 만들어 줍니다. 이 과정에서 여러분은 에이전트 제작의 전 과정을 자연스럽게 익히게 됩니다.</p>
+    <div class="note info" style="margin-top:18px"><span class="ic">🎯</span><div><b>오늘의 목표</b> — 단순히 “에이전트 하나”를 만드는 게 아니라, <b>“누구나·안전하게 에이전트를 만들도록 돕는 코치(A4A)”</b>를 직접 구축하면서 에이전트 제작의 핵심을 체득합니다.</div></div>
     <div class="factbar">
       <div class="fact"><span class="k">교육 시간</span><span class="v">2시간 30분</span></div>
       <div class="fact"><span class="k">난이도</span><span class="v">입문</span></div>
@@ -248,18 +249,57 @@
     <div class="block-label">오늘의 학습 흐름</div>
     <div class="agenda">
       <div class="row" data-goto="1"><div class="seq">1</div><div class="body"><h4>A4A 소개</h4><p>A4A가 무엇이고 왜 필요한지, 전체 동작 흐름과 실습 자료를 이해합니다.</p></div><div class="meta"><span class="t">개념</span> · 30분</div></div>
-      <div class="row" data-goto="3"><div class="seq">2</div><div class="body"><h4>Agent Builder 핸즈온</h4><p>M365 Copilot의 Agent Builder로 노코드 A4A Lite 에이전트를 직접 만듭니다.</p></div><div class="meta"><span class="t">실습</span> · 50분</div></div>
-      <div class="row" data-goto="9"><div class="seq">3</div><div class="body"><h4>Copilot Studio 핸즈온</h4><p>Knowledge·Tools·Topics·생성형 오케스트레이션을 갖춘 풀버전 A4A를 구현합니다.</p></div><div class="meta"><span class="t">실습</span> · 70분</div></div>
+      <div class="row" data-goto="4"><div class="seq">2</div><div class="body"><h4>Agent Builder 핸즈온</h4><p>M365 Copilot의 Agent Builder로 노코드 A4A Lite 에이전트를 직접 만듭니다.</p></div><div class="meta"><span class="t">실습</span> · 50분</div></div>
+      <div class="row" data-goto="10"><div class="seq">3</div><div class="body"><h4>Copilot Studio 핸즈온</h4><p>Knowledge·Tools·Topics·생성형 오케스트레이션을 갖춘 풀버전 A4A를 구현합니다.</p></div><div class="meta"><span class="t">실습</span> · 70분</div></div>
     </div>
     <div class="note tip"><span class="ic">👉</span><div>준비되셨으면 아래 <b>다음 →</b> 버튼을 누르거나, 왼쪽 목차에서 원하는 단계를 클릭하세요.</div></div>
   </section>
 
   <!-- ============ PART 1 ============ -->
   <!-- U1 -->
+  <section class="unit" data-group="PART 1 · A4A 소개" data-time="개념 · 30분" data-title="A4A란 무엇인가">
+    <div class="eyebrow"><span class="tag">PART 1</span> A4A 소개</div>
+    <h2 class="utitle">A4A란 무엇인가 — 에이전트를 만드는 에이전트</h2>
+    <p class="ulead">A4A를 한 문장으로 정의하면 <b>“AI 에이전트를 만들어주는 AI 에이전트”</b>입니다. 일반 에이전트와 무엇이 다른지부터 명확히 짚고 갑니다.</p>
+
+    <div class="split">
+      <div class="panel pad io">
+        <h4>일반 에이전트 — “일하는” 에이전트</h4>
+        <ul>
+          <li><span class="b">→</span> 가격 계산, 문서 요약, 특허 검색처럼 <b>하나의 업무를 직접 수행</b></li>
+          <li><span class="b">→</span> 결과물 = 그 업무의 산출물</li>
+          <li><span class="b">→</span> 비유: 완성된 <b>요리</b></li>
+        </ul>
+      </div>
+      <div class="panel pad io">
+        <h4>A4A — “만들어주는” 에이전트</h4>
+        <ul>
+          <li><span class="b">★</span> 업무를 수행하지 않고, <b>다른 에이전트의 설계서를 생성</b></li>
+          <li><span class="b">★</span> 결과물 = 에이전트 제작 패키지(.docx)</li>
+          <li><span class="b">★</span> 비유: 요리를 가르쳐주는 <b>요리 선생님</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note info"><span class="ic">💡</span><div><b>핵심</b> — 만드는 기술(Agent Builder·Copilot Studio)은 똑같습니다. 다른 것은 <b>목적의 층위</b>입니다. A4A는 “에이전트 제작” 자체를 도와주는 한 단계 위의 에이전트예요. 그래서 오늘 우리는 <b>“에이전트를 만드는 에이전트”를 만드는</b> 실습을 합니다.</div></div>
+
+    <div class="block-label">왜 이런 걸 만드나 — 목표와 배경</div>
+    <div class="panel objective">
+      <h4>A4A가 풀려는 문제</h4>
+      <ul>
+        <li>한두 개의 에이전트를 전문가가 만들어주는 것으로는 <b>조직 전체로 확산</b>되지 않습니다</li>
+        <li>그렇다고 모두가 자유롭게 만들면 <b>품질 저하·보안 사고</b>(방치되는 에이전트, 미검증 외부 도구 사용, 비용 낭비)가 발생합니다</li>
+        <li>A4A는 <b>“누구나 + 제대로 + 안전하게”</b> 에이전트를 만들도록 돕는 <b>가이드이자 가드레일</b> 역할을 합니다</li>
+      </ul>
+    </div>
+    <div class="note tip"><span class="ic">🎯</span><div><b>이 교육의 진짜 목표</b> — A4A를 예제로 만들어보며, 여러분이 <b>앞으로 어떤 에이전트든 직접·안전하게 만들 수 있는 역량</b>을 갖추는 것입니다.</div></div>
+  </section>
+
+  <!-- U1b -->
   <section class="unit" data-group="PART 1 · A4A 소개" data-time="개념 · 30분" data-title="A4A가 필요한 이유">
     <div class="eyebrow"><span class="tag">PART 1</span> A4A 소개</div>
     <h2 class="utitle">A4A가 필요한 이유와 동작 흐름</h2>
-    <p class="ulead">A4A(Agent for Agent)는 대화를 통해 에이전트 제작의 허들을 넘고, 즉시 실행 가능한 제작 패키지를 제공하는 “능동형 제작 코치”입니다.</p>
+    <p class="ulead">A4A는 대화를 통해 에이전트 제작의 허들을 넘고, 즉시 실행 가능한 제작 패키지를 제공하는 “능동형 제작 코치”입니다. 아래 세 가지 허들이 A4A가 해결하려는 문제입니다.</p>
     <div class="block-label">에이전트 제작을 막는 세 가지 허들</div>
     <div class="pains">
       <div class="panel pain"><div class="ico">🧭</div><h4>시작의 막막함</h4><p>어떤 에이전트를, 어디서부터 만들어야 할지 모르는 상태</p></div>
@@ -317,6 +357,7 @@
     <div class="eyebrow"><span class="tag">PART 2</span> Agent Builder 핸즈온</div>
     <h2 class="utitle">A4A Lite 만들기 — 실습 개요</h2>
     <p class="ulead">M365 Copilot에 내장된 <b>Agent Builder</b>로 코드 한 줄 없이 5~10분 만에 동작하는 “에이전트 제작 코치(A4A Lite)”를 만듭니다. 별도 라이선스·환경 구축이 필요 없는 노코드 선언형 에이전트입니다.</p>
+    <div class="note tip"><span class="ic">🧭</span><div><b>왜 같은 A4A를 두 도구로 만드나요?</b> — 오늘은 같은 A4A를 <b>두 가지 도구</b>로 만들어 봅니다. PART 2에서는 <b>Agent Builder로 쉽고 빠르게(노코드)</b>, PART 3에서는 <b>Copilot Studio로 정교하게(풀버전)</b>. 같은 목표를 두 방식으로 구현해보며 <b>“언제 어떤 도구를 쓰는지”</b>를 체득하는 것이 핵심입니다.</div></div>
     <div class="panel objective">
       <h4>이 실습을 마치면</h4>
       <ul>
@@ -473,6 +514,7 @@
     <div class="eyebrow"><span class="tag">PART 3</span> Copilot Studio 핸즈온</div>
     <h2 class="utitle">풀버전 A4A 구현 — 실습 개요</h2>
     <p class="ulead"><b>Microsoft Copilot Studio</b>(구 Power Virtual Agents)로 Knowledge 그라운딩, Tools, Topics, 생성형 오케스트레이션, 그리고 사람의 승인(HITL)까지 갖춘 본격 에이전트를 만듭니다.</p>
+    <div class="note tip"><span class="ic">🧭</span><div>PART 2에서 노코드로 가볍게 만든 A4A를, 이번엔 <b>실제 업무에 쓸 수 있는 수준</b>으로 끌어올립니다. 같은 A4A지만 — 인터뷰 흐름(Topic), 사내 지식 연결(Knowledge), 설계서 생성 도구(Tools), 담당자 승인(HITL)까지 갖춰 <b>“제대로 동작하는 제작 코치”</b>를 완성합니다.</div></div>
     <div class="panel objective">
       <h4>이 실습을 마치면</h4>
       <ul>
@@ -658,6 +700,16 @@
         <div class="note tip"><span class="ic">🎉</span><div>축하합니다 — 인터뷰부터 설계서 생성·승인·게시까지 이어지는 <b>풀버전 A4A</b>를 완성했습니다.</div></div>
       </div></div>
     </div>
+    <div class="block-label">오늘 우리가 한 일 — 정리</div>
+    <div class="panel objective">
+      <h4>핵심 정리</h4>
+      <ul>
+        <li>우리는 <b>“에이전트를 만들어주는 에이전트(A4A)”</b>를 두 가지 도구로 직접 만들었습니다</li>
+        <li><b>Agent Builder</b>(쉽고 빠르게)와 <b>Copilot Studio</b>(정교하게)의 쓰임새 차이를 체득했습니다</li>
+        <li>이 과정에서 익힌 <b>지침·지식·도구·승인·게시</b>는 A4A뿐 아니라 <b>어떤 에이전트를 만들 때도 동일하게</b> 적용됩니다</li>
+      </ul>
+    </div>
+    <div class="note info"><span class="ic">🚀</span><div><b>다음 단계</b> — 이제 여러분의 실제 업무 고충을 떠올려 보세요. 오늘 배운 흐름 그대로, <b>여러분만의 에이전트</b>를 직접 만들 수 있습니다. 그것이 이 교육의 진짜 목표입니다.</div></div>
   </section>
 
   <!-- ============ PART 4 ============ -->
