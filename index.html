@@ -143,6 +143,20 @@
   .ui{font-family:Consolas,monospace;font-size:.92em;background:rgba(31,95,191,.1);color:var(--accent-deep);padding:1px 7px;border-radius:6px;font-weight:600;white-space:nowrap}
   .path{font-family:Consolas,monospace;font-size:12.5px;color:var(--ink-soft);background:rgba(255,255,255,.5);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;display:inline-block}
   .kbd{font-family:Consolas,monospace;font-size:11px;background:#fff;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink-soft)}
+  .cbtn{font-family:inherit;font-size:11.5px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.75);color:var(--accent-deep);border-radius:7px;padding:3px 11px;transition:.15s;white-space:nowrap;flex:0 0 auto}
+  .cbtn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .cbtn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .cap-flex{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .cbtn-code{background:rgba(255,255,255,.12);color:#bcd3f3;border-color:rgba(255,255,255,.22)}
+  .cbtn-code:hover{background:#2a6fd0;color:#fff;border-color:#2a6fd0}
+  .prompts{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .pcard{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.45)}
+  .pnum{flex:0 0 auto;font-weight:700;color:var(--accent);font-size:15px;line-height:1.6}
+  .pbody{flex:1;min-width:0}
+  .prow{display:flex;align-items:center;gap:10px;padding:5px 0}
+  .prow + .prow{border-top:1px dashed var(--line)}
+  .plabel{flex:0 0 34px;font-size:11px;font-weight:700;color:var(--ink-mute)}
+  .ptext{flex:1;font-size:13.5px;color:var(--ink);min-width:0}
 
   .note{display:flex;gap:12px;padding:14px 18px;border-radius:12px;margin:14px 0;font-size:13.5px;line-height:1.6}
   .note .ic{flex:0 0 auto;font-size:16px;margin-top:1px}
@@ -393,10 +407,10 @@
       <ul>
         <li>M365 Copilot에서 <span class="ui">New agent</span>로 에이전트를 생성할 수 있습니다</li>
         <li>안내(Instructions)·지식(Knowledge)·기능(Capabilities)·시작 프롬프트를 설정할 수 있습니다</li>
-        <li><span class="ui">Try it</span> 미리보기로 검증하고 <span class="ui">Create</span> 후 공유할 수 있습니다</li>
+        <li><span class="ui">사용해 보기</span> 미리보기로 검증하고 <span class="ui">만들기</span> 후 공유할 수 있습니다</li>
       </ul>
     </div>
-    <div class="note info"><span class="ic">🧰</span><div><b>준비물</b>: M365 Copilot 라이선스 계정, 웹 브라우저. 접속: <span class="path">microsoft365.com/chat</span> 또는 Teams의 Microsoft 365 Copilot 앱 (모바일은 미지원).</div></div>
+    <div class="note info"><span class="ic">🧰</span><div><b>준비물</b>: M365 Copilot 라이선스 계정, 웹 브라우저. 접속: 브라우저에서 <span class="path">microsoft365.com/chat</span> 에 접속하거나 <span class="ui">Microsoft 365 Copilot</span> 앱을 엽니다.</div></div>
   </section>
 
   <!-- U4 -->
@@ -405,8 +419,8 @@
     <h2 class="utitle">에이전트 생성 진입: New agent</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Microsoft 365 Copilot 열기</h4>
-        <p>브라우저에서 <span class="path">microsoft365.com/chat</span> 에 접속하거나 Teams에서 <span class="ui">Microsoft 365 Copilot</span> 앱을 엽니다.</p>
+        <h4>Microsoft 365 Copilot 앱 열기</h4>
+        <p>브라우저에서 <span class="path">microsoft365.com/chat</span> 에 접속하거나 <span class="ui">Microsoft 365 Copilot</span> 앱을 엽니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>왼쪽 창에서 New agent 선택</h4>
@@ -420,7 +434,7 @@
           <li><span class="ui">Describe</span>: 자연어로 설명하면 이름·설명·지침·지식을 자동 생성(빠른 경로)</li>
           <li><span class="ui">Configure</span>: 각 항목을 직접 입력(이번 실습 권장)</li>
         </ul>
-        <p>상단에서 <span class="ui">Configure</span> 탭을 선택합니다. (Describe 화면이면 <span class="ui">Skip to configure</span>를 클릭)</p>
+        <p>상단에서 <span class="ui">Configure</span> 탭을 선택합니다. (자동 생성 화면이 먼저 보이면 <span class="ui">Configure</span> 탭으로 전환)</p>
       </div></div>
     </div>
   </section>
@@ -440,7 +454,7 @@
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>안내(Instructions) 작성</h4>
         <p><span class="ui">Instructions</span> 칸은 곧 시스템 프롬프트입니다. 아래 Markdown 구조로 작성합니다 (최대 8,000자).</p>
-        <div class="codecard"><div class="cap">Instructions 예시, 붙여넣어 사용</div>
+        <div class="codecard copyable-code"><div class="cap">Instructions 예시, 붙여넣어 사용</div>
 <pre>## 목적
 당신은 사내 구성원이 업무 고충을 말하면, 자동화 가능한
 에이전트를 제안하고 제작 설계서를 만들어 주는 코치입니다.
@@ -502,13 +516,31 @@
         </ul>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>시작 프롬프트(Starter Prompts) 3개 등록</h4>
-        <p>사용자가 첫 화면에서 클릭 한 번으로 시작할 수 있도록 등록합니다.</p>
-        <ul>
-          <li>① “현재 업무에서 가장 어려운 점을 말씀해 주세요.”</li>
-          <li>② “이 고충을 해결할 에이전트가 있다면 어떤 것이 좋을까요?”</li>
-          <li>③ “Word 설계서 템플릿으로 제작 과정을 안내해 주세요.”</li>
-        </ul>
+        <h4>추천 프롬프트(Starter Prompts) 3개 등록</h4>
+        <p>사용자가 첫 화면에서 클릭 한 번으로 시작할 수 있도록 등록합니다. 각 프롬프트는 <b>제목</b>과 <b>내용</b>을 함께 입력합니다.</p>
+        <div class="prompts">
+          <div class="pcard">
+            <span class="pnum">①</span>
+            <div class="pbody">
+              <div class="prow"><span class="plabel">제목</span><span class="ptext">업무 고충 진단</span><button class="cbtn" data-copy="업무 고충 진단">복사</button></div>
+              <div class="prow"><span class="plabel">내용</span><span class="ptext">현재 업무에서 가장 어려운 점을 말씀해 주세요.</span><button class="cbtn" data-copy="현재 업무에서 가장 어려운 점을 말씀해 주세요.">복사</button></div>
+            </div>
+          </div>
+          <div class="pcard">
+            <span class="pnum">②</span>
+            <div class="pbody">
+              <div class="prow"><span class="plabel">제목</span><span class="ptext">에이전트 아이디어 제안</span><button class="cbtn" data-copy="에이전트 아이디어 제안">복사</button></div>
+              <div class="prow"><span class="plabel">내용</span><span class="ptext">이 고충을 해결할 에이전트가 있다면 어떤 것이 좋을까요?</span><button class="cbtn" data-copy="이 고충을 해결할 에이전트가 있다면 어떤 것이 좋을까요?">복사</button></div>
+            </div>
+          </div>
+          <div class="pcard">
+            <span class="pnum">③</span>
+            <div class="pbody">
+              <div class="prow"><span class="plabel">제목</span><span class="ptext">설계서 작성 안내</span><button class="cbtn" data-copy="설계서 작성 안내">복사</button></div>
+              <div class="prow"><span class="plabel">내용</span><span class="ptext">Word 설계서 템플릿으로 제작 과정을 안내해 주세요.</span><button class="cbtn" data-copy="Word 설계서 템플릿으로 제작 과정을 안내해 주세요.">복사</button></div>
+            </div>
+          </div>
+        </div>
       </div></div>
     </div>
   </section>
@@ -519,19 +551,19 @@
     <h2 class="utitle">테스트 · 생성 · 공유</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Try it 미리보기로 검증</h4>
-        <p>오른쪽 <span class="ui">Try it</span> 탭에서 시작 프롬프트를 눌러 대화해 봅니다. (이름·설명·안내가 채워지면 활성화) “매주 보고서 작성에 4시간씩 써요” 같은 입력으로 응답을 확인합니다.</p>
+        <h4>사용해 보기로 검증</h4>
+        <p>오른쪽 <span class="ui">사용해 보기</span> 탭에서 추천 프롬프트를 눌러 대화해 봅니다. (이름·설명·안내가 채워지면 활성화) “매주 보고서 작성에 4시간씩 써요” 같은 입력으로 응답을 확인합니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Create로 생성</h4>
-        <p>우측 상단 <span class="ui">Create</span>를 클릭합니다. 생성 직후에는 <b>“비공개(나만 사용 가능)”</b> 상태입니다.</p>
+        <h4>만들기로 생성</h4>
+        <p>우측 상단 <span class="ui">만들기</span>를 클릭합니다. 생성 직후에는 <b>“비공개(나만 사용 가능)”</b> 상태입니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Share로 공유 범위 설정</h4>
+        <h4>공유(Share)로 공유 범위 설정</h4>
         <ul>
-          <li><b>Only you</b>: 작성자만(기본)</li>
-          <li><b>Specific users</b>: 지정 사용자·보안 그룹·팀</li>
-          <li><b>Anyone in your organization</b>: 조직 전체</li>
+          <li><b>나만(Only you)</b>: 작성자만(기본)</li>
+          <li><b>특정 사용자(Specific people)</b>: 지정 사용자·보안 그룹·팀</li>
+          <li><b>조직의 모든 사용자(Anyone in your org)</b>: 조직 전체</li>
         </ul>
         <div class="note tip"><span class="ic">✅</span><div>여기까지 완료하면 <b>5~10분 만에 동작하는 A4A Lite</b>가 완성됩니다. 정식 운영은 PART 3의 Copilot Studio로 확장합니다.</div></div>
       </div></div>
@@ -871,6 +903,41 @@
   // init from hash
   const h = location.hash.match(/^#u(\d+)$/);
   go(h ? Math.min(parseInt(h[1], 10), total - 1) : 0);
+
+  // copy-to-clipboard
+  function doCopy(text, btn) {
+    const done = () => {
+      const old = btn.dataset.label || btn.textContent;
+      btn.dataset.label = old;
+      btn.textContent = '복사됨 ✓';
+      btn.classList.add('ok');
+      setTimeout(() => { btn.textContent = old; btn.classList.remove('ok'); }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
+    } else { fallback(text, done); }
+  }
+  function fallback(text, done) {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    ta.remove(); done();
+  }
+  // buttons with explicit text
+  document.querySelectorAll('button[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => doCopy(btn.getAttribute('data-copy'), btn));
+  });
+  // code blocks marked copyable
+  document.querySelectorAll('.codecard.copyable-code').forEach(card => {
+    const pre = card.querySelector('pre'); if (!pre) return;
+    const cap = card.querySelector('.cap');
+    const btn = document.createElement('button');
+    btn.className = 'cbtn cbtn-code'; btn.textContent = '복사';
+    btn.addEventListener('click', () => doCopy(pre.innerText, btn));
+    if (cap) { cap.classList.add('cap-flex'); cap.appendChild(btn); }
+    else { card.insertBefore(btn, card.firstChild); }
+  });
 </script>
 </body>
 </html>
