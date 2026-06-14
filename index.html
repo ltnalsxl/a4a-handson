@@ -160,6 +160,9 @@
 
   .note{display:flex;gap:12px;padding:14px 18px;border-radius:12px;margin:14px 0;font-size:13.5px;line-height:1.6}
   .note .ic{flex:0 0 auto;font-size:16px;margin-top:1px}
+  figure.shot{margin:14px 0 4px}
+  figure.shot img{display:block;width:100%;border-radius:12px;border:1px solid var(--line);box-shadow:0 10px 30px -14px rgba(20,40,90,.35),0 2px 6px -2px rgba(20,40,90,.12)}
+  figure.shot figcaption{font-size:11.5px;color:var(--ink-mute);margin-top:7px;text-align:center}
   .note.tip{background:rgba(31,157,107,.09);border:1px solid rgba(31,157,107,.22)}.note.tip b{color:var(--ok)}
   .note.warn{background:rgba(200,134,26,.1);border:1px solid rgba(200,134,26,.26)}.note.warn b{color:var(--warn)}
   .note.info{background:var(--accent-soft);border:1px solid rgba(31,95,191,.2)}.note.info b{color:var(--accent-deep)}
@@ -411,8 +414,8 @@
     <div class="panel objective">
       <h4>이 실습을 마치면</h4>
       <ul>
-        <li>M365 Copilot에서 <span class="ui">New agent</span>로 에이전트를 생성할 수 있습니다</li>
-        <li>안내(Instructions)·지식(Knowledge)·기능(Capabilities)·시작 프롬프트를 설정할 수 있습니다</li>
+        <li>M365 Copilot에서 <span class="ui">새 에이전트</span>로 에이전트를 생성할 수 있습니다</li>
+        <li><span class="ui">안내</span>·<span class="ui">지식</span>·<span class="ui">기능</span>·<span class="ui">추천 프롬프트</span>를 설정할 수 있습니다</li>
         <li><span class="ui">사용해 보기</span> 미리보기로 검증하고 <span class="ui">만들기</span> 후 공유할 수 있습니다</li>
       </ul>
     </div>
@@ -422,25 +425,27 @@
   <!-- U4 -->
   <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.1 에이전트 생성 진입">
     <div class="eyebrow"><span class="tag">PART 2</span> 2.1 · 에이전트 생성 진입</div>
-    <h2 class="utitle">에이전트 생성 진입: New agent</h2>
+    <h2 class="utitle">에이전트 생성 진입: 새 에이전트</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>Microsoft 365 Copilot 앱 열기</h4>
-        <p>브라우저에서 <span class="path">microsoft365.com/chat</span> 에 접속하거나 <span class="ui">Microsoft 365 Copilot</span> 앱을 엽니다.</p>
+        <p>브라우저에서 <span class="path">microsoft365.com/chat</span> 에 접속하거나 <span class="ui">Microsoft 365 Copilot</span> 앱을 엽니다. 좌측 패널에서 <span class="ui">에이전트</span>를 펼친 뒤 <span class="ui">새 에이전트</span>를 선택합니다.</p>
+        <figure class="shot"><img src="assets/ab-01-new-agent-menu.png" alt="M365 Copilot 좌측 에이전트 메뉴에서 새 에이전트 선택" loading="lazy"><figcaption>좌측 ‘에이전트’ 메뉴 → ‘새 에이전트’</figcaption></figure>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>왼쪽 창에서 New agent 선택</h4>
-        <p>좌측 패널의 <span class="ui">New agent</span>(에이전트 만들기)를 클릭하면 에이전트 생성 화면이 열립니다.</p>
-        <div class="note warn"><span class="ic">⚠️</span><div>예전 문서의 <b>“Create agent”</b>는 현재 <span class="ui">New agent</span>로 명칭이 바뀌었습니다.</div></div>
-      </div></div>
-      <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>생성 방식 이해하기: Describe vs Configure</h4>
-        <p>생성 화면에는 두 개의 탭이 있습니다. 이번 실습은 정확한 학습을 위해 <span class="ui">Configure</span>(직접 설정)를 사용합니다.</p>
+        <h4>생성 방식 이해하기: 자연어 설명 vs 구성</h4>
+        <p>처음 화면에서는 <b>만들려는 에이전트를 자연어로 설명</b>해 자동 생성할 수 있습니다. 이번 실습은 정확한 학습을 위해 <span class="ui">구성으로 건너뛰기</span>를 눌러 <span class="ui">구성</span> 화면에서 각 항목을 직접 입력합니다.</p>
+        <figure class="shot"><img src="assets/ab-02-describe.png" alt="에이전트를 자연어로 설명하는 첫 화면과 구성으로 건너뛰기 링크" loading="lazy"><figcaption>첫 화면: 자연어 설명 또는 우측 하단 ‘구성으로 건너뛰기’</figcaption></figure>
         <ul>
-          <li><span class="ui">Describe</span>: 자연어로 설명하면 이름·설명·지침·지식을 자동 생성(빠른 경로)</li>
-          <li><span class="ui">Configure</span>: 각 항목을 직접 입력(이번 실습 권장)</li>
+          <li><span class="ui">자연어 설명</span>: 만들려는 에이전트를 문장으로 적으면 이름·설명·안내·지식을 자동 생성(빠른 경로)</li>
+          <li><span class="ui">구성</span>: 이름·안내·지식·기능을 직접 입력(이번 실습 권장)</li>
         </ul>
-        <p>상단에서 <span class="ui">Configure</span> 탭을 선택합니다. (자동 생성 화면이 먼저 보이면 <span class="ui">Configure</span> 탭으로 전환)</p>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>구성 화면 살펴보기</h4>
+        <p>상단 탭은 <span class="ui">구성</span>(직접 설정)과 <span class="ui">사용해 보기</span>(미리보기)로 나뉩니다. 우측 상단 <span class="ui">만들기</span> 버튼으로 마지막에 생성합니다.</p>
+        <figure class="shot"><img src="assets/ab-03-configure-blank.png" alt="새 에이전트 구성 화면 - 안내·지식 항목이 비어 있는 상태" loading="lazy"><figcaption>‘구성’ 탭의 빈 화면: 안내·지식·기능을 차례로 입력</figcaption></figure>
+        <div class="note warn"><span class="ic">⚠️</span><div>예전 문서의 <b>“Create agent”</b>는 현재 <span class="ui">새 에이전트</span>로, <b>“Configure/Try it”</b>은 <span class="ui">구성</span>/<span class="ui">사용해 보기</span>로 한글화되었습니다.</div></div>
       </div></div>
     </div>
   </section>
@@ -448,19 +453,20 @@
   <!-- U5 -->
   <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.2 이름·안내 작성">
     <div class="eyebrow"><span class="tag">PART 2</span> 2.2 · 이름·안내 작성</div>
-    <h2 class="utitle">이름·설명·안내(Instructions) 작성</h2>
+    <h2 class="utitle">이름·설명·안내 작성</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>이름과 설명 입력</h4>
         <ul>
-          <li><span class="ui">Name</span> : <b>A4A 에이전트 제작 코치</b> (최대 30자)</li>
-          <li><span class="ui">Description</span> : “구성원의 업무 고충을 듣고 사내 규정에 맞는 에이전트 설계서를 제안하는 코치” (최대 1,000자)</li>
+          <li><span class="ui">이름</span> (제목 옆 연필 아이콘) : <b>A4A 에이전트 제작 코치</b> (최대 30자)</li>
+          <li><span class="ui">에이전트 설명하기</span> (부제) : “구성원의 업무 고충을 듣고 사내 규정에 맞는 에이전트 설계서를 제안하는 코치” (최대 1,000자)</li>
         </ul>
+        <figure class="shot"><img src="assets/ab-04-name-filled.png" alt="에이전트 이름과 설명을 입력한 구성 화면" loading="lazy"><figcaption>이름·설명 입력 후 (안내 칸은 아직 비어 있음)</figcaption></figure>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>안내(Instructions) 작성</h4>
-        <p><span class="ui">Instructions</span> 칸은 곧 시스템 프롬프트입니다. 아래 Markdown 구조로 작성합니다 (최대 8,000자).</p>
-        <div class="codecard copyable-code"><div class="cap">Instructions 예시, 붙여넣어 사용</div>
+        <h4>안내 작성</h4>
+        <p><span class="ui">안내</span> 칸은 곧 시스템 프롬프트입니다. 아래 Markdown 구조로 작성합니다 (최대 8,000자).</p>
+        <div class="codecard copyable-code"><div class="cap">안내(Instructions) 예시, 붙여넣어 사용</div>
 <pre>## 목적
 당신은 사내 구성원이 업무 고충을 말하면, 자동화할 수 있는
 에이전트를 제안하고 제작 설계서를 만들어 주는 코치입니다.
@@ -498,6 +504,7 @@
 6. 보안 체크리스트 확인 결과</pre>
         </div>
         <div class="note tip"><span class="ic">💡</span><div><b>핵심</b>: 목적·대화 방식·가이드라인·출력 형식을 명확히 나눌수록 응답 품질이 올라갑니다. 특히 <b>분기 질문을 구체적으로 적어두면</b> 에이전트가 빠뜨림 없이 인터뷰합니다. 모호한 지시 → 모호한 응답.</div></div>
+        <figure class="shot"><img src="assets/ab-05-instructions-filled.png" alt="이름·설명과 안내(목적·일반 가이드라인)가 채워진 구성 화면" loading="lazy"><figcaption>안내 작성 완료: 목적·가이드라인이 채워진 상태</figcaption></figure>
       </div></div>
     </div>
   </section>
@@ -505,16 +512,22 @@
   <!-- U6 -->
   <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.3 지식(Knowledge) 추가">
     <div class="eyebrow"><span class="tag">PART 2</span> 2.3 · 지식 추가</div>
-    <h2 class="utitle">지식(Knowledge) 추가</h2>
+    <h2 class="utitle">지식 추가</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Knowledge 자료 등록</h4>
-        <p><span class="ui">Configure</span> 탭의 <span class="ui">Knowledge</span> 영역에서 실습 문서를 등록합니다.</p>
+        <h4>지식 원본 선택</h4>
+        <p><span class="ui">구성</span> 탭의 <span class="ui">지식</span> 영역은 “에이전트가 응답을 생성하는 데 사용할 원본”을 등록하는 곳입니다. <span class="ui">파일, 모임, 채팅, 이메일 및 웹 사이트 추가</span>에서 원본을 고릅니다.</p>
+        <figure class="shot"><img src="assets/ab-06-knowledge-capabilities.png" alt="지식 영역과 파일·모임·채팅·이메일·웹 사이트 추가, 모든 웹 사이트를 검색합니다 토글" loading="lazy"><figcaption>‘지식’ 영역: 원본 추가와 검색 옵션 토글</figcaption></figure>
+      </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>실습 문서 업로드</h4>
         <ul>
-          <li><b>Upload</b>: 내려받은 <span class="ui">Security_Rule.docx</span> 등 4종 파일을 끌어다 놓거나 클릭 업로드</li>
-          <li><b>Enter URL</b>: SharePoint/OneDrive 링크 (2단계 이하 경로, 쿼리 파라미터 없이)</li>
-          <li><b>Search all websites</b>: 공개 웹 검색(Bing) 토글 (기본값)</li>
+          <li><b>파일 업로드</b>: 내려받은 <span class="ui">Security_Rule.docx</span> 등 4종 파일을 입력창에 끌어다 놓거나 <span class="ui">업로드</span> 아이콘으로 추가</li>
+          <li><b>URL 또는 이름 입력</b>: SharePoint/OneDrive 링크 (2단계 이하 경로, 쿼리 파라미터 없이)</li>
+          <li><b>모든 웹 사이트를 검색합니다</b>: 공개 웹 검색 토글 / <b>지정된 원본만 사용</b>: 등록 자료만 근거로 답하게 제한</li>
         </ul>
+        <p>업로드하면 <span class="ui">업로드된 파일</span> 목록에 표시되고, 잠시 <span class="ui">준비 중</span> 상태를 거쳐 사용 가능해집니다.</p>
+        <figure class="shot"><img src="assets/ab-07-knowledge-uploaded.png" alt="업로드된 파일 목록에 4종 실습 문서가 준비 중으로 표시된 화면" loading="lazy"><figcaption>실습 자료 4종 업로드 완료 (‘준비 중’ → 사용 가능)</figcaption></figure>
       </div></div>
     </div>
     <div class="tbl-wrap"><table class="tbl">
@@ -527,47 +540,48 @@
         <tr><td>전체 지식 원본(합계)</td><td>최대 20개</td></tr>
       </tbody>
     </table></div>
-    <div class="note warn"><span class="ic">⚠️</span><div>관리자가 <b>“Allow web search in Copilot”</b> 정책을 끈 경우, 화면 토글이 켜져 있어도 웹 검색이 동작하지 않습니다.</div></div>
+    <div class="note warn"><span class="ic">⚠️</span><div>관리자가 웹 검색 정책을 끈 경우, 화면의 <b>“모든 웹 사이트를 검색합니다”</b> 토글이 켜져 있어도 웹 검색이 동작하지 않습니다.</div></div>
   </section>
 
   <!-- U7 -->
-  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.4 기능·시작 프롬프트">
-    <div class="eyebrow"><span class="tag">PART 2</span> 2.4 · 기능·시작 프롬프트</div>
-    <h2 class="utitle">기능(Capabilities)·시작 프롬프트</h2>
+  <section class="unit" data-group="PART 2 · Agent Builder" data-time="실습 · 50분" data-title="2.4 기능·추천 프롬프트">
+    <div class="eyebrow"><span class="tag">PART 2</span> 2.4 · 기능·추천 프롬프트</div>
+    <h2 class="utitle">기능·추천 프롬프트</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Capabilities 토글 켜기</h4>
+        <h4>기능 토글 켜기</h4>
         <ul>
-          <li><span class="ui">Code interpreter</span>: “문서, 차트 및 코드 만들기” ON (Word 설계서 생성에 필요)</li>
-          <li><span class="ui">Image generator</span>: “이미지 만들기” (선택)</li>
+          <li><span class="ui">문서, 차트 및 코드 만들기</span>: ON (데이터 분석·Word·Excel·PowerPoint 파일 생성 — 설계서 생성에 필요)</li>
+          <li><span class="ui">이미지 만들기</span>: 시각 자료 생성 (선택)</li>
         </ul>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>추천 프롬프트(Starter Prompts) 3개 등록</h4>
-        <p>추천 프롬프트는 <b>사용자(구성원)가 첫 화면에서 클릭해 에이전트에게 보내는 말</b>입니다. 그래서 코치의 질문이 아니라 <b>사용자 입장의 문장</b>으로 적습니다. 각 프롬프트는 <b>제목</b>과 <b>내용</b>을 함께 입력합니다.</p>
+        <p>추천 프롬프트는 <b>사용자(구성원)가 첫 화면에서 클릭해 에이전트에게 보내는 말</b>입니다. 그래서 코치의 질문이 아니라 <b>사용자 입장의 문장</b>으로 적습니다. 각 프롬프트는 <span class="ui">제목</span>과 <span class="ui">메시지</span>를 함께 입력합니다.</p>
         <div class="prompts">
           <div class="pcard">
             <span class="pnum">①</span>
             <div class="pbody">
               <div class="prow"><span class="plabel">제목</span><span class="ptext">업무 자동화 상담</span><button class="cbtn" data-copy="업무 자동화 상담">복사</button></div>
-              <div class="prow"><span class="plabel">내용</span><span class="ptext">반복되는 업무를 자동화하고 싶어요. 어떤 에이전트를 만들 수 있을까요?</span><button class="cbtn" data-copy="반복되는 업무를 자동화하고 싶어요. 어떤 에이전트를 만들 수 있을까요?">복사</button></div>
+              <div class="prow"><span class="plabel">메시지</span><span class="ptext">반복되는 업무를 자동화하고 싶어요. 어떤 에이전트를 만들 수 있을까요?</span><button class="cbtn" data-copy="반복되는 업무를 자동화하고 싶어요. 어떤 에이전트를 만들 수 있을까요?">복사</button></div>
             </div>
           </div>
           <div class="pcard">
             <span class="pnum">②</span>
             <div class="pbody">
               <div class="prow"><span class="plabel">제목</span><span class="ptext">내 고충 진단받기</span><button class="cbtn" data-copy="내 고충 진단받기">복사</button></div>
-              <div class="prow"><span class="plabel">내용</span><span class="ptext">제가 매주 반복하는 업무를 말씀드릴 테니, 적합한 에이전트를 추천해 주세요.</span><button class="cbtn" data-copy="제가 매주 반복하는 업무를 말씀드릴 테니, 적합한 에이전트를 추천해 주세요.">복사</button></div>
+              <div class="prow"><span class="plabel">메시지</span><span class="ptext">제가 매주 반복하는 업무를 말씀드릴 테니, 적합한 에이전트를 추천해 주세요.</span><button class="cbtn" data-copy="제가 매주 반복하는 업무를 말씀드릴 테니, 적합한 에이전트를 추천해 주세요.">복사</button></div>
             </div>
           </div>
           <div class="pcard">
             <span class="pnum">③</span>
             <div class="pbody">
               <div class="prow"><span class="plabel">제목</span><span class="ptext">설계서 받기</span><button class="cbtn" data-copy="설계서 받기">복사</button></div>
-              <div class="prow"><span class="plabel">내용</span><span class="ptext">추천해 준 에이전트의 제작 설계서를 Word 문서로 만들어 주세요.</span><button class="cbtn" data-copy="추천해 준 에이전트의 제작 설계서를 Word 문서로 만들어 주세요.">복사</button></div>
+              <div class="prow"><span class="plabel">메시지</span><span class="ptext">추천해 준 에이전트의 제작 설계서를 Word 문서로 만들어 주세요.</span><button class="cbtn" data-copy="추천해 준 에이전트의 제작 설계서를 Word 문서로 만들어 주세요.">복사</button></div>
             </div>
           </div>
         </div>
+        <figure class="shot"><img src="assets/ab-08-capabilities-prompts.png" alt="기능 토글과 추천 프롬프트의 제목·메시지 입력 영역" loading="lazy"><figcaption>기능 토글(문서·이미지 만들기)과 추천 프롬프트 입력(제목·메시지)</figcaption></figure>
       </div></div>
     </div>
   </section>
