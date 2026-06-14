@@ -182,6 +182,11 @@
   .dl:hover{background:var(--paper-strong);transform:translateY(-1px)}
   .dl .ico{font-size:22px}.dl .t{flex:1}.dl .t h4{font-size:14px;font-weight:700}.dl .t p{font-size:12px;color:var(--ink-mute)}
   .dl .arrow{color:var(--accent);font-weight:700}
+  .dl-zip{grid-column:1/-1;background:linear-gradient(180deg,rgba(31,95,191,.10),rgba(31,95,191,.04));border:1px solid rgba(31,95,191,.35)}
+  .dl-zip:hover{background:linear-gradient(180deg,rgba(31,95,191,.16),rgba(31,95,191,.07))}
+  .dl-zip .ico{font-size:24px}
+  .dl-zip .arrow{font-size:13px;background:var(--accent);color:#fff;padding:5px 12px;border-radius:8px}
+  .dl-open .arrow{font-size:12px;color:var(--ink-soft);font-weight:600;background:rgba(255,255,255,.6);border:1px solid var(--line);padding:4px 10px;border-radius:8px}
 
   .copy{font-size:12px;color:var(--ink-mute);line-height:1.7;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
   .copy b{color:var(--ink-soft);font-weight:600}
@@ -284,18 +289,19 @@
       <ul>
         <li><b>M365 Copilot 라이선스 계정</b>: Agent Builder 실습용</li>
         <li><b>Copilot Studio 접근 권한</b>: <span class="path">copilotstudio.microsoft.com</span></li>
-        <li><b>웹 브라우저</b> (모바일 미지원) + 아래 <b>실습 자료 4종</b> 다운로드</li>
+        <li><b>웹 브라우저</b> + 아래 <b>실습 자료 4종</b> 다운로드</li>
       </ul>
     </div>
 
-    <div class="block-label">실습 자료: Knowledge Source 4종 (지금 내려받으세요)</div>
+    <div class="block-label">실습 자료: Knowledge Source 4종</div>
     <div class="dls">
-      <a class="dl" href="KnowledgeSource/Security_Rule.docx" download><span class="ico">🔒</span><div class="t"><h4>Security_Rule.docx</h4><p>보안 규정·데이터 등급 기준</p></div><span class="arrow">↓</span></a>
-      <a class="dl" href="KnowledgeSource/Legacy_System_Map.docx" download><span class="ico">🗺️</span><div class="t"><h4>Legacy_System_Map.docx</h4><p>사내 시스템 연동·접근성</p></div><span class="arrow">↓</span></a>
-      <a class="dl" href="KnowledgeSource/Platform_Rule.docx" download><span class="ico">⚖️</span><div class="t"><h4>Platform_Rule.docx</h4><p>플랫폼 선정 기준</p></div><span class="arrow">↓</span></a>
-      <a class="dl" href="KnowledgeSource/MarketCase_Knowledge.xlsx" download><span class="ico">📊</span><div class="t"><h4>MarketCase_Knowledge.xlsx</h4><p>우수·실패 사례 데이터(엑셀)</p></div><span class="arrow">↓</span></a>
+      <a class="dl dl-zip" href="A4A_KnowledgeSource.zip" download><span class="ico">📦</span><div class="t"><h4>실습 자료 4종 전체 다운로드 (ZIP)</h4><p>4개 파일을 압축파일 하나로 한 번에 받기 — 권장</p></div><span class="arrow">↓ 다운로드</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FSecurity_Rule.docx" target="_blank" rel="noopener"><span class="ico">🔒</span><div class="t"><h4>Security_Rule.docx</h4><p>보안 규정·데이터 등급 기준</p></div><span class="arrow">열어보기 ↗</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FLegacy_System_Map.docx" target="_blank" rel="noopener"><span class="ico">🗺️</span><div class="t"><h4>Legacy_System_Map.docx</h4><p>사내 시스템 연동·접근성</p></div><span class="arrow">열어보기 ↗</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FPlatform_Rule.docx" target="_blank" rel="noopener"><span class="ico">⚖️</span><div class="t"><h4>Platform_Rule.docx</h4><p>플랫폼 선정 기준</p></div><span class="arrow">열어보기 ↗</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FMarketCase_Knowledge.xlsx" target="_blank" rel="noopener"><span class="ico">📊</span><div class="t"><h4>MarketCase_Knowledge.xlsx</h4><p>우수·실패 사례 데이터(엑셀)</p></div><span class="arrow">열어보기 ↗</span></a>
     </div>
-    <div class="note info"><span class="ic">💡</span><div>이 4종은A4A가 설계 추천 시 참조하는 <b>“사내 지식”</b> 역할을 합니다. 일반 AI가 모르는 보안 규정·시스템·플랫폼 기준·사례를 담고 있어, 안전하고 현실적인 설계를 가능하게 합니다. <b>실제 기업 환경에서 사용할 때는 이 자리에 회사의 사내 문서(보안 규정·시스템 가이드·사례집 등)를 그대로 넣어주면 됩니다.</b></div></div>
+    <div class="note info"><span class="ic">💡</span><div>이 4종은 A4A가 설계 추천 시 참조하는 <b>“사내 지식”</b> 역할을 합니다. 일반 AI가 모르는 보안 규정·시스템·플랫폼 기준·사례를 담고 있어, 안전하고 현실적인 설계를 가능하게 합니다. <b>실제 기업 환경에서 사용할 때는 이 자리에 회사의 사내 문서(보안 규정·시스템 가이드·사례집 등)를 그대로 넣어주면 됩니다.</b></div></div>
     <div class="note warn"><span class="ic">⚠️</span><div>포함된 시나리오·수치는 실제 조직 정보가 아닌 <b>예시(mock)</b>입니다. 실습 외 용도로 사용하지 마세요.</div></div>
   </section>
 
@@ -456,21 +462,42 @@
         <p><span class="ui">Instructions</span> 칸은 곧 시스템 프롬프트입니다. 아래 Markdown 구조로 작성합니다 (최대 8,000자).</p>
         <div class="codecard copyable-code"><div class="cap">Instructions 예시, 붙여넣어 사용</div>
 <pre>## 목적
-당신은 사내 구성원이 업무 고충을 말하면, 자동화 가능한
+당신은 사내 구성원이 업무 고충을 말하면, 자동화할 수 있는
 에이전트를 제안하고 제작 설계서를 만들어 주는 코치입니다.
 
+## 대화 진행 방식
+1. 아래 항목을 한 번에 하나씩 질문해 업무 고충을 구체화한다.
+   - 어떤 업무인가요? (업무 이름과 한 줄 설명)
+   - 얼마나 자주 반복되나요? (매일·주간·월간)
+   - 한 번 처리에 시간이 얼마나 걸리나요?
+   - 어떤 데이터·문서를 다루나요? (보안 등급 포함)
+   - 가장 번거롭거나 실수가 잦은 단계는 어디인가요?
+   - 결과물은 누구에게, 어떤 형태로 전달되나요?
+2. 답변이 모호하면 다음 질문 전에 한 번 더 되물어 명확히 한다.
+3. 충분히 파악되면 적합한 플랫폼을 추천하고 이유를 설명한다.
+4. 마지막으로 제작 설계서 초안을 표 형태로 제시한다.
+
 ## 일반 가이드라인
-- 먼저 5~8개의 분기 질문으로 업무 고충을 구체화한다.
-- 사내 보안 규정(Security_Rule)을 항상 우선 확인한다.
-- 추측 대신 등록된 지식에 근거해 답한다.
+- 사내 보안 규정(Security_Rule)을 항상 우선 확인하고,
+  데이터 등급에 맞는 플랫폼만 추천한다.
+- 추측 대신 등록된 지식(Knowledge)에 근거해 답한다.
+- 한 번에 한 가지만 질문해 사용자의 부담을 줄인다.
 - 정중하고 간결한 존댓말로 답한다.
 
-## 주요 스킬
-1. 업무 Pain-point 인터뷰 및 구조화
-2. 적합한 플랫폼 추천 (Agent Builder vs Copilot Studio)
-3. 지침·토픽·지식·테스트 시나리오가 담긴 설계서 초안 생성</pre>
+## 플랫폼 추천 기준 (Platform_Rule 참고)
+- 공개·내부 데이터 + 개인·소수 사용 → Agent Builder
+- 대외비 이상 또는 사내 시스템 연동·승인 필요 → Copilot Studio
+
+## 설계서 출력 형식
+다음 항목을 표로 정리해 제시한다.
+1. 에이전트 이름과 한 줄 목적
+2. 추천 플랫폼과 선정 이유
+3. 안내(Instructions) 초안
+4. 필요한 지식(Knowledge Source) 목록
+5. 테스트 시나리오 3개
+6. 보안 체크리스트 확인 결과</pre>
         </div>
-        <div class="note tip"><span class="ic">💡</span><div><b>핵심</b>: 목적·가이드라인·스킬을 명확히 분리할수록 응답 품질이 올라갑니다. 모호한 지시 → 모호한 응답.</div></div>
+        <div class="note tip"><span class="ic">💡</span><div><b>핵심</b>: 목적·대화 방식·가이드라인·출력 형식을 명확히 나눌수록 응답 품질이 올라갑니다. 특히 <b>분기 질문을 구체적으로 적어두면</b> 에이전트가 빠뜨림 없이 인터뷰합니다. 모호한 지시 → 모호한 응답.</div></div>
       </div></div>
     </div>
   </section>
@@ -517,27 +544,27 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>추천 프롬프트(Starter Prompts) 3개 등록</h4>
-        <p>사용자가 첫 화면에서 클릭 한 번으로 시작할 수 있도록 등록합니다. 각 프롬프트는 <b>제목</b>과 <b>내용</b>을 함께 입력합니다.</p>
+        <p>추천 프롬프트는 <b>사용자(구성원)가 첫 화면에서 클릭해 에이전트에게 보내는 말</b>입니다. 그래서 코치의 질문이 아니라 <b>사용자 입장의 문장</b>으로 적습니다. 각 프롬프트는 <b>제목</b>과 <b>내용</b>을 함께 입력합니다.</p>
         <div class="prompts">
           <div class="pcard">
             <span class="pnum">①</span>
             <div class="pbody">
-              <div class="prow"><span class="plabel">제목</span><span class="ptext">업무 고충 진단</span><button class="cbtn" data-copy="업무 고충 진단">복사</button></div>
-              <div class="prow"><span class="plabel">내용</span><span class="ptext">현재 업무에서 가장 어려운 점을 말씀해 주세요.</span><button class="cbtn" data-copy="현재 업무에서 가장 어려운 점을 말씀해 주세요.">복사</button></div>
+              <div class="prow"><span class="plabel">제목</span><span class="ptext">업무 자동화 상담</span><button class="cbtn" data-copy="업무 자동화 상담">복사</button></div>
+              <div class="prow"><span class="plabel">내용</span><span class="ptext">반복되는 업무를 자동화하고 싶어요. 어떤 에이전트를 만들 수 있을까요?</span><button class="cbtn" data-copy="반복되는 업무를 자동화하고 싶어요. 어떤 에이전트를 만들 수 있을까요?">복사</button></div>
             </div>
           </div>
           <div class="pcard">
             <span class="pnum">②</span>
             <div class="pbody">
-              <div class="prow"><span class="plabel">제목</span><span class="ptext">에이전트 아이디어 제안</span><button class="cbtn" data-copy="에이전트 아이디어 제안">복사</button></div>
-              <div class="prow"><span class="plabel">내용</span><span class="ptext">이 고충을 해결할 에이전트가 있다면 어떤 것이 좋을까요?</span><button class="cbtn" data-copy="이 고충을 해결할 에이전트가 있다면 어떤 것이 좋을까요?">복사</button></div>
+              <div class="prow"><span class="plabel">제목</span><span class="ptext">내 고충 진단받기</span><button class="cbtn" data-copy="내 고충 진단받기">복사</button></div>
+              <div class="prow"><span class="plabel">내용</span><span class="ptext">제가 매주 반복하는 업무를 말씀드릴 테니, 적합한 에이전트를 추천해 주세요.</span><button class="cbtn" data-copy="제가 매주 반복하는 업무를 말씀드릴 테니, 적합한 에이전트를 추천해 주세요.">복사</button></div>
             </div>
           </div>
           <div class="pcard">
             <span class="pnum">③</span>
             <div class="pbody">
-              <div class="prow"><span class="plabel">제목</span><span class="ptext">설계서 작성 안내</span><button class="cbtn" data-copy="설계서 작성 안내">복사</button></div>
-              <div class="prow"><span class="plabel">내용</span><span class="ptext">Word 설계서 템플릿으로 제작 과정을 안내해 주세요.</span><button class="cbtn" data-copy="Word 설계서 템플릿으로 제작 과정을 안내해 주세요.">복사</button></div>
+              <div class="prow"><span class="plabel">제목</span><span class="ptext">설계서 받기</span><button class="cbtn" data-copy="설계서 받기">복사</button></div>
+              <div class="prow"><span class="plabel">내용</span><span class="ptext">추천해 준 에이전트의 제작 설계서를 Word 문서로 만들어 주세요.</span><button class="cbtn" data-copy="추천해 준 에이전트의 제작 설계서를 Word 문서로 만들어 주세요.">복사</button></div>
             </div>
           </div>
         </div>
@@ -792,10 +819,11 @@
 
     <div class="block-label">실습 자료 다시 받기</div>
     <div class="dls">
-      <a class="dl" href="KnowledgeSource/Security_Rule.docx" download><span class="ico">🔒</span><div class="t"><h4>Security_Rule.docx</h4><p>보안 규정·데이터 등급 기준</p></div><span class="arrow">↓</span></a>
-      <a class="dl" href="KnowledgeSource/Legacy_System_Map.docx" download><span class="ico">🗺️</span><div class="t"><h4>Legacy_System_Map.docx</h4><p>사내 시스템 연동·접근성</p></div><span class="arrow">↓</span></a>
-      <a class="dl" href="KnowledgeSource/Platform_Rule.docx" download><span class="ico">⚖️</span><div class="t"><h4>Platform_Rule.docx</h4><p>플랫폼 선정 기준</p></div><span class="arrow">↓</span></a>
-      <a class="dl" href="KnowledgeSource/MarketCase_Knowledge.xlsx" download><span class="ico">📊</span><div class="t"><h4>MarketCase_Knowledge.xlsx</h4><p>우수·실패 사례 데이터(엑셀)</p></div><span class="arrow">↓</span></a>
+      <a class="dl dl-zip" href="A4A_KnowledgeSource.zip" download><span class="ico">📦</span><div class="t"><h4>실습 자료 4종 전체 다운로드 (ZIP)</h4><p>4개 파일을 압축파일 하나로 한 번에 받기</p></div><span class="arrow">↓ 다운로드</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FSecurity_Rule.docx" target="_blank" rel="noopener"><span class="ico">🔒</span><div class="t"><h4>Security_Rule.docx</h4><p>보안 규정·데이터 등급 기준</p></div><span class="arrow">열어보기 ↗</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FLegacy_System_Map.docx" target="_blank" rel="noopener"><span class="ico">🗺️</span><div class="t"><h4>Legacy_System_Map.docx</h4><p>사내 시스템 연동·접근성</p></div><span class="arrow">열어보기 ↗</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FPlatform_Rule.docx" target="_blank" rel="noopener"><span class="ico">⚖️</span><div class="t"><h4>Platform_Rule.docx</h4><p>플랫폼 선정 기준</p></div><span class="arrow">열어보기 ↗</span></a>
+      <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FMarketCase_Knowledge.xlsx" target="_blank" rel="noopener"><span class="ico">📊</span><div class="t"><h4>MarketCase_Knowledge.xlsx</h4><p>우수·실패 사례 데이터(엑셀)</p></div><span class="arrow">열어보기 ↗</span></a>
     </div>
     <div class="note tip"><span class="ic">🚀</span><div>이제 여러분의 실제 업무 고충을 떠올려, 오늘 배운 흐름 그대로 <b>여러분만의 에이전트</b>를 직접 만들어 보세요.</div></div>
     <div class="copy">
