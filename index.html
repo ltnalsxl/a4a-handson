@@ -263,7 +263,7 @@
     <div class="eyebrow"><span class="tag">시작</span> Agent for Agent · 에이전트를 만드는 에이전트</div>
     <h1>AI 에이전트를 만들어주는<br>AI 에이전트를 직접 만듭니다</h1>
     <p class="lead" style="margin-top:18px"><b>A4A(Agent for Agent)</b>는 이름 그대로 <b>“에이전트를 만들어주는 에이전트”</b>입니다.<br><br>구성원이 업무 고충을 말하면, A4A가 인터뷰 → 사내 지식 그라운딩 → 설계 추천 → 담당자 승인을 거쳐 <b>또 다른 에이전트의 제작 패키지(설계서)</b>를 만들어 줍니다.<br><br>이 과정에서 여러분은 에이전트 제작의 전 과정을 자연스럽게 익히게 됩니다.</p>
-    <div class="note info" style="margin-top:18px"><span class="ic">🎯</span><div><b>오늘의 목표</b>: 단순히 “에이전트 하나”를 만드는 게 아니라, <b>“누구나·안전하게 에이전트를 만들도록 돕는 코치(A4A)”</b>를 직접 구축하면서 에이전트 제작의 핵심을 체득합니다.</div></div>
+    <div class="note info" style="margin-top:18px"><span class="ic">🎯</span><div><b>오늘의 목표</b>: 단순히 “에이전트 하나”를 만드는 게 아니라, <b>“누구나·안전하게 에이전트를 만들도록 돕는 코치(A4A)”</b>를 직접 구축하면서 에이전트 제작의 핵심을 익힙니다.</div></div>
     <div class="factbar">
       <div class="fact"><span class="k">교육 시간</span><span class="v">2시간 30분</span></div>
       <div class="fact"><span class="k">난이도</span><span class="v">입문</span></div>
@@ -298,7 +298,7 @@
 
     <div class="block-label">실습 자료: Knowledge Source 4종</div>
     <div class="dls">
-      <a class="dl dl-zip" href="A4A_KnowledgeSource.zip" download><span class="ico">📦</span><div class="t"><h4>실습 자료 4종 전체 다운로드 (ZIP)</h4><p>4개 파일을 압축파일 하나로 한 번에 받기 — 권장</p></div><span class="arrow">↓ 다운로드</span></a>
+      <a class="dl dl-zip" href="A4A_KnowledgeSource.zip" download><span class="ico">📦</span><div class="t"><h4>실습 자료 4종 전체 다운로드 (ZIP)</h4><p>4개 파일을 압축파일 하나로 한 번에 받기 (권장)</p></div><span class="arrow">↓ 다운로드</span></a>
       <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FSecurity_Rule.docx" target="_blank" rel="noopener"><span class="ico">🔒</span><div class="t"><h4>Security_Rule.docx</h4><p>보안 규정·데이터 등급 기준</p></div><span class="arrow">열어보기 ↗</span></a>
       <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FLegacy_System_Map.docx" target="_blank" rel="noopener"><span class="ico">🗺️</span><div class="t"><h4>Legacy_System_Map.docx</h4><p>사내 시스템 연동·접근성</p></div><span class="arrow">열어보기 ↗</span></a>
       <a class="dl dl-open" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fltnalsxl.github.io%2Fa4a-handson%2FKnowledgeSource%2FPlatform_Rule.docx" target="_blank" rel="noopener"><span class="ico">⚖️</span><div class="t"><h4>Platform_Rule.docx</h4><p>플랫폼 선정 기준</p></div><span class="arrow">열어보기 ↗</span></a>
@@ -334,7 +334,7 @@
       </div>
     </div>
 
-    <div class="note info"><span class="ic">💡</span><div><b>핵심</b>: 만드는 기술(Agent Builder·Copilot Studio)은 똑같습니다. 다른 것은 <b>목적의 층위</b>입니다. A4A는 “에이전트 제작” 자체를 도와주는 한 단계 위의 에이전트예요. 그래서 오늘 우리는 <b>“에이전트를 만드는 에이전트”를 만드는</b> 실습을 합니다.</div></div>
+    <div class="note info"><span class="ic">💡</span><div>만드는 기술(Agent Builder, Copilot Studio)은 똑같습니다. 다른 건 목적이에요. A4A는 “에이전트 제작” 자체를 도와주는 한 단계 위의 에이전트입니다. 그래서 오늘은 <b>“에이전트를 만드는 에이전트”를 만드는</b> 실습을 합니다.</div></div>
 
     <div class="block-label">왜 이런 걸 만드나: 목표와 배경</div>
     <div class="panel objective">
@@ -352,8 +352,8 @@
   <section class="unit" data-group="PART 1 · A4A 소개" data-time="개념 · 30분" data-title="A4A가 필요한 이유">
     <div class="eyebrow"><span class="tag">PART 1</span> A4A 소개</div>
     <h2 class="utitle">A4A가 필요한 이유와 동작 흐름</h2>
-    <p class="ulead">A4A는 대화를 통해 에이전트 제작의 허들을 넘고, 즉시 실행 가능한 제작 패키지를 제공하는 “능동형 제작 코치”입니다. 아래 세 가지 허들이 A4A가 해결하려는 문제입니다.</p>
-    <div class="block-label">에이전트 제작을 막는 세 가지 허들</div>
+    <p class="ulead">A4A는 대화만으로 에이전트 제작의 어려움을 풀어주고, 바로 쓸 수 있는 제작 패키지를 만들어 주는 제작 코치입니다. 아래 세 가지가 A4A가 풀려는 문제입니다.</p>
+    <div class="block-label">에이전트 제작을 막는 세 가지 어려움</div>
     <div class="pains">
       <div class="panel pain"><div class="ico">🧭</div><h4>시작의 막막함</h4><p>어떤 에이전트를, 어디서부터 만들어야 할지 모르는 상태</p></div>
       <div class="panel pain"><div class="ico">⚙️</div><h4>기술적 어려움</h4><p>프롬프트 작성과 설계의 기술적 진입 장벽</p></div>
@@ -410,7 +410,7 @@
     <div class="eyebrow"><span class="tag">PART 2</span> Agent Builder 핸즈온</div>
     <h2 class="utitle">A4A Lite 만들기: 실습 개요</h2>
     <p class="ulead">M365 Copilot에 내장된 <b>Agent Builder</b>로 코드 한 줄 없이 5~10분 만에 동작하는 “에이전트 제작 코치(A4A Lite)”를 만듭니다. 별도 라이선스·환경 구축이 필요 없는 노코드 선언형 에이전트입니다.</p>
-    <div class="note tip"><span class="ic">🧭</span><div><b>왜 같은 A4A를 두 도구로 만드나요?</b>: 오늘은 같은 A4A를 <b>두 가지 도구</b>로 만들어 봅니다. PART 2에서는 <b>Agent Builder로 쉽고 빠르게(노코드)</b>, PART 3에서는 <b>Copilot Studio로 정교하게(풀버전)</b>. 같은 목표를 두 방식으로 구현해보며 <b>“언제 어떤 도구를 쓰는지”</b>를 체득하는 것이 핵심입니다.</div></div>
+    <div class="note tip"><span class="ic">🧭</span><div><b>왜 같은 A4A를 두 도구로 만드나요?</b>: 오늘은 같은 A4A를 <b>두 가지 도구</b>로 만들어 봅니다. PART 2에서는 <b>Agent Builder로 쉽고 빠르게(노코드)</b>, PART 3에서는 <b>Copilot Studio로 정교하게(풀버전)</b>. 같은 목표를 두 방식으로 구현해보며 <b>“언제 어떤 도구를 쓰는지”</b>를 익히는 것이 목표입니다.</div></div>
     <div class="panel objective">
       <h4>이 실습을 마치면</h4>
       <ul>
@@ -503,7 +503,7 @@
 5. 테스트 시나리오 3개
 6. 보안 체크리스트 확인 결과</pre>
         </div>
-        <div class="note tip"><span class="ic">💡</span><div><b>핵심</b>: 목적·대화 방식·가이드라인·출력 형식을 명확히 나눌수록 응답 품질이 올라갑니다. 특히 <b>분기 질문을 구체적으로 적어두면</b> 에이전트가 빠뜨림 없이 인터뷰합니다. 모호한 지시 → 모호한 응답.</div></div>
+        <div class="note tip"><span class="ic">💡</span><div>지침을 구체적으로 적을수록 답이 정확해집니다. 특히 분기 질문을 자세히 적어두면 에이전트가 빠뜨리지 않고 인터뷰합니다.</div></div>
         <figure class="shot"><img src="assets/ab-05-instructions-filled.png" alt="이름·설명과 안내(목적·일반 가이드라인)가 채워진 구성 화면" loading="lazy"><figcaption>안내 작성 완료: 목적·가이드라인이 채워진 상태</figcaption></figure>
       </div></div>
     </div>
@@ -551,10 +551,10 @@
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>기능 토글 켜기</h4>
         <ul>
-          <li><span class="ui">문서, 차트 및 코드 만들기</span>: ON (데이터 분석·Word·Excel·PowerPoint 파일 생성 — 설계서 생성에 필요)</li>
+          <li><span class="ui">문서, 차트 및 코드 만들기</span>: ON (데이터 분석, Word·Excel·PowerPoint 파일 생성. 설계서를 만들 때 필요합니다)</li>
           <li><span class="ui">이미지 만들기</span>: 시각 자료 생성 (선택)</li>
         </ul>
-        <div class="note info"><span class="ic">📄</span><div><b>Word 결과물, 항상 자동은 아닙니다</b>: <span class="ui">문서, 차트 및 코드 만들기</span>를 켜면 에이전트가 Word·Excel·PowerPoint 파일을 만들 수 있습니다. 다만 ① 이 기능이 켜져 있고 ② 사용자가 “Word 문서로 만들어 줘”처럼 <b>요청할 때</b>만 생성되며, 서식은 가벼운 편입니다(매번 동일하지 않음). <b>매번 같은 형식의 정식 설계서</b>가 필요하면 PART 3의 Copilot Studio(전용 Tool)로 만듭니다.</div></div>
+        <div class="note info"><span class="ic">📄</span><div><b>Word 결과물이 늘 자동으로 나오지는 않습니다.</b> 이 기능을 켜면 에이전트가 Word, Excel, PowerPoint 파일을 만들 수 있습니다. 다만 사용자가 “Word 문서로 만들어 줘”처럼 직접 요청할 때 생성되고, 서식도 그때그때 조금씩 달라집니다. 늘 같은 형식의 정식 설계서가 필요하면 PART 3의 Copilot Studio에서 전용 도구로 만드는 편이 좋습니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>추천 프롬프트(Starter Prompts) 3개 등록</h4>
@@ -809,7 +809,7 @@
       <h4>핵심 정리</h4>
       <ul>
         <li>우리는 <b>“에이전트를 만들어주는 에이전트(A4A)”</b>를 두 가지 도구로 직접 만들었습니다</li>
-        <li><b>Agent Builder</b>(쉽고 빠르게)와 <b>Copilot Studio</b>(정교하게)의 쓰임새 차이를 체득했습니다</li>
+        <li><b>Agent Builder</b>(쉽고 빠르게)와 <b>Copilot Studio</b>(정교하게)의 쓰임새 차이를 익혔습니다</li>
         <li>이 과정에서 익힌 <b>지침·지식·도구·승인·게시</b>는 A4A뿐 아니라 <b>어떤 에이전트를 만들 때도 동일하게</b> 적용됩니다</li>
       </ul>
     </div>
