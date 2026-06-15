@@ -848,33 +848,23 @@
           <li><b>변수를 미리 만들지 않습니다.</b> <span class="ui">다음 이름으로 사용자 응답 저장</span> 칸을 보면 변수가 <span class="ui">Var1</span>이라는 이름으로 <b>이미 자동 생성</b>되어 있습니다. (<span class="ui">새 변수</span> 버튼을 따로 누를 필요가 없습니다.) 이 <span class="ui">Var1</span> 이름을 한 번 클릭하면 이름을 바꿀 수 있는 입력 상태가 되고, <code>업무고충</code>으로 바꿉니다. 이제 사용자의 답변이 <code>업무고충</code> 변수에 저장됩니다.</li>
         </ol>
         <figure class="shot"><img src="assets/cs-10-question-node.png" alt="질문 노드의 메시지 입력, 식별 다중 선택 옵션, 다음 이름으로 사용자 응답 저장 Var1" loading="lazy"><figcaption><span class="ui">질문</span> 노드: <span class="ui">식별</span>을 <span class="ui">사용자의 전체 응답</span>으로, 변수 <span class="ui">Var1</span> → <code>업무고충</code></figcaption></figure>
-        <div class="note tip"><span class="ic">🔁</span><div><b>나머지 질문도 똑같은 방식으로 하나씩 추가합니다.</b> 자유롭게 늘리지 말고, <b>아래 5개 질문 노드를 순서대로</b> 추가하세요. 한 가지 다른 점은 <b>식별 유형</b>입니다. 사람마다 답이 다양한 항목만 <span class="ui">사용자의 전체 응답</span>(자유 서술)으로 받고, <b>보기에서 고르면 되는 항목은</b> 기본값인 <span class="ui">다중 선택 옵션</span>을 그대로 두고 <b>보기만 입력</b>합니다. 이렇게 하면 사용자가 오타·중구난방으로 답하지 않아 설계서가 일정하게 나옵니다.</div></div>
-        <div class="note info"><span class="ic">🧭</span><div><b>식별 유형 고르는 법</b> · <b>자유 서술</b>이 필요하면 <span class="ui">식별</span>을 <span class="ui">사용자의 전체 응답</span>으로 바꿉니다. <b>보기 중 선택</b>이면 <span class="ui">식별</span>은 기본값 <span class="ui">다중 선택 옵션</span> 그대로 두고, 노드 안 <span class="ui">옵션</span> 영역에 보기를 <b>한 줄에 하나씩</b> 입력합니다(이 보기 입력을 빠뜨리면 “옵션이 누락됨” 오류가 납니다). 그다음 <span class="ui">Var#</span> 이름을 클릭해 지정한 변수명으로 바꿉니다.</div></div>
+        <div class="note info"><span class="ic">🧭</span><div><b>식별 유형 고르는 법.</b> <b>자유 서술</b>이 필요하면 <span class="ui">식별</span>을 <span class="ui">사용자의 전체 응답</span>으로 바꿉니다. <b>보기 중 선택</b>이면 <span class="ui">식별</span>은 기본값 <span class="ui">다중 선택 옵션</span> 그대로 두고, 노드 안 <span class="ui">옵션</span> 영역에 보기를 <b>한 줄에 하나씩</b> 입력합니다(이 보기 입력을 빠뜨리면 “옵션이 누락됨” 오류가 납니다). 그다음 <span class="ui">Var#</span> 이름을 클릭해 지정한 변수명으로 바꿉니다.</div></div>
+        <p>이번엔 <b>보기에서 고르는 질문</b>을 하나 더 만들어 두 가지 유형을 모두 익혀 봅니다. 위와 똑같이 <span class="ui">+</span> → <span class="ui">질문하기</span>로 노드를 추가하고, 이번에는 <span class="ui">식별</span>을 기본값 <span class="ui">다중 선택 옵션</span> 그대로 둔 채 보기만 입력한 뒤, 변수 이름을 <code>반복주기</code>로 바꿉니다.</p>
         <div class="prompts"><div class="pcard"><div class="pbody">
           <div class="prow"><span class="plabel">2번째 질문 · 변수 <code>반복주기</code> · 식별: <b>다중 선택 옵션</b></span><span class="ptext">그 업무는 얼마나 자주 반복되나요?</span><button class="cbtn" data-copy="그 업무는 얼마나 자주 반복되나요?">복사</button></div>
-          <div class="prow"><span class="plabel">↳ 옵션(보기) 입력</span><span class="ptext">매일 · 주 1~2회 · 주 3회 이상 · 월 1~2회 · 비정기(필요할 때)</span><button class="cbtn" data-copy="매일&#10;주 1~2회&#10;주 3회 이상&#10;월 1~2회&#10;비정기(필요할 때)">보기 복사</button></div>
-          <div class="prow"><span class="plabel">3번째 질문 · 변수 <code>소요시간</code> · 식별: <b>다중 선택 옵션</b></span><span class="ptext">한 번 처리하는 데 시간이 얼마나 걸리나요?</span><button class="cbtn" data-copy="한 번 처리하는 데 시간이 얼마나 걸리나요?">복사</button></div>
-          <div class="prow"><span class="plabel">↳ 옵션(보기) 입력</span><span class="ptext">30분 미만 · 30분~1시간 · 1~3시간 · 3시간 이상</span><button class="cbtn" data-copy="30분 미만&#10;30분~1시간&#10;1~3시간&#10;3시간 이상">보기 복사</button></div>
-          <div class="prow"><span class="plabel">4번째 질문 · 변수 <code>참조데이터</code> · 식별: <b>사용자의 전체 응답</b></span><span class="ptext">그 업무에서 어떤 데이터나 문서를 다루나요? (예: 거래처 명단, 계약서, 매출 엑셀)</span><button class="cbtn" data-copy="그 업무에서 어떤 데이터나 문서를 다루나요? (예: 거래처 명단, 계약서, 매출 엑셀)">복사</button></div>
-          <div class="prow"><span class="plabel">5번째 질문 · 변수 <code>보안등급</code> · 식별: <b>다중 선택 옵션</b></span><span class="ptext">그 데이터의 보안 등급은 무엇인가요?</span><button class="cbtn" data-copy="그 데이터의 보안 등급은 무엇인가요?">복사</button></div>
-          <div class="prow"><span class="plabel">↳ 옵션(보기) 입력</span><span class="ptext">공개 · 내부 · 대외비 · 기밀 · 잘 모르겠음</span><button class="cbtn" data-copy="공개&#10;내부&#10;대외비&#10;기밀&#10;잘 모르겠음">보기 복사</button></div>
-          <div class="prow"><span class="plabel">6번째 질문 · 변수 <code>결과물형태</code> · 식별: <b>다중 선택 옵션</b></span><span class="ptext">결과물은 어떤 형태로 만들어지나요?</span><button class="cbtn" data-copy="결과물은 어떤 형태로 만들어지나요?">복사</button></div>
-          <div class="prow"><span class="plabel">↳ 옵션(보기) 입력</span><span class="ptext">보고서(문서) · 이메일 · 엑셀·표 · 메시지(Teams 등) · 기타</span><button class="cbtn" data-copy="보고서(문서)&#10;이메일&#10;엑셀·표&#10;메시지(Teams 등)&#10;기타">보기 복사</button></div>
+          <div class="prow"><span class="plabel">↳ 옵션(보기) 입력</span><span class="ptext">매일, 주 1~2회, 주 3회 이상, 월 1~2회, 비정기(필요할 때)</span><button class="cbtn" data-copy="매일&#10;주 1~2회&#10;주 3회 이상&#10;월 1~2회&#10;비정기(필요할 때)">보기 복사</button></div>
         </div></div></div>
-        <div class="note info"><span class="ic">ℹ️</span><div>이렇게 하면 <span class="ui">업무고충</span> · <span class="ui">반복주기</span> · <span class="ui">소요시간</span> · <span class="ui">참조데이터</span> · <span class="ui">보안등급</span> · <span class="ui">결과물형태</span> 6개 변수가 차례로 채워집니다. 자유 서술은 <b>업무고충 · 참조데이터</b> 2개뿐이고, 나머지는 보기에서 고르게 해 답이 깔끔합니다. 특히 <span class="ui">보안등급</span>은 뒤의 설계서가 <b>플랫폼(Agent Builder vs Copilot Studio)을 추천</b>할 때 결정적으로 쓰이는 항목이라 보기로 또렷이 받는 것이 좋습니다.</div></div>
+        <div class="note tip"><span class="ic">💡</span><div><b>나머지 질문은 굳이 노드로 안 만들어도 됩니다.</b> 지금 만든 두 개로 <b>자유 서술형(업무고충)</b>과 <b>보기 선택형(반복주기)</b> 두 방식을 모두 익혔습니다. 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태 같은 나머지 항목은 <b>3.1 지침의 인터뷰 항목에 이미 들어 있어서</b>, 생성형 오케스트레이션(3.3)이 대화에서 알아서 물어봅니다. <b>질문 순서를 매번 똑같이 고정</b>하고 싶을 때만 위와 똑같은 방법으로 노드를 더 추가하면 됩니다(보안 등급처럼 보기로 받으면 좋은 항목은 <span class="ui">다중 선택 옵션</span>으로).</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>지식 기반 답변 노드 추가</h4>
-        <p>질문 노드 아래 <span class="ui">+</span> → <span class="ui">고급</span> → <span class="ui">생성형 답변 만들기</span>를 추가합니다. <span class="ui">입력</span>에는 앞에서 모은 <b>6개 변수를 모두</b> 넣습니다. (업무고충 하나만 넣으면 설계서가 반복 주기나 보안 등급 같은 핵심 정보를 놓칩니다.) 입력 칸에 아래 문장을 쓰되, <code>{ }</code> 부분은 <code>/</code> 또는 <span class="ui">{x}</span> 변수 삽입으로 해당 변수를 끼워 넣습니다. 그리고 <span class="ui">데이터 원본</span>의 <span class="ui">편집</span>에서 등록한 참조 자료 4종을 검색하도록 둡니다. 그러면 사내 규정에 맞는 설계 방향을 답합니다.</p>
+        <p>질문 노드 아래 <span class="ui">+</span> → <span class="ui">고급</span> → <span class="ui">생성형 답변 만들기</span>를 추가합니다. <span class="ui">입력</span>에는 <b>방금 만든 변수</b>를 넣습니다. 입력 칸에 아래 문장을 쓰되, <code>{ }</code> 부분은 <code>/</code> 또는 <span class="ui">{x}</span> 변수 삽입으로 해당 변수를 끼워 넣습니다. 그리고 <span class="ui">데이터 원본</span>의 <span class="ui">편집</span>에서 등록한 참조 자료 4종을 검색하도록 둡니다. 그러면 사내 규정에 맞는 설계 방향을 답합니다.</p>
         <div class="codecard copyable-code"><div class="cap">생성형 답변 입력에 사용(중괄호 자리는 변수 삽입)</div>
 <pre>업무: {업무고충}
-반복 주기: {반복주기}
-처리 시간: {소요시간}
-다루는 데이터: {참조데이터}
-보안 등급: {보안등급}
-결과물 형태: {결과물형태}</pre>
+반복 주기: {반복주기}</pre>
         </div>
-        <figure class="shot"><img src="assets/cs-11-generative-answer-node.png" alt="생성형 답변 만들기 노드의 입력과 데이터 원본 편집" loading="lazy"><figcaption><span class="ui">생성형 답변 만들기</span>: <span class="ui">입력</span>에 6개 변수, <span class="ui">데이터 원본</span>에 참조 자료 4종</figcaption></figure>
+        <div class="note info"><span class="ic">💬</span><div>나머지 인터뷰 항목(처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)은 <b>지침과 참조 자료에 이미 반영</b>되어 있어, 에이전트가 대화 맥락에서 함께 고려해 설계 방향을 제시합니다. 즉 변수를 두 개만 넣어도 설계는 사내 규정에 맞게 나옵니다.</div></div>
+        <figure class="shot"><img src="assets/cs-11-generative-answer-node.png" alt="생성형 답변 만들기 노드의 입력과 데이터 원본 편집" loading="lazy"><figcaption><span class="ui">생성형 답변 만들기</span>: <span class="ui">입력</span>에 변수, <span class="ui">데이터 원본</span>에 참조 자료 4종</figcaption></figure>
         <p>마지막으로 우측 상단 <span class="ui">저장</span>을 눌러 토픽을 저장합니다.</p>
       </div></div>
     </div>
@@ -927,7 +917,7 @@
           <div class="prow"><span class="plabel">입력 이름</span><span class="ptext">인터뷰내용</span><button class="cbtn" data-copy="인터뷰내용">복사</button></div>
           <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)</span><button class="cbtn" data-copy="사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)">복사</button></div>
         </div></div></div>
-        <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.4에서 만든 인터뷰 토픽이 사용자에게 질문해 6개 변수(<code>업무고충</code>, <code>반복주기</code>, <code>소요시간</code>, <code>참조데이터</code>, <code>보안등급</code>, <code>결과물형태</code>)에 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
+        <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.1 지침의 인터뷰 항목(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)에 따라 에이전트가 사용자에게 물어 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
         <p><b>③ 우측 상단 <span class="ui">모델</span>은 기본값(예: GPT-4.1 mini) 그대로 두고, <span class="ui">테스트</span></b>를 눌러 오른쪽 <span class="ui">모델 응답</span>에서 표가 잘 나오는지 확인합니다. (테스트 시 <code>인터뷰내용</code>에 예시 문장을 한 번 넣어 보면 됩니다.) 마지막으로 <span class="ui">저장</span>을 누릅니다.</p>
         <div class="note tip"><span class="ic">💡</span><div><b>참조 자료도 넣고 싶다면?</b> <span class="ui">+ 콘텐츠 추가</span> → <span class="ui">참조 자료(지식)</span>로 업로드한 4종을 이 프롬프트에 직접 붙일 수 있습니다. 다만 에이전트에 이미 4종이 <span class="ui">참조 자료</span>로 등록돼 있어, <b>실습에서는 입력 변수만 만들어도 충분</b>합니다.</div></div>
       </div></div>
