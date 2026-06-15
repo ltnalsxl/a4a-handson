@@ -815,6 +815,7 @@
   <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.4 인터뷰 토픽(선택)">
     <div class="eyebrow"><span class="tag">PART 3</span> 3.4 · 인터뷰 토픽</div>
     <h2 class="utitle">인터뷰 토픽 만들기: 업무 고충 수집</h2>
+    <p class="ulead">이 토픽의 목적은 <b>사용자의 업무 고충을 한 번에 하나씩 질문해 수집</b>하는 것입니다. 모은 답변은 변수에 담기고, 뒤이어 참조 자료 4종에 근거한 설계 방향(또는 3.5의 설계서)으로 이어집니다.</p>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>새 토픽 생성</h4>
@@ -916,7 +917,10 @@
           <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)</span><button class="cbtn" data-copy="사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)">복사</button></div>
         </div></div></div>
         <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.1 지침의 인터뷰 항목(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)에 따라 에이전트가 사용자에게 물어 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
-        <p><b>③ 우측 상단 <span class="ui">모델</span>은 기본값(예: GPT-4.1 mini) 그대로 두고, <span class="ui">테스트</span></b>를 눌러 오른쪽 <span class="ui">모델 응답</span>에서 표가 잘 나오는지 확인합니다. (테스트 시 <code>인터뷰내용</code>에 예시 문장을 한 번 넣어 보면 됩니다.) 마지막으로 <span class="ui">저장</span>을 누릅니다.</p>
+        <p><b>③ 우측 상단 <span class="ui">모델</span>은 기본값(예: GPT-4.1 mini) 그대로 두고, <span class="ui">테스트</span></b>를 눌러 오른쪽 <span class="ui">모델 응답</span>에서 표가 잘 나오는지 확인합니다. 테스트하려면 <code>인터뷰내용</code> 입력에 <b>실제 인터뷰 답변 같은 예시 문장</b>을 한 번 넣어야 합니다(설명 문구가 아니라 진짜 내용이어야 표가 만들어집니다). 아래 샘플을 그대로 붙여 보세요. 마지막으로 <span class="ui">저장</span>을 누릅니다.</p>
+        <div class="codecard copyable-code"><div class="cap">테스트용 인터뷰내용 샘플, 붙여넣어 사용</div>
+<pre>매주 월요일에 팀 주간 보고서를 작성합니다. 팀원 5명이 보낸 진행 현황 엑셀과 지난주 회의록을 취합해 요약하고, 표로 정리해 부서장에게 메일로 보냅니다. 한 번에 약 2시간이 걸리고, 가장 번거로운 건 여러 엑셀을 일일이 복사해 합치는 부분입니다. 다루는 자료는 사내 내부 자료(내부 등급)이고, 결과물은 워드 보고서와 요약 메일입니다.</pre>
+        </div>
         <div class="note tip"><span class="ic">💡</span><div><b>참조 자료도 넣고 싶다면?</b> <span class="ui">+ 콘텐츠 추가</span> → <span class="ui">참조 자료(지식)</span>로 업로드한 4종을 이 프롬프트에 직접 붙일 수 있습니다. 다만 에이전트에 이미 4종이 <span class="ui">참조 자료</span>로 등록돼 있어, <b>실습에서는 입력 변수만 만들어도 충분</b>합니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
