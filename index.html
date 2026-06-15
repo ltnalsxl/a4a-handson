@@ -780,12 +780,13 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>Work IQ (이번 실습에서는 끄기 권장)</h4>
-        <p>Work IQ는 에이전트를 <b>내 메일·일정·SharePoint·OneDrive·Teams·Word 등 M365 맥락</b>에 연결해, 개인·조직 상황을 이해하도록 돕는 인텔리전스 계층입니다(프리뷰). 개요 화면의 <span class="ui">Work IQ</span> 항목 토글로 켜고 끌 수 있으며, 기본값은 <span class="ui">비활성화됨</span>입니다.</p>
-        <p><b>A4A 실습에서는 이대로 꺼두는 것을 권장합니다.</b> 이 에이전트의 답변 근거는 우리가 업로드한 <b>참조 자료 4종</b>이고, 인터뷰는 사용자가 직접 입력하는 내용으로 진행되므로 개인 M365 데이터가 필요 없습니다. 켜두면 ① 답변 범위가 개인 데이터까지 섞여 흐려지고, ② M365 Copilot 라이선스와 연결 동의가 필요하며, ③ 사람마다 데이터가 달라 실습 결과가 제각각이 되어 따라가기가 꼬일 수 있습니다.</p>
+        <p>Work IQ는 에이전트를 내 메일, 일정, SharePoint, OneDrive, Teams, Word 같은 M365 맥락에 연결해, 개인과 조직 상황을 이해하도록 돕는 인텔리전스 계층입니다(프리뷰). 개요 화면의 <span class="ui">Work IQ</span> 토글로 켜고 끌 수 있고, 기본값은 <span class="ui">비활성화됨</span>입니다.</p>
+        <p><b>“켜면 더 똑똑해지지 않을까?” 맞는 생각입니다.</b> 실제로 업무 고충을 이해하는 데 Work IQ가 도움이 될 수 있습니다. 예를 들어 내 받은 편지함이나 일정, 회의 기록을 에이전트가 살펴보고 <b>“이런 보고 메일을 매주 반복하시네요”</b>처럼 반복 업무를 먼저 짚어줄 수 있죠. 인터뷰에서 사용자가 미처 떠올리지 못한 고충을 끌어내는 데 유용합니다.</p>
+        <p><b>그런데도 이번 실습에서는 꺼둡니다.</b> 교육의 목표가 “누구나 같은 화면을 보고 같은 결과를 만드는 것”이기 때문입니다. 켜두면 ① 사람마다 메일과 일정 데이터가 달라 실습 결과가 제각각이 되고, ② M365 Copilot 라이선스와 연결(로그인) 동의가 추가로 필요하며, ③ 답변 근거가 우리가 올린 참조 자료 4종 밖으로 흐려질 수 있습니다. 그래서 <b>실습은 끄고, “내 업무를 아는 비서형 에이전트”를 만들 때 켜는 기능</b>으로 기억하시면 됩니다.</p>
         <figure class="shot"><img src="assets/cs-19-workiq-disabled.png" alt="개요 화면의 Work IQ 항목, 비활성화됨 토글" loading="lazy"><figcaption><span class="ui">Work IQ</span>는 <span class="ui">비활성화됨</span> 상태 그대로 둡니다</figcaption></figure>
       </div></div>
     </div>
-    <div class="note info"><span class="ic">ℹ️</span><div><b>그럼 Work IQ를 켜면 무엇을 할 수 있나요?</b> 개인 업무 데이터를 다루는 에이전트를 만들 때 유용합니다. 예를 들어 <b>“내 받은 편지함에서 오늘 온 메일을 요약”</b>, <b>“내 일정을 보고 빈 시간에 회의 잡기”</b>, <b>“내 OneDrive·SharePoint 문서에서 자료 찾기”</b>, <b>“우리 팀 Teams 대화 맥락 반영”</b>처럼, 에이전트가 <b>나의 실제 메일·일정·문서·채팅</b>을 참고해 답하게 됩니다. 이런 개인 비서형 시나리오를 만들 때 해당 항목(Outlook·OneDrive·Teams 등)을 켜면 됩니다. 다만 이번 A4A는 그 범주가 아니므로 꺼둡니다.</div></div>
+    <div class="note info"><span class="ic">ℹ️</span><div><b>켜면 할 수 있는 일 예시.</b> 개인 업무 데이터를 직접 다루는 에이전트라면 유용합니다. “오늘 온 메일 요약”, “빈 시간에 회의 잡기”, “내 문서에서 자료 찾기”처럼 나의 실제 메일과 일정, 문서를 참고해 답하게 만들 수 있습니다. 이런 비서형 에이전트를 만들 때 Outlook, OneDrive, Teams 같은 항목을 켜면 됩니다.</div></div>
   </section>
 
   <!-- U12 -->
@@ -864,8 +865,16 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>지식 기반 답변 노드 추가</h4>
-        <p>질문 노드 아래 <span class="ui">+</span> → <span class="ui">고급</span> → <span class="ui">생성형 답변 만들기</span>를 추가합니다. <span class="ui">입력</span>에는 앞에서 저장한 변수 <code>업무고충</code>을 넣고, <span class="ui">데이터 원본</span>의 <span class="ui">편집</span>에서 등록한 참조 자료 4종을 검색하도록 둡니다. 그러면 사내 규정에 맞는 설계 방향을 답합니다.</p>
-        <figure class="shot"><img src="assets/cs-11-generative-answer-node.png" alt="생성형 답변 만들기 노드의 입력과 데이터 원본 편집" loading="lazy"><figcaption><span class="ui">생성형 답변 만들기</span>: <span class="ui">입력</span>에 변수, <span class="ui">데이터 원본</span>에 참조 자료 4종</figcaption></figure>
+        <p>질문 노드 아래 <span class="ui">+</span> → <span class="ui">고급</span> → <span class="ui">생성형 답변 만들기</span>를 추가합니다. <span class="ui">입력</span>에는 앞에서 모은 <b>6개 변수를 모두</b> 넣습니다. (업무고충 하나만 넣으면 설계서가 반복 주기나 보안 등급 같은 핵심 정보를 놓칩니다.) 입력 칸에 아래 문장을 쓰되, <code>{ }</code> 부분은 <code>/</code> 또는 <span class="ui">{x}</span> 변수 삽입으로 해당 변수를 끼워 넣습니다. 그리고 <span class="ui">데이터 원본</span>의 <span class="ui">편집</span>에서 등록한 참조 자료 4종을 검색하도록 둡니다. 그러면 사내 규정에 맞는 설계 방향을 답합니다.</p>
+        <div class="codecard copyable-code"><div class="cap">생성형 답변 입력에 사용(중괄호 자리는 변수 삽입)</div>
+<pre>업무: {업무고충}
+반복 주기: {반복주기}
+처리 시간: {소요시간}
+다루는 데이터: {참조데이터}
+보안 등급: {보안등급}
+결과물 형태: {결과물형태}</pre>
+        </div>
+        <figure class="shot"><img src="assets/cs-11-generative-answer-node.png" alt="생성형 답변 만들기 노드의 입력과 데이터 원본 편집" loading="lazy"><figcaption><span class="ui">생성형 답변 만들기</span>: <span class="ui">입력</span>에 6개 변수, <span class="ui">데이터 원본</span>에 참조 자료 4종</figcaption></figure>
         <p>마지막으로 우측 상단 <span class="ui">저장</span>을 눌러 토픽을 저장합니다.</p>
       </div></div>
     </div>
@@ -916,9 +925,9 @@
         <p style="margin-top:12px"><b>② <span class="ui">（여기에 입력 변수 인터뷰내용 삽입）</span> 줄을 지우고, 그 자리에서 <code>/</code> 를 입력</b>합니다. 뜨는 메뉴에서 <span class="ui">입력 추가</span>(또는 <span class="ui">+ 콘텐츠 추가</span> → <span class="ui">입력</span>)를 고르고, 입력 이름을 아래처럼 만듭니다. 그러면 지침 안에 <b>파란색 입력 칩</b>이 생깁니다.</p>
         <div class="prompts"><div class="pcard"><div class="pbody">
           <div class="prow"><span class="plabel">입력 이름</span><span class="ptext">인터뷰내용</span><button class="cbtn" data-copy="인터뷰내용">복사</button></div>
-          <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자와의 인터뷰에서 모은 업무 고충 요약(어떤 업무·반복 주기·다루는 데이터·결과물 형태)</span><button class="cbtn" data-copy="사용자와의 인터뷰에서 모은 업무 고충 요약(어떤 업무·반복 주기·다루는 데이터·결과물 형태)">복사</button></div>
+          <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)</span><button class="cbtn" data-copy="사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)">복사</button></div>
         </div></div></div>
-        <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.4에서 만든 인터뷰 토픽이 사용자에게 질문해 <code>업무고충</code> 변수 등에 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
+        <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.4에서 만든 인터뷰 토픽이 사용자에게 질문해 6개 변수(<code>업무고충</code>, <code>반복주기</code>, <code>소요시간</code>, <code>참조데이터</code>, <code>보안등급</code>, <code>결과물형태</code>)에 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
         <p><b>③ 우측 상단 <span class="ui">모델</span>은 기본값(예: GPT-4.1 mini) 그대로 두고, <span class="ui">테스트</span></b>를 눌러 오른쪽 <span class="ui">모델 응답</span>에서 표가 잘 나오는지 확인합니다. (테스트 시 <code>인터뷰내용</code>에 예시 문장을 한 번 넣어 보면 됩니다.) 마지막으로 <span class="ui">저장</span>을 누릅니다.</p>
         <div class="note tip"><span class="ic">💡</span><div><b>참조 자료도 넣고 싶다면?</b> <span class="ui">+ 콘텐츠 추가</span> → <span class="ui">참조 자료(지식)</span>로 업로드한 4종을 이 프롬프트에 직접 붙일 수 있습니다. 다만 에이전트에 이미 4종이 <span class="ui">참조 자료</span>로 등록돼 있어, <b>실습에서는 입력 변수만 만들어도 충분</b>합니다.</div></div>
       </div></div>
