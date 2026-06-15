@@ -685,7 +685,7 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>기본 정보 입력</h4>
-        <p>생성 직후 <span class="ui">개요</span> 페이지가 열립니다. <span class="ui">세부 정보</span> 섹션의 <span class="ui">편집</span>으로 이름·설명을, 아래쪽 <span class="ui">지침</span> 섹션의 <span class="ui">편집</span>으로 지침을 입력합니다. 아래 내용을 그대로 복사해 붙여넣으세요.</p>
+        <p>생성 직후 <span class="ui">개요</span> 페이지가 열립니다. <span class="ui">세부 정보</span> 섹션의 <span class="ui">편집</span>으로 이름·설명을, 아래쪽 <span class="ui">지침</span> 섹션의 <span class="ui">편집</span>으로 지침을 입력합니다. 각 <span class="ui">편집</span> 창에 입력한 뒤에는 <b><span class="ui">저장</span>(또는 <span class="ui">완료</span>)을 눌러야</b> 반영됩니다. 아래 내용을 그대로 복사해 붙여넣으세요.</p>
         <figure class="shot"><img src="assets/cs-03-overview-details-model.png" alt="개요 페이지의 세부 정보, 에이전트의 모델 선택(Claude Sonnet 4.6), 지침 섹션" loading="lazy"><figcaption><span class="ui">개요</span> 페이지: <span class="ui">세부 정보</span> · <span class="ui">에이전트의 모델 선택</span> · <span class="ui">지침</span></figcaption></figure>
         <div class="prompts">
           <div class="pcard">
@@ -696,7 +696,7 @@
           </div>
         </div>
         <p style="margin-top:12px"><span class="ui">지침</span>에는 아래 지침을 붙여넣습니다 (PART 2와 동일, 최대 8,000자).</p>
-        <div class="codecard copyable-code"><div class="cap">Instructions, 붙여넣어 사용</div>
+        <div class="codecard copyable-code"><div class="cap">지침, 붙여넣어 사용</div>
 <pre>## 목적
 당신은 사내 구성원이 업무 고충을 말하면, 자동화할 수 있는
 에이전트를 제안하고 제작 설계서를 만들어 주는 코치입니다.
@@ -809,10 +809,11 @@
         <p>같은 화면에서 <b>“지식에 근거하지 않은 응답 허용”</b> 옵션을 <b>끄면</b>, 등록한 지식·도구에 근거하지 않은 답변을 줄여 환각을 막을 수 있습니다.</p>
       </div></div>
     </div>
+    <div class="note tip"><span class="ic">🚦</span><div><b>여기까지가 “동작하는 A4A”의 최소 구성입니다.</b> <b>3.1(생성·지침) + 3.2(참조 자료 4종) + 3.3(생성형 확인)</b>까지 했다면, 바로 <b>3.7 테스트·게시</b>로 건너뛰어도 인터뷰하고 설계서를 내놓는 에이전트가 완성됩니다. 이어지는 <b>3.4 인터뷰 토픽 · 3.5 설계서 도구 · 3.6 승인</b>은 품질을 끌어올리는 <b>선택(심화)</b> 단계입니다.</div></div>
   </section>
 
   <!-- U13 -->
-  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.4 인터뷰 토픽">
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.4 인터뷰 토픽(선택)">
     <div class="eyebrow"><span class="tag">PART 3</span> 3.4 · 인터뷰 토픽</div>
     <h2 class="utitle">인터뷰 토픽 만들기: 업무 고충 수집</h2>
     <div class="lab">
@@ -825,7 +826,7 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>트리거 설정: ‘토픽이 수행하는 작업 설명’ 입력</h4>
-        <p>생성형 모드에서는 트리거 노드에 <span class="ui">이 에이전트 선택</span>이 표시되고, 그 아래 <span class="ui">토픽이 수행하는 작업 설명</span> 입력란이 있습니다. 에이전트는 이 설명을 보고 <b>언제 이 토픽을 실행할지</b> 스스로 판단합니다. 따라서 예시 문구를 지우고, 아래 문장을 그대로 붙여넣으세요.</p>
+        <p>생성형 모드에서는 트리거 노드에 <span class="ui">이 에이전트 선택</span>이 표시되고, 그 아래 <span class="ui">토픽이 수행하는 작업 설명</span> 입력란이 있습니다. 에이전트는 이 설명을 보고 <b>언제 이 토픽을 실행할지</b> 스스로 판단합니다. 입력란(회색 예시 안내가 보이는 칸)을 클릭하고 아래 문장을 그대로 붙여넣으세요.</p>
         <figure class="shot"><img src="assets/cs-08-trigger-node.png" alt="트리거 노드의 이 에이전트 선택과 토픽이 수행하는 작업 설명 입력란" loading="lazy"><figcaption><span class="ui">트리거</span> 노드: <span class="ui">토픽이 수행하는 작업 설명</span>에 실행 조건을 적습니다</figcaption></figure>
         <div class="codecard copyable-code"><div class="cap">토픽이 수행하는 작업 설명, 붙여넣어 사용</div>
 <pre>사용자가 업무의 어려움, 반복 작업, 자동화하고 싶은 일에 대해 이야기할 때 이 토픽을 실행합니다. 사용자의 업무 고충을 한 번에 한 가지씩 질문해 구체화하고, 어떤 업무인지·얼마나 자주 반복되는지·어떤 데이터를 다루는지·결과물 형태는 무엇인지를 파악합니다. 충분히 파악되면 적합한 플랫폼과 에이전트 설계 방향을 제안합니다.</pre>
@@ -961,7 +962,8 @@
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>에이전트 테스트</h4>
-        <p>우측 상단 <span class="ui">테스트</span>를 눌러 오른쪽 <span class="ui">에이전트 테스트</span> 패널에서 대화해 봅니다. “안녕하세요, 저는 A4A 제작 코치입니다. 어떻게 도와드릴까요?”로 시작하면 정상입니다. 생성형 모드에서는 어떤 토픽·도구·지식이 선택됐는지 실시간으로 보여주고, 응답을 클릭하면 해당 노드로 이동합니다.</p>
+        <p>우측 상단 <span class="ui">테스트</span>를 눌러 오른쪽 <span class="ui">에이전트 테스트</span> 패널에서 대화해 봅니다. 에이전트가 인사말로 응답하면 정상입니다. 생성형 모드에서는 어떤 토픽·도구·지식이 선택됐는지 실시간으로 보여주고, 응답을 클릭하면 해당 노드로 이동합니다.</p>
+        <div class="note warn"><span class="ic">🧪</span><div><b>이렇게 확인해 보세요</b>: 테스트 칸에 <b>“반복되는 주간 보고서 작성이 너무 번거로워요”</b>라고 입력합니다. 에이전트가 업무를 하나씩 되묻고(인터뷰), 마지막에 <b>추천 플랫폼·지침 초안·테스트 시나리오가 담긴 설계서를 표로</b> 내놓으면 성공입니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>게시</h4>
