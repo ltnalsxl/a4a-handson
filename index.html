@@ -778,16 +778,12 @@
         <p><span class="ui">도구 추가</span>로 에이전트가 실제 작업(설계서 생성, 메일 발송 등)을 하도록 기능을 붙입니다. A4A의 설계서 생성 도구는 뒤의 <b>3.5 단계</b>에서 만듭니다. 지금은 비워둬도 됩니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Work IQ (선택, 프리뷰)</h4>
-        <p>에이전트를 <b>내 메일·일정·SharePoint·OneDrive·Teams·Word 등 M365 맥락</b>에 연결해, 개인·조직 상황을 이해하도록 돕는 인텔리전스 계층입니다. 켜면 Copilot·Outlook·SharePoint·OneDrive·Teams·Word 같은 항목을 개별로 활성화할 수 있습니다.</p>
-        <ul>
-          <li><b>A4A 실습에서는 꺼두거나 기본값 그대로</b> 둬도 됩니다. 업로드한 4종 지식만으로 충분히 동작합니다.</li>
-          <li>실제로 “내 메일 요약”, “내 일정 기반 일정 잡기”처럼 개인 업무 데이터를 다루는 에이전트를 만들 때 해당 항목을 켜면 됩니다.</li>
-          <li>M365 Copilot 라이선스가 필요하고, 항목에 따라 연결(로그인) 동의가 한 번 필요합니다.</li>
-        </ul>
+        <h4>Work IQ (이번 실습에서는 끄기 권장)</h4>
+        <p>Work IQ는 에이전트를 <b>내 메일·일정·SharePoint·OneDrive·Teams·Word 등 M365 맥락</b>에 연결해, 개인·조직 상황을 이해하도록 돕는 인텔리전스 계층입니다(프리뷰). 개요 화면의 <span class="ui">Work IQ</span> 항목 토글로 켜고 끌 수 있으며, 기본값은 <span class="ui">비활성화됨</span>입니다.</p>
+        <p><b>A4A 실습에서는 이대로 꺼두는 것을 권장합니다.</b> 이 에이전트의 답변 근거는 우리가 업로드한 <b>참조 자료 4종</b>이고, 인터뷰는 사용자가 직접 입력하는 내용으로 진행되므로 개인 M365 데이터가 필요 없습니다. 켜두면 ① 답변 범위가 개인 데이터까지 섞여 흐려지고, ② M365 Copilot 라이선스와 연결 동의가 필요하며, ③ 사람마다 데이터가 달라 실습 결과가 제각각이 되어 따라가기가 꼬일 수 있습니다.</p>
       </div></div>
     </div>
-    <div class="note info"><span class="ic">ℹ️</span><div>Work IQ는 미리 보기(프리뷰) 기능이라 화면 구성이 환경에 따라 다를 수 있습니다. 켜는 항목은 “이 에이전트가 어떤 개인·조직 데이터를 참고하면 좋은가”를 기준으로 고르면 됩니다.</div></div>
+    <div class="note info"><span class="ic">ℹ️</span><div><b>그럼 Work IQ를 켜면 무엇을 할 수 있나요?</b> 개인 업무 데이터를 다루는 에이전트를 만들 때 유용합니다. 예를 들어 <b>“내 받은 편지함에서 오늘 온 메일을 요약”</b>, <b>“내 일정을 보고 빈 시간에 회의 잡기”</b>, <b>“내 OneDrive·SharePoint 문서에서 자료 찾기”</b>, <b>“우리 팀 Teams 대화 맥락 반영”</b>처럼, 에이전트가 <b>나의 실제 메일·일정·문서·채팅</b>을 참고해 답하게 됩니다. 이런 개인 비서형 시나리오를 만들 때 해당 항목(Outlook·OneDrive·Teams 등)을 켜면 됩니다. 다만 이번 A4A는 그 범주가 아니므로 꺼둡니다.</div></div>
   </section>
 
   <!-- U12 -->
@@ -844,10 +840,17 @@
         </div></div></div>
         <ol start="2">
           <li><b>식별</b> 드롭다운은 기본값이 <span class="ui">다중 선택 옵션</span>이라 “옵션이 누락됨” 오류가 납니다. 자유 서술형 답변을 받기 위해 <span class="ui">사용자의 전체 응답</span>으로 바꿉니다.</li>
-          <li><b>다음 이름으로 사용자 응답 저장</b>에 변수가 <span class="ui">Var1</span>로 자동 생성됩니다. 이름을 클릭해 <code>업무고충</code>으로 바꿉니다. (이 변수에 사용자의 답변이 저장됩니다.)</li>
+          <li><b>변수를 미리 만들지 않습니다.</b> <span class="ui">다음 이름으로 사용자 응답 저장</span> 칸을 보면 변수가 <span class="ui">Var1</span>이라는 이름으로 <b>이미 자동 생성</b>되어 있습니다. (<span class="ui">새 변수</span> 버튼을 따로 누를 필요가 없습니다.) 이 <span class="ui">Var1</span> 이름을 한 번 클릭하면 이름을 바꿀 수 있는 입력 상태가 되고, <code>업무고충</code>으로 바꿉니다. 이제 사용자의 답변이 <code>업무고충</code> 변수에 저장됩니다.</li>
         </ol>
         <figure class="shot"><img src="assets/cs-10-question-node.png" alt="질문 노드의 메시지 입력, 식별 다중 선택 옵션, 다음 이름으로 사용자 응답 저장 Var1" loading="lazy"><figcaption><span class="ui">질문</span> 노드: <span class="ui">식별</span>을 <span class="ui">사용자의 전체 응답</span>으로, 변수 <span class="ui">Var1</span> → <code>업무고충</code></figcaption></figure>
-        <div class="note tip"><span class="ic">🔁</span><div>질문을 더 받고 싶으면 <b>같은 방식으로 질문 노드를 하나씩 더 추가</b>하면 됩니다(예: 반복 주기, 다루는 데이터, 결과물 형태). 이때 변수명도 <code>반복주기</code>·<code>참조데이터</code>·<code>결과물형태</code>처럼 서로 다르게 지정하세요. 한 번에 한 질문씩 묻는 구조라, 노드 하나에 여러 질문을 넣지 않습니다.</div></div>
+        <div class="note tip"><span class="ic">🔁</span><div><b>나머지 질문도 똑같은 방식으로 하나씩 추가합니다.</b> 자유롭게 늘리지 말고, <b>아래 4개 질문 노드를 순서대로</b> 추가하세요. 설계서에 꼭 필요한 항목만 받도록 정해 둔 것입니다. 각 노드는 <b>위와 동일하게</b> 만듭니다: <span class="ui">+</span> → <span class="ui">질문하기</span> → 질문 붙여넣기 → <span class="ui">식별</span>을 <span class="ui">사용자의 전체 응답</span>으로 → 자동 생성된 <span class="ui">Var#</span> 이름을 클릭해 지정한 변수명으로 변경. <b>노드 하나에 질문 하나</b>만 넣습니다.</div></div>
+        <div class="prompts"><div class="pcard"><div class="pbody">
+          <div class="prow"><span class="plabel">2번째 질문 · 변수 <code>반복주기</code></span><span class="ptext">그 업무는 얼마나 자주 반복되나요? (예: 매일, 주 1~2회, 월간)</span><button class="cbtn" data-copy="그 업무는 얼마나 자주 반복되나요? (예: 매일, 주 1~2회, 월간)">복사</button></div>
+          <div class="prow"><span class="plabel">3번째 질문 · 변수 <code>소요시간</code></span><span class="ptext">한 번 처리하는 데 시간이 얼마나 걸리나요?</span><button class="cbtn" data-copy="한 번 처리하는 데 시간이 얼마나 걸리나요?">복사</button></div>
+          <div class="prow"><span class="plabel">4번째 질문 · 변수 <code>참조데이터</code></span><span class="ptext">그 업무에서 어떤 데이터나 문서를 다루나요? 보안 등급(공개·내부·대외비 등)도 함께 알려 주세요.</span><button class="cbtn" data-copy="그 업무에서 어떤 데이터나 문서를 다루나요? 보안 등급(공개·내부·대외비 등)도 함께 알려 주세요.">복사</button></div>
+          <div class="prow"><span class="plabel">5번째 질문 · 변수 <code>결과물형태</code></span><span class="ptext">결과물은 누구에게, 어떤 형태로 전달되나요? (예: 보고서, 메일, 엑셀 표)</span><button class="cbtn" data-copy="결과물은 누구에게, 어떤 형태로 전달되나요? (예: 보고서, 메일, 엑셀 표)">복사</button></div>
+        </div></div></div>
+        <div class="note info"><span class="ic">ℹ️</span><div>이렇게 하면 <span class="ui">업무고충</span> · <span class="ui">반복주기</span> · <span class="ui">소요시간</span> · <span class="ui">참조데이터</span> · <span class="ui">결과물형태</span> 5개 변수가 차례로 채워집니다. 이 5가지는 뒤의 <b>3.5 설계서 생성 도구</b>가 설계서를 만들 때 그대로 쓰는 항목이라, 더 늘리거나 줄이지 않는 것을 권장합니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>지식 기반 답변 노드 추가</h4>
