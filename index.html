@@ -933,12 +933,14 @@
           <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자의 업무 고충 인터뷰 내용을 받아, 사내 규정과 플랫폼 기준에 맞는 에이전트 제작 설계서를 표 형식으로 생성한다. 사용자가 자동화·에이전트 제작·설계서를 요청할 때 호출한다.</span><button class="cbtn" data-copy="사용자의 업무 고충 인터뷰 내용을 받아, 사내 규정과 플랫폼 기준에 맞는 에이전트 제작 설계서를 표 형식으로 생성한다. 사용자가 자동화·에이전트 제작·설계서를 요청할 때 호출한다.">복사</button></div>
         </div></div></div>
         <p>저장하면 에이전트의 <span class="ui">도구</span> 목록에 <b>설계서 생성</b>이 추가되고, 이때부터 에이전트가 필요할 때 자동으로 이 도구를 부릅니다.</p>
+        <figure class="shot"><img src="assets/cs-24-tool-details.png" alt="도구 세부 정보의 이름, 설명, 대상, 추가 세부 정보 설정" loading="lazy"><figcaption>도구 <span class="ui">세부 정보</span>: <span class="ui">이름</span>·<span class="ui">설명</span> 입력, <span class="ui">대상</span>은 A4A Agent</figcaption></figure>
+        <div class="note info"><span class="ic">⚙️</span><div><span class="ui">추가 세부 정보</span>를 펼치면 두 가지가 더 있습니다. <span class="ui">이 도구를 사용할 수 있는 경우</span>는 <b>“에이전트는 언제든지 이 도구를 사용할 수 있습니다”(기본값)</b> 그대로 두고, <span class="ui">실행하기 전에 최종 사용자에게 질문합니다</span>는 <b>아니요</b>로 둡니다. 그래야 에이전트가 매번 묻지 않고 알아서 도구를 호출합니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>⑤ (선택) 지침에 도구 사용 규칙 한 줄 추가</h4>
-        <p>도구 설명만으로도 대개 잘 호출되지만, <b>더 확실하게</b> 하려면 3.1에서 입력한 <span class="ui">지침</span>의 “설계서 출력 형식” 부분에 아래 한 줄을 더해 두면 좋습니다.</p>
-        <div class="codecard copyable-code"><div class="cap">지침에 추가(선택), 붙여넣어 사용</div>
-<pre>설계서를 작성할 때는 반드시 '설계서 생성' 도구를 호출해 표 형식으로 출력한다.</pre>
+        <h4>⑤ 지침에 도구 사용 규칙 한 줄 추가</h4>
+        <p>도구 설명만으로도 대개 잘 호출되지만, <b>더 확실하게</b> 하려면 3.1에서 입력한 <span class="ui">지침</span>의 “설계서 출력 형식” 부분에 아래 한 줄을 더해 둡니다.</p>
+        <div class="codecard copyable-code"><div class="cap">지침에 추가, 붙여넣어 사용</div>
+<pre>설계서를 작성할 때는 반드시 '설계서 생성' 도구를 호출한다.</pre>
         </div>
         <div class="note info"><span class="ic">🧪</span><div><b>확인 방법</b>: 우측 상단 <span class="ui">테스트</span>에서 “반복되는 보고서 작성이 너무 번거로워요” 같은 말을 넣어 보세요. 에이전트가 인터뷰 질문을 던지고, 답을 모은 뒤 <b>설계서 생성</b> 도구를 호출해 표를 내놓으면 성공입니다. 어떤 도구·토픽·지식이 쓰였는지는 테스트 화면의 활동 표시에서 실시간으로 보입니다.</div></div>
       </div></div>
@@ -948,28 +950,30 @@
         <div class="dls">
           <a class="dl dl-zip" href="https://ltnalsxl.github.io/a4a-handson/KnowledgeSource/A4A_Design_Layout.docx" download><span class="ico">📄</span><div class="t"><h4>A4A_Design_Layout.docx</h4><p>설계서 문서 레이아웃(빈칸 서식). 프롬프트 도구의 문서 출력에 업로드</p></div><span class="arrow">↓ 다운로드</span></a>
         </div>
-        <p>프롬프트 편집기 <b>오른쪽 위 출력 형식</b>에서 <span class="ui">텍스트</span> 대신 <span class="ui">문서(Document, 미리 보기)</span>를 고르고, 바로 옆 <span class="ui">문서 설정</span>을 엽니다. <span class="ui">문서 레이아웃 업로드</span>의 <span class="ui">끌어서 놓거나 찾아보려면 선택</span>에 방금 받은 <code>A4A_Design_Layout.docx</code>를 올립니다. 그러면 레이아웃 안의 <b>채울 필드 목록</b>(예: <code>{{에이전트이름}}</code>, <code>{{추천플랫폼}}</code>, <code>{{지침초안}}</code> 등)이 표시됩니다.</p>
+        <p>프롬프트 편집기 <b>오른쪽 위 <span class="ui">출력</span></b>에서 <span class="ui">텍스트</span> 대신 <span class="ui">문서</span>를 고른 뒤, 그 옆 <span class="ui">문서 설정</span>을 엽니다.</p>
+        <figure class="shot"><img src="assets/cs-25-output-document.png" alt="모델 응답 위쪽의 문서 설정과 출력 문서 선택" loading="lazy"><figcaption>오른쪽 위 <span class="ui">출력</span>을 <span class="ui">문서</span>로 바꾸고 <span class="ui">문서 설정</span>을 엽니다</figcaption></figure>
+        <p><span class="ui">문서 레이아웃 업로드</span>의 <span class="ui">끌어서 놓거나 찾아보려면 선택</span>에 방금 받은 <code>A4A_Design_Layout.docx</code>를 올립니다. 그러면 레이아웃 안의 <b>채울 필드 목록</b>(예: <code>{{에이전트이름}}</code>, <code>{{추천플랫폼}}</code>, <code>{{지침초안}}</code> 등)이 표시됩니다.</p>
+        <figure class="shot"><img src="assets/cs-26-doc-layout-upload.png" alt="문서 설정의 문서 레이아웃 업로드 영역" loading="lazy"><figcaption><span class="ui">문서 설정</span> → <span class="ui">문서 레이아웃 업로드</span>에 레이아웃 docx를 올립니다</figcaption></figure>
         <div class="note info"><span class="ic">📐</span><div><b>레이아웃 규칙(직접 만들 때).</b> 채울 자리는 <b>이중 중괄호</b>로 표시합니다(예: <code>{{에이전트이름}}</code>). 표 안의 칸은 <b>표이름.열이름</b>으로 적습니다(예: <code>{{items.수량}}</code>). 필드 이름에는 <b>공백을 넣지 않습니다.</b> 레이아웃 파일은 20MB 이하이며 암호·기밀 문서가 아니어야 합니다.</div></div>
-        <p><span class="ui">테스트</span>를 누르고 입력 <code>인터뷰내용</code>에 앞의 샘플을 넣으면, 오른쪽에서 <b>완성된 Word 문서를 내려받을 수</b> 있습니다. 빈칸이 모두 채워졌는지 확인하고 <span class="ui">저장</span>합니다.</p>
+        <div class="note tip"><span class="ic">✍️</span><div><b>지침도 살짝 바꿔야 하나요?</b> 필드 이름이 <code>{{에이전트이름}}</code>처럼 뜻이 분명하면 <b>지침을 그대로 둬도</b> AI가 각 필드를 알맞게 채웁니다. 다만 지침에 남아 있는 <b>“표로 출력”</b> 같은 문구는 문서 출력과 맞지 않으니, 헷갈리지 않도록 <b>그 한 줄만 빼 두면</b> 더 깔끔합니다(날짜 형식이나 특정 표기가 필요한 필드가 있으면 “○○ 필드는 이렇게 채워라”라고 한 줄 덧붙입니다).</div></div>
+        <p><span class="ui">테스트</span>를 누르고 입력 <code>인터뷰내용</code>에 앞의 샘플을 넣으면, 오른쪽에서 <b>완성된 Word 문서를 내려받을 수</b> 있습니다. 빈칸이 모두 채워졌는지 확인하고 <span class="ui">완료</span> → <span class="ui">저장</span>합니다.</p>
         <div class="note tip"><span class="ic">💡</span><div>문서 출력은 <b>미리 보기(프리뷰)</b> 기능이라 지역·환경에 따라 메뉴가 안 보일 수 있습니다. 안 보이면 이 단계는 건너뛰고 <b>표 형식 출력</b> 그대로 진행해도 실습에는 지장이 없습니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>(선택) 에이전트 흐름으로 Word·승인 연결</h4>
-        <p>좌측 <span class="ui">흐름</span> → <span class="ui">새 에이전트 흐름</span>. 트리거는 <span class="ui">When an agent calls the flow</span>, 마지막에 <span class="ui">Respond to the agent</span>가 있어야 합니다. 그 액션의 <span class="ui">Networking</span>에서 <span class="ui">Asynchronous response</span>를 <b>Off</b>로 두고, <b>100초 내</b> 응답한 뒤 <b>게시</b>해야 도구로 쓸 수 있습니다.</p>
-        <ul>
-          <li>Word 템플릿 채우기 → SharePoint 업로드</li>
-          <li><b>Human in the loop</b> 액션으로 승인 요청(다음 단계)</li>
-        </ul>
+        <h4>⑦ 에이전트 흐름 만들기 (다음 3.6 승인과 이어짐)</h4>
+        <p>설계서가 완성된 뒤 <b>사람의 검토·승인(3.6)</b>을 붙이려면, 프롬프트 도구만으로는 안 되고 <b>에이전트 흐름(Agent flow)</b>이 필요합니다. 여기서 흐름의 뼈대만 만들어 두고, 승인 동작은 <b>3.6에서 이어서</b> 추가합니다.</p>
+        <p>좌측 <span class="ui">흐름</span> → <span class="ui">새 에이전트 흐름</span>을 만듭니다. 트리거는 <span class="ui">When an agent calls the flow</span>(에이전트가 흐름을 호출할 때), 맨 마지막에는 <span class="ui">Respond to the agent</span>(에이전트에 응답)가 있어야 합니다. 그 응답 액션의 <span class="ui">Networking</span>에서 <span class="ui">Asynchronous response</span>를 <b>Off</b>로 두고, <b>100초 안에</b> 응답하도록 만든 뒤 <b>게시</b>해야 도구로 쓸 수 있습니다.</p>
+        <div class="note info"><span class="ic">ℹ️</span><div>이 실습은 <b>테스트 환경</b>이므로 Word 파일을 SharePoint에 올리는 등 외부 저장 연동은 하지 않습니다. 흐름은 <b>설계서 내용을 받아 승인을 요청하고 결과를 돌려주는</b> 최소 형태로만 만듭니다. 실제 운영에서는 이 흐름에 Word 생성·문서 저장 같은 동작을 더 붙일 수 있습니다.</div></div>
       </div></div>
     </div>
   </section>
 
   <!-- U15 -->
-  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.6 사람의 검토·승인(선택)">
+  <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="3.6 사람의 검토·승인">
     <div class="eyebrow"><span class="tag">PART 3</span> 3.6 · 사람의 검토·승인</div>
-    <h2 class="utitle">사람의 검토·승인 단계 추가 (심화)</h2>
+    <h2 class="utitle">사람의 검토·승인 단계 추가</h2>
     <div class="note info"><span class="ic">🙋</span><div><b>‘사람의 검토·승인(HITL, Human-in-the-loop)’이 뭔가요?</b> 말 그대로 <b>“사람이 중간에 한 번 확인하고 넘어가는”</b> 장치입니다. AI가 만든 설계서를 곧바로 확정하지 않고, <b>담당자(사람)가 검토·승인한 뒤에만</b> 다음 단계로 진행하도록 만드는 안전장치예요. 중요한 결정이나 대외 공유 전에 사람이 한 번 거르게 하는 용도입니다.</div></div>
-    <p class="ulead">이 단계는 <b>3.5에서 ‘에이전트 흐름(Agent flow)’으로 설계서 도구를 만든 경우에만</b> 이어서 진행합니다. 프롬프트 도구만 만들었다면 승인 단계가 없으니 건너뛰어도 됩니다.</p>
+    <p class="ulead">3.5의 마지막 단계(⑦)에서 만든 <b>에이전트 흐름</b>에 이어, 설계서가 완성되면 <b>담당자에게 검토·승인을 요청</b>하는 동작을 붙입니다.</p>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>1단계 · 에이전트 흐름 편집기 열기</h4>
