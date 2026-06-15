@@ -617,8 +617,9 @@
   <section class="unit" data-group="PART 3 · Copilot Studio" data-time="실습 · 70분" data-title="실습 개요">
     <div class="eyebrow"><span class="tag">PART 3</span> Copilot Studio 핸즈온</div>
     <h2 class="utitle">풀버전 A4A 구현: 실습 개요</h2>
-    <p class="ulead"><b>Microsoft Copilot Studio</b>(구 Power Virtual Agents)로 Knowledge 그라운딩, Tools, Topics, 생성형 오케스트레이션, 그리고 사람의 승인(HITL)까지 갖춘 본격 에이전트를 만듭니다.</p>
+    <p class="ulead"><b>Microsoft Copilot Studio</b>로 Knowledge 그라운딩, Tools, Topics, 생성형 오케스트레이션, 그리고 사람의 승인(HITL)까지 갖춘 본격 에이전트를 만듭니다.</p>
     <div class="note tip"><span class="ic">🧭</span><div>PART 2에서 노코드로 가볍게 만든 A4A를, 이번엔 <b>실제 업무에 쓸 수 있는 수준</b>으로 끌어올립니다. 같은 A4A지만, 인터뷰 흐름(Topic), 사내 지식 연결(Knowledge), 설계서 생성 도구(Tools), 담당자 승인(HITL)까지 갖춰 <b>“제대로 동작하는 제작 코치”</b>를 완성합니다.</div></div>
+    <div class="note info"><span class="ic">✅</span><div><b>어디까지 하면 동작하나요?</b> <b>3.1 생성 → 3.2 지식 등록 → 3.7 게시</b>만 해도 동작하는 에이전트가 나옵니다. 3.4 인터뷰 Topic, 3.5 설계서 Tool, 3.6 승인(HITL)은 품질을 끌어올리는 <b>선택 단계</b>입니다. 시간이 부족하면 3.1·3.2·3.3·3.7만 진행해도 됩니다.</div></div>
     <div class="panel objective">
       <h4>이 실습을 마치면</h4>
       <ul>
@@ -627,7 +628,7 @@
         <li>생성형 오케스트레이션을 이해하고 <span class="ui">Test</span> 후 <span class="ui">Publish</span>할 수 있습니다</li>
       </ul>
     </div>
-    <div class="note warn"><span class="ic">📝</span><div><b>용어 안내</b>: 이 도구는 더 이상 “Power Virtual Agents”가 아닌 <b>Copilot Studio</b>이며, 예전의 <b>Actions/Plugins</b>는 모두 <span class="ui">Tools</span>로 통합되었습니다. 챗봇은 <b>에이전트(Agent)</b>로 부릅니다.</div></div>
+    <div class="note warn"><span class="ic">📝</span><div><b>용어 안내</b>: 이 도구는 예전 “Power Virtual Agents”에서 <b>Copilot Studio</b>로 이름이 바뀌었고, 예전의 <b>Actions/Plugins</b>는 모두 <span class="ui">Tools</span>로 통합되었습니다. 챗봇은 <b>에이전트(Agent)</b>로 부릅니다.</div></div>
   </section>
 
   <!-- U10 -->
@@ -641,19 +642,21 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>빈 에이전트로 시작</h4>
-        <p>정확한 학습을 위해 자연어 생성 대신 직접 만듭니다. 홈의 <span class="ui">Create an agent</span> 또는 <span class="ui">Agents</span> 페이지에서 <span class="ui">Create blank agent</span>를 선택합니다.</p>
+        <p>정확한 학습을 위해 자연어 생성 대신 직접 만듭니다. 홈 화면의 <span class="ui">Start building from scratch</span> 아래 <span class="ui">Create an agent</span>를 누르거나, 좌측 <span class="ui">Agents</span> 페이지에서 <span class="ui">Create blank agent</span>를 선택합니다.</p>
+        <p>솔루션·언어를 지정하려면 <span class="ui">Create blank agent</span> 옆 <b>아래 화살표 → Advanced create</b>를 선택합니다. 여기서 <span class="ui">언어</span>, <span class="ui">솔루션</span>, <span class="ui">스키마 이름</span>을 고른 뒤 <span class="ui">Confirm and create</span>를 누릅니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>기본 정보 입력</h4>
+        <p>생성 직후 <span class="ui">Overview</span> 페이지에서 각 항목을 채웁니다. <span class="ui">Details</span> 섹션의 <span class="ui">Edit</span>로 이름·설명을, <span class="ui">Instructions</span> 섹션의 <span class="ui">Edit</span>로 지침을 입력합니다.</p>
         <ul>
           <li><span class="ui">Name</span> : <b>A4A 제작 코치</b> (최대 42자, <span class="kbd">&lt;</span> <span class="kbd">&gt;</span> 불가)</li>
           <li><span class="ui">Description</span> : 에이전트 용도 한 줄 (최대 1,024자)</li>
           <li><span class="ui">Instructions</span> : PART 2의 안내 프롬프트 재사용 (최대 8,000자)</li>
         </ul>
-        <p>생성 후 <span class="ui">Overview</span> 페이지가 열립니다.</p>
       </div></div>
     </div>
-    <div class="note info"><span class="ic">🧭</span><div><b>에이전트 좌측 메뉴</b>: <span class="ui">Overview</span> · <span class="ui">Knowledge</span> · <span class="ui">Topics</span> · <span class="ui">Tools</span> · <span class="ui">Agents</span> · <span class="ui">Activity/Analytics</span> · <span class="ui">Channels</span> · <span class="ui">Settings</span>. 상단에는 <span class="ui">Test</span>·<span class="ui">Publish</span> 버튼이 있습니다.</div></div>
+    <div class="note info"><span class="ic">🧭</span><div><b>에이전트 화면 구성</b>: 생성 후 <span class="ui">Overview</span> 페이지가 열리고, 상단 탭으로 <span class="ui">Knowledge</span> · <span class="ui">Tools</span> · <span class="ui">Topics</span> · <span class="ui">Activity</span> 등으로 이동합니다. 좌측에는 환경 전체의 <span class="ui">Agents</span> · <span class="ui">Tools</span> · <span class="ui">Topics</span> · <span class="ui">Workflows</span> · <span class="ui">Analytics</span> 목록이 있습니다. 우측 상단에는 <span class="ui">Test</span>·<span class="ui">Publish</span> 버튼이 있습니다.</div></div>
+    <div class="note tip"><span class="ic">💡</span><div><b>솔루션은 환경에 맞춰 고르세요.</b> 에이전트는 어떤 솔루션이든 하나에 담깁니다. 아무것도 안 고르면 자동으로 기본 솔루션(Common Data Services Default Solution)에 들어갑니다. 다만 <b>교육·공유 환경에서는 전용 솔루션을 쓰는 편이 정리에 좋습니다</b>. 회사에서 안내한 지정 솔루션이 있으면 <span class="ui">Advanced create</span>에서 그 솔루션을 선택하고, 따로 없으면 기본 솔루션 그대로 진행해도 됩니다. (전용 솔루션이 필요하면 사이드바 <span class="ui">…</span> → <span class="ui">Solutions</span> → <span class="ui">New solution</span>으로 미리 만들 수 있습니다.)</div></div>
   </section>
 
   <!-- U11 -->
@@ -662,17 +665,17 @@
     <h2 class="utitle">Knowledge 추가: 사내 4종 그라운딩</h2>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>Add knowledge 열기</h4>
-        <p>좌측 <span class="ui">Knowledge</span> → <span class="ui">Add knowledge</span>를 선택합니다.</p>
+        <h4>Add 열기</h4>
+        <p><span class="ui">Knowledge</span> 페이지(또는 Overview의 <span class="ui">Knowledge</span> 섹션)에서 <span class="ui">Add</span>를 선택합니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>원본 유형 선택 후 4종 등록</h4>
         <p>아래 유형 중 하나로 실습 문서를 올립니다.</p>
         <ul>
-          <li><b>Documents</b>: Security_Rule 등 4종 파일 업로드(Dataverse 저장)</li>
-          <li><b>SharePoint</b>: 사내 사이트 URL (Graph 검색, Entra 인증 필요)</li>
-          <li><b>Public website</b>: 공개 도메인</li>
-          <li><b>Dataverse</b>: 테이블 직접 연결(고급)</li>
+          <li><b>Documents</b>: Security_Rule 등 4종 파일 업로드(Dataverse 저장, 인증 불필요)</li>
+          <li><b>SharePoint</b>: 사내 사이트 URL (Graph 검색, 사용자 Entra 인증)</li>
+          <li><b>Public website</b>: 공개 도메인 (Bing 검색)</li>
+          <li><b>Dataverse</b> / <b>Enterprise data(커넥터)</b>: 사내 데이터 직접 연결(고급)</li>
         </ul>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
@@ -680,7 +683,7 @@
         <p>각 지식 원본의 <b>Description</b>을 구체적으로 작성합니다. 생성형 오케스트레이션이 이 설명을 보고 어떤 자료를 검색할지 결정합니다.</p>
       </div></div>
     </div>
-    <div class="note tip"><span class="ic">💡</span><div><b>Work IQ</b> 토글을 켜면 M365 시맨틱 인덱스로 SharePoint 검색 품질이 크게 향상됩니다. (에이전트 인증이 <span class="ui">Authenticate with Microsoft</span>일 때)</div></div>
+    <div class="note tip"><span class="ic">💡</span><div>실습에서는 <b>Documents</b> 유형으로 4종 파일을 직접 업로드하는 방법이 가장 간단합니다(별도 인증 없이 Dataverse에 저장). SharePoint·Dataverse 연결은 사용자별 Entra 인증으로 접근 권한이 있는 자료만 검색됩니다.</div></div>
   </section>
 
   <!-- U12 -->
@@ -733,6 +736,7 @@
         <p>마지막에 <span class="ui">+</span> → <span class="ui">Advanced</span> → <span class="ui">Generative answers</span> 노드를 추가하면, 등록한 Knowledge 4종을 검색해 사내 규정에 맞는 설계 방향을 답합니다.</p>
       </div></div>
     </div>
+    <div class="note tip"><span class="ic">💡</span><div>생성형 오케스트레이션(3.3)을 켜 두면, 사실 <b>인터뷰 토픽을 직접 안 만들어도</b> 에이전트가 지침과 지식만으로 질문하고 답합니다. 이 토픽은 “정해진 순서로 꼭 물어볼 항목”을 보장하고 싶을 때 추가하는 것입니다. 토픽 없이 3.1~3.3 + 지식만으로도 동작하는 에이전트가 됩니다.</div></div>
   </section>
 
   <!-- U14 -->
@@ -746,10 +750,11 @@
         <div class="tbl-wrap"><table class="tbl">
           <thead><tr><th>도구 유형</th><th>용도</th></tr></thead>
           <tbody>
-            <tr><td>Prompt</td><td>단일 LLM 프롬프트, 인터뷰 결과를 설계서 형식으로 구조화</td></tr>
+            <tr><td>Prompt</td><td>단일 LLM 프롬프트, 인터뷰 결과를 설계서 형식으로 구조화(지식 참조 가능)</td></tr>
             <tr><td>Agent flow</td><td>로우코드 자동화, Word 생성·SharePoint 업로드·승인</td></tr>
             <tr><td>Custom connector</td><td>외부 API/서비스 연결</td></tr>
-            <tr><td>MCP</td><td>Model Context Protocol 서버 연결(신규)</td></tr>
+            <tr><td>Model Context Protocol</td><td>MCP 서버 연결(신규)</td></tr>
+            <tr><td>REST API · Computer use</td><td>REST 엔드포인트 연결, 화면 조작 자동화(고급)</td></tr>
           </tbody>
         </table></div>
       </div></div>
@@ -759,7 +764,7 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>(선택) Agent flow로 Word·승인 연결</h4>
-        <p>좌측 <span class="ui">Flows</span> → <span class="ui">New flow</span> → <span class="ui">Agent flow</span>. 트리거 <span class="ui">When an agent calls the flow</span>, 마지막에 <span class="ui">Respond to the agent</span>가 있어야 하며 <b>100초 내</b> 응답·<b>Publish</b> 필수입니다.</p>
+        <p>좌측 <span class="ui">Workflows</span> → <span class="ui">New agent flow</span>. 트리거는 <span class="ui">When an agent calls the flow</span>, 마지막에 <span class="ui">Respond to the agent</span>가 있어야 합니다. 그 액션의 <span class="ui">Networking</span>에서 <span class="ui">Asynchronous response</span>를 <b>Off</b>로 두고, <b>100초 내</b> 응답·<b>Publish</b>해야 도구로 쓸 수 있습니다.</p>
         <ul>
           <li>Word 템플릿 채우기 → SharePoint 업로드</li>
           <li><b>Human in the loop</b> 액션으로 승인 요청(다음 단계)</li>
