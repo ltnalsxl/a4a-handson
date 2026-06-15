@@ -852,13 +852,16 @@
         <div class="prompts"><div class="pcard"><div class="pbody">
           <div class="prow"><span class="plabel">2번째 질문 · 변수 <code>반복주기</code> · 식별: <b>사용자의 전체 응답</b></span><span class="ptext">그 업무는 얼마나 자주 반복되나요? (예: 매일, 매주, 매월, 비정기)</span><button class="cbtn" data-copy="그 업무는 얼마나 자주 반복되나요? (예: 매일, 매주, 매월, 비정기)">복사</button></div>
         </div></div></div>
-        <div class="note warn"><span class="ic">⚠️</span><div><b>왜 보기(다중 선택)가 아니라 자유 서술인가요?</b> 질문 노드에서 <span class="ui">식별</span>을 <span class="ui">다중 선택 옵션</span>으로 두면, 보기마다 <b>분기(가지)가 캔버스에 자동으로 생깁니다.</b> 보기별로 다른 행동을 시킬 게 아니라면 이 가지들이 흐름만 복잡하게 만들죠. 그래서 인터뷰 질문은 <b>사용자의 전체 응답(자유 서술)</b>으로 받는 것이 가장 단순합니다. 답을 정해진 보기로만 받아야 할 때만 다중 선택 옵션을 쓰고, 자동으로 생긴 가지를 정리하면 됩니다.</div></div>
+        <div class="note warn"><span class="ic">⚠️</span><div><b>왜 보기(다중 선택)가 아니라 자유 서술인가요?</b> 질문 노드에서 <span class="ui">식별</span>을 <span class="ui">다중 선택 옵션</span>으로 두면, 보기마다 <b>분기(가지)가 캔버스에 자동으로 생깁니다.</b> 보기별로 다른 행동을 시킬 게 아니라면 이 가지들이 흐름만 복잡해 보이게 하죠. 그래서 처음 만들 때는 <b>사용자의 전체 응답(자유 서술)</b>이 가장 단순합니다. <b>다만 이미 다중 선택으로 만들었어도 괜찮습니다.</b> 자동으로 생긴 가지들은 <b>아래 다음 노드에서 다시 하나로 합쳐지므로</b> 그대로 둬도 정상 동작합니다(고른 값은 변수에 그대로 저장됩니다). 굳이 지우지 않아도 됩니다.</div></div>
         <div class="note tip"><span class="ic">💡</span><div><b>나머지 질문은 굳이 노드로 안 만들어도 됩니다.</b> 지금 만든 두 개로 <b>질문 노드를 이어 붙이고 답을 변수에 담는 법</b>을 익혔습니다. 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태 같은 나머지 항목은 <b>3.1 지침의 인터뷰 항목에 이미 들어 있어서</b>, 생성형 오케스트레이션(3.3)이 대화에서 알아서 물어봅니다. <b>질문 순서를 매번 똑같이 고정</b>하고 싶을 때만 위와 똑같은 방법으로 노드를 더 추가하면 됩니다.</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>지식 기반 답변 노드 추가</h4>
         <p>질문 노드 아래 <span class="ui">+</span> → <span class="ui">고급</span> → <span class="ui">생성형 답변 만들기</span>를 추가합니다. <span class="ui">입력</span> 칸은 <b>값을 하나만</b> 받습니다. 칸을 클릭하고 <code>/</code> 또는 <span class="ui">{x}</span>를 눌러, 앞에서 만든 변수 <code>업무고충</code> <b>하나만</b> 끼워 넣으세요. 그리고 <span class="ui">데이터 원본</span>의 <span class="ui">편집</span>에서 등록한 참조 자료 4종을 검색하도록 둡니다. 그러면 사내 규정에 맞는 설계 방향을 답합니다.</p>
-        <div class="note info"><span class="ic">💬</span><div><b>변수 두 개를 같이 넣어야 하나요? 아니요.</b> <span class="ui">입력</span>은 한 칸이라 <b>대표 변수 <code>업무고충</code> 하나만</b> 넣으면 됩니다. 반복 주기 같은 나머지 답변과 지침·참조 자료는 에이전트가 대화 맥락에서 함께 보고 답하므로, 변수 하나로도 설계 방향이 사내 규정에 맞게 나옵니다. (여러 변수를 꼭 합치고 싶다면 <span class="ui">수식</span> 편집기에서 이어 붙일 수 있지만, 실습에서는 필요 없습니다.)</div></div>
+        <div class="note info"><span class="ic">💬</span><div><b>변수 두 개를 같이 넣어야 하나요? 보통은 아니요.</b> <span class="ui">입력</span>은 한 칸이라 <b>대표 변수 <code>업무고충</code> 하나만</b> 넣어도 됩니다. 반복 주기 같은 나머지 답변과 지침·참조 자료는 에이전트가 대화 맥락에서 함께 보고 답하기 때문입니다. <b>그래도 두 변수를 한 입력에 합치고 싶다면</b>, 입력 칸 오른쪽 <span class="ui">수식(fx)</span> 아이콘을 누르고 아래처럼 <code>&amp;</code>(이어 붙이기)로 연결하세요.</div></div>
+        <div class="codecard copyable-code"><div class="cap">수식(fx) 편집기에 입력 (선택)</div>
+<pre>Topic.업무고충 &amp; " / 반복 주기: " &amp; Topic.반복주기</pre>
+        </div>
         <figure class="shot"><img src="assets/cs-11-generative-answer-node.png" alt="생성형 답변 만들기 노드의 입력과 데이터 원본 편집" loading="lazy"><figcaption><span class="ui">생성형 답변 만들기</span>: <span class="ui">입력</span>에 변수, <span class="ui">데이터 원본</span>에 참조 자료 4종</figcaption></figure>
         <p>마지막으로 우측 상단 <span class="ui">저장</span>을 눌러 토픽을 저장합니다.</p>
       </div></div>
