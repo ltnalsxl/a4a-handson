@@ -758,8 +758,17 @@
         <figure class="shot"><img src="assets/cs-05-file-upload.png" alt="파일 업로드 팝업, 4종 파일 목록과 에이전트에 추가 버튼" loading="lazy"><figcaption><span class="ui">파일 업로드</span> 팝업: 4종 추가 후 <span class="ui">에이전트에 추가</span></figcaption></figure>
         <p>업로드한 파일은 Dataverse에 저장되며(별도 인증 불필요), 잠시 <span class="ui">진행 중</span>으로 표시되다가 처리가 끝나면 사용할 수 있습니다.</p>
       </div></div>
+      <div class="panel step-card"><div class="sn"></div><div class="st">
+        <h4>(선택) 제품 최신 정보가 필요하면: Microsoft Learn을 웹사이트 지식으로 추가</h4>
+        <p>4종 자료는 <b>사내 기준</b>(보안·플랫폼·사례)을 알려주지만, <b>Copilot Studio·Agent Builder의 최신 기능·제한</b> 같은 제품 정보는 담고 있지 않습니다. 모델이 학습으로 아는 범위로도 설계서는 충분히 나오지만, <b>제품의 최신 사용법까지 정확히</b> 답하게 하고 싶다면 — 넓은 <span class="ui">웹 검색</span>을 켜는 대신 <b>신뢰할 특정 사이트만 지식으로 지정</b>하는 것이 정석입니다.</p>
+        <p>다시 <span class="ui">+ 참조 자료 추가</span> → <span class="ui">웹사이트</span>(공개 URL)를 고르고, 아래 주소를 넣습니다.</p>
+        <div class="prompts"><div class="pcard"><div class="pbody">
+          <div class="prow"><span class="plabel">웹사이트 URL</span><span class="ptext">https://learn.microsoft.com/microsoft-copilot-studio/</span><button class="cbtn" data-copy="https://learn.microsoft.com/microsoft-copilot-studio/">복사</button></div>
+        </div></div></div>
+        <div class="note tip"><span class="ic">🎯</span><div>이렇게 하면 에이전트가 <b>그 사이트 범위 안에서만</b> 근거를 찾아, 제품 정보는 정확해지고 엉뚱한 웹 글은 끼지 않습니다. 이것이 <b>“웹 검색을 켠다”와 다른 점</b>입니다(웹 검색은 인터넷 전체, 웹사이트 지식은 지정한 사이트만). <b>실습 필수는 아니며</b>, 사내 4종만으로도 설계서는 충분히 나옵니다.</div></div>
+      </div></div>
     </div>
-    <div class="note tip"><span class="ic">💡</span><div>같은 <span class="ui">참조 자료</span> 섹션에서 SharePoint·웹사이트 등도 연결할 수 있지만, 실습에서는 PART 2와 동일하게 <b>4개 파일을 직접 업로드</b>하는 방법이 가장 간단합니다. 텍스트 기반 파일만 지원되며 이미지·오디오·비디오는 올릴 수 없습니다.</div></div>
+    <div class="note tip"><span class="ic">💡</span><div>정리하면 <span class="ui">참조 자료</span>에는 <b>파일·SharePoint·웹사이트</b> 등을 연결할 수 있습니다. <b>사내 기준은 파일(4종)</b>로, <b>제품 최신 정보는 신뢰할 웹사이트(예: Microsoft Learn)</b>로 넣는 것이 정석입니다. “외부 정보가 필요 = 웹 검색 켜기”가 아니라 <b>“필요한 출처를 지식으로 추가”</b>로 접근하세요. (참조 자료는 텍스트 기반만 지원하며 이미지·오디오·비디오는 올릴 수 없습니다.)</div></div>
   </section>
 
   <!-- U11b -->
