@@ -759,16 +759,15 @@
         <p>업로드한 파일은 Dataverse에 저장되며(별도 인증 불필요), 잠시 <span class="ui">진행 중</span>으로 표시되다가 처리가 끝나면 사용할 수 있습니다.</p>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>(선택) 제품 최신 정보가 필요하면: Microsoft Learn을 웹사이트 지식으로 추가</h4>
-        <p>4종 자료는 <b>사내 기준</b>(보안·플랫폼·사례)을 알려주지만, <b>Copilot Studio·Agent Builder의 최신 기능·제한</b> 같은 제품 정보는 담고 있지 않습니다. 모델이 학습으로 아는 범위로도 설계서는 충분히 나오지만, <b>제품의 최신 사용법까지 정확히</b> 답하게 하고 싶다면, 넓은 <span class="ui">웹 검색</span>을 켜는 대신 <b>신뢰할 특정 사이트만 지식으로 지정</b>하는 것이 정석입니다.</p>
-        <p>다시 <span class="ui">+ 참조 자료 추가</span> → <span class="ui">웹사이트</span>(공개 URL)를 고르고, 아래 주소를 넣습니다.</p>
+        <h4>(선택) 제품 최신 정보가 필요하면: Microsoft Learn을 웹사이트 지식으로</h4>
+        <p>4종은 <b>사내 기준</b>을 주지만 <b>제품 최신 기능</b>은 담지 않습니다. 그게 필요하면 넓은 <span class="ui">웹 검색</span> 대신 <b>신뢰할 사이트만 지식으로</b> 추가합니다. <span class="ui">+ 참조 자료 추가</span> → <span class="ui">웹사이트</span>에 아래 주소를 넣으세요.</p>
         <div class="prompts"><div class="pcard"><div class="pbody">
           <div class="prow"><span class="plabel">웹사이트 URL</span><span class="ptext">https://learn.microsoft.com/microsoft-copilot-studio/</span><button class="cbtn" data-copy="https://learn.microsoft.com/microsoft-copilot-studio/">복사</button></div>
         </div></div></div>
-        <div class="note tip"><span class="ic">🎯</span><div>이렇게 하면 에이전트가 <b>그 사이트 범위 안에서만</b> 근거를 찾아, 제품 정보는 정확해지고 엉뚱한 웹 글은 끼지 않습니다. 이것이 <b>“웹 검색을 켠다”와 다른 점</b>입니다(웹 검색은 인터넷 전체, 웹사이트 지식은 지정한 사이트만). <b>실습 필수는 아니며</b>, 사내 4종만으로도 설계서는 충분히 나옵니다.</div></div>
+        <p style="font-size:.86rem;color:#667">필수는 아닙니다. 사내 4종만으로도 설계서는 충분히 나옵니다. (웹사이트 지식 = 지정한 사이트만, 웹 검색 = 인터넷 전체)</p>
       </div></div>
     </div>
-    <div class="note tip"><span class="ic">💡</span><div>정리하면 <span class="ui">참조 자료</span>에는 <b>파일·SharePoint·웹사이트</b> 등을 연결할 수 있습니다. <b>사내 기준은 파일(4종)</b>로, <b>제품 최신 정보는 신뢰할 웹사이트(예: Microsoft Learn)</b>로 넣는 것이 정석입니다. “외부 정보가 필요 = 웹 검색 켜기”가 아니라 <b>“필요한 출처를 지식으로 추가”</b>로 접근하세요. (참조 자료는 텍스트 기반만 지원하며 이미지·오디오·비디오는 올릴 수 없습니다.)</div></div>
+    <div class="note tip"><span class="ic">💡</span><div><b>사내 기준은 파일(4종)</b>, <b>제품 최신 정보는 신뢰할 웹사이트(예: Microsoft Learn)</b>로 넣습니다. “외부 정보 필요 = 웹 검색 켜기”가 아니라 <b>“필요한 출처를 지식으로 추가”</b>로 접근하세요. (참조 자료는 텍스트 기반만 지원)</div></div>
   </section>
 
   <!-- U11b -->
@@ -778,9 +777,8 @@
     <p class="ulead">같은 <span class="ui">개요</span> 화면에는 참조 자료 외에도 몇 가지 설정이 더 있습니다. A4A에 맞게 어떻게 둘지 정리합니다.</p>
     <div class="lab">
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>웹 검색 (Web search) · 이 실습에서는 끄기 권장</h4>
-        <p>에이전트가 공개 웹사이트(Bing)를 검색하게 하는 토글입니다. <b>웹 검색이 “나쁜” 것은 아닙니다.</b> 다만 이 A4A는 <b>사내 자료에 근거해 플랫폼·보안을 판단</b>하는 에이전트라, 외부 웹 정보가 섞이면 사내 기준과 어긋난 답이 나올 수 있습니다. 그래서 이 실습에서는 <span class="ui">웹 검색</span>을 <span class="ui">사용 안 함</span>으로 둡니다.</p>
-        <figure class="shot"><img src="assets/cs-18-web-search-toggle.png" alt="개요 화면의 웹 검색 토글" loading="lazy"><figcaption><span class="ui">개요</span> 화면의 <span class="ui">웹 검색</span> 토글을 <b>꺼둡니다</b></figcaption></figure>
+        <h4>웹 검색 (Web search) · 이 실습에서는 끄기</h4>
+        <p>에이전트가 공개 웹(Bing)을 검색하게 하는 토글입니다. 이 A4A는 <b>사내 자료에 근거해 판단</b>하는 에이전트라, 외부 웹이 섞이면 사내 기준과 어긋난 답이 나올 수 있어 <b>끕니다.</b> 끄는 위치는 <b>3.3</b>의 <span class="ui">설정</span> → <span class="ui">생성형 AI</span> → <span class="ui">지식</span> → <span class="ui">웹의 정보 사용</span>입니다(거기서 캡처로 안내).</p>
         <div class="note info"><span class="ic">💬</span><div><b>“무조건 꺼야 하나요? 4종 자료로만 답하나요?”</b> 무조건은 아닙니다. 진짜 가드레일은 <b>지침(“등록된 참조 자료에만 근거”)</b>이고, 웹 검색 끄기는 <b>실습 결과를 일정하게</b> 하려는 안전장치입니다. 참고로 “4종으로만”이라는 뜻은 <b>사실 판단(보안 등급·플랫폼 추천·사례)</b>을 4종에 근거한다는 것이지, 모델이 글을 못 쓴다는 뜻은 아닙니다. 일반 글쓰기·요약 능력은 그대로 쓰되 <b>근거가 필요한 부분만 4종에서 가져옵니다.</b> 일반 웹 정보까지 답하게 하려면 켜도 되지만, 그땐 답이 사내 기준 밖으로 번질 수 있습니다.</div></div>
         <div class="note tip"><span class="ic">🧩</span><div><b>“에이전트 만드는 법(Microsoft Learn 등)을 지식에 넣어야 하지 않나요?”</b> 이 A4A에는 필요 없습니다. 결과물이 <b>설계서(계획서)</b>이지 클릭 따라하기 매뉴얼이 아니거든요. “Agent Builder와 Copilot Studio가 뭔지, 어떻게 다른지, 지침 초안을 어떻게 쓰는지”는 <b>모델이 이미 학습으로 알고</b> 있어 따로 넣지 않아도 됩니다. 정작 모델이 모르는 <b>사내 기준(어떤 보안 등급에 어떤 플랫폼이 되는지·사내 시스템·사례)</b>만 4종 자료로 채우면 됩니다. <b>그래서 웹 검색을 꺼도 괜찮습니다.</b> 다만 제품의 <b>최신 사용법까지</b> 정확히 답하게 하고 싶다면, 넓은 <span class="ui">웹 검색</span>(Bing 전체)을 켜는 대신 <b>Microsoft Learn 같은 특정 웹사이트를 <span class="ui">참조 자료</span>로 지정</b>하는 편이 정확합니다(범위가 좁아 덜 새니까요). “외부 지식이 필요 = 웹 검색”이 아니라 <b>“신뢰할 특정 사이트를 지식으로 추가”</b>가 정석입니다.</div></div>
       </div></div>
@@ -813,9 +811,14 @@
         <figure class="shot"><img src="assets/cs-20-orchestration-generative.png" alt="설정 생성형 AI의 오케스트레이션 섹션, 예 라디오 선택" loading="lazy"><figcaption><span class="ui">설정</span> → <span class="ui">생성형 AI</span> → <span class="ui">오케스트레이션</span>에서 <span class="ui">예</span>(생성형)가 선택돼 있어야 합니다</figcaption></figure>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
-        <h4>근거 없는 응답 허용 검토</h4>
-        <p>같은 화면 아래 <span class="ui">지식</span> 섹션에서 <span class="ui">근거 없는 응답 허용하기</span> 옵션을 <b>끄면</b>, 등록한 지식·도구에 근거하지 않은 답변을 줄여 환각을 막을 수 있습니다. 바꿨다면 하단 <span class="ui">저장</span>을 누릅니다.</p>
-        <figure class="shot"><img src="assets/cs-21-ungrounded-off.png" alt="생성형 AI 지식 섹션의 근거 없는 응답 허용하기 끄기 토글" loading="lazy"><figcaption><span class="ui">지식</span> 섹션의 <span class="ui">근거 없는 응답 허용하기</span>를 <span class="ui">끄기</span>로 둡니다</figcaption></figure>
+        <h4>지식 섹션: 근거 없는 응답·웹의 정보 사용 끄기</h4>
+        <p>같은 화면 아래 <span class="ui">지식</span> 섹션에서 두 토글을 <b>모두 끕니다.</b></p>
+        <ul>
+          <li><span class="ui">근거 없는 응답 허용하기</span> → <b>끄기</b>: 등록한 지식·도구에 근거하지 않은 답을 막아 환각을 줄입니다.</li>
+          <li><span class="ui">웹의 정보 사용</span>(Bing Web Search) → <b>끄기</b>: 인터넷 전체 검색을 막아 사내 기준 밖으로 새지 않게 합니다. (3.2b에서 말한 웹 검색이 바로 이 토글입니다.)</li>
+        </ul>
+        <p>바꿨다면 하단 <span class="ui">저장</span>을 누릅니다.</p>
+        <figure class="shot"><img src="assets/cs-29-genai-knowledge-toggles.png" alt="설정 생성형 AI 지식 섹션의 근거 없는 응답 허용하기 끄기와 웹의 정보 사용 끄기 토글" loading="lazy"><figcaption><span class="ui">지식</span> 섹션: <span class="ui">근거 없는 응답 허용하기</span>·<span class="ui">웹의 정보 사용</span> 둘 다 <span class="ui">끄기</span></figcaption></figure>
       </div></div>
     </div>
     <div class="note tip"><span class="ic">🚦</span><div><b>여기까지가 “동작하는 A4A”의 최소 구성입니다.</b> <b>3.1(생성·지침) + 3.2(참조 자료 4종) + 3.3(생성형 확인)</b>까지 했다면, 바로 <b>3.7 테스트·게시</b>로 건너뛰어도 인터뷰하고 설계서를 내놓는 에이전트가 완성됩니다. 이어지는 <b>3.4 인터뷰 토픽 · 3.5 설계서 도구 · 3.6 승인</b>은 품질을 끌어올리는 <b>선택(심화)</b> 단계입니다.</div></div>
@@ -956,7 +959,7 @@
         <h4>⑥ 테스트로 도구 호출 확인</h4>
         <p>새 <span class="ui">지침</span>에는 이미 <b>“‘설계서 생성’ 도구를 호출한다”</b>는 규칙이 들어 있어, 따로 한 줄을 더 넣지 않아도 됩니다. 바로 테스트로 확인합니다.</p>
         <div class="note info"><span class="ic">🧪</span><div><b>확인 방법</b>: 우측 상단 <span class="ui">테스트</span>에서 “반복되는 보고서 작성이 너무 번거로워요” 같은 말을 넣어 보세요. 에이전트가 인터뷰 질문을 몇 가지 던지고, 답을 모은 뒤 <b>설계서 생성</b> 도구를 호출해 설계서를 만들어내면 성공입니다. 어떤 도구·토픽·지식이 쓰였는지는 테스트 화면의 활동 표시에서 실시간으로 보입니다.</div></div>
-        <div class="note tip"><span class="ic">💡</span><div>혹시 도구를 잘 안 부르면, 지침 맨 아래에 <code>설계서를 만들 때는 반드시 '설계서 생성' 도구를 호출한다.</code> 한 줄을 더 강조해 둘 수 있습니다.</div></div>
+        <div class="note info"><span class="ic">💬</span><div><b>“워드로 받을지 물어봐야 하나요?” 아니요.</b> <b>‘설계서 생성’ 도구 자체가 Word 문서를 만드는 도구</b>입니다(③에서 출력을 문서로 지정했으니까요). 그래서 지침에 적은 대로 도구를 <b>호출하면 곧 Word 설계서가 나옵니다.</b> 매번 “워드로 받으시겠어요?”라고 되묻지 않아도 됩니다. (꼭 물어보게 하고 싶으면 지침에 <code>설계서를 만들기 전 'Word로 받으시겠어요?'라고 한 번 묻는다.</code> 한 줄을 더하면 됩니다.)</div></div>
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>⑦ 에이전트 흐름 만들기 (다음 3.6 승인과 이어짐)</h4>
