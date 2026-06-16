@@ -1015,13 +1015,15 @@
           <div class="prow"><span class="plabel">입력 2 (텍스트)</span><span class="ptext">업무명</span><button class="cbtn" data-copy="업무명">복사</button></div>
         </div></div></div>
         <p><b>동작 1 · <span class="ui">프롬프트 실행</span>(Run a prompt).</b> <span class="ui">+</span> → 검색 <b>프롬프트</b> → <span class="ui">AI Builder</span>의 <span class="ui">프롬프트 실행</span>을 추가하고, 3.5에서 만든 <b>설계서 생성</b> 프롬프트를 고릅니다. 프롬프트의 입력 <code>인터뷰내용</code>에는 트리거 입력 <code>인터뷰내용</code>(동적 콘텐츠)을 연결합니다.</p>
-        <p><b>동작 2 · SharePoint <span class="ui">파일 만들기</span>(Create file).</b> <span class="ui">사이트 주소</span>를 고르고, <span class="ui">폴더 경로</span>는 3.6a에서 만든 <code>/문서/에이전트 요청 백로그</code>를 선택합니다.</p>
+        <p><b>동작 2 · <span class="ui">내 프로필 가져오기</span>(Get my profile, Office 365 Users).</b> <span class="ui">+</span> → 검색 <b>내 프로필</b> → <span class="ui">Office 365 Users</span>의 <span class="ui">내 프로필 가져오기(V2)</span>를 추가합니다. 이 동작은 <b>흐름을 호출한(=대화 중인) 사용자</b>의 정보를 가져옵니다. 그래서 요청자가 이름을 직접 입력하지 않아도, 로그인한 사람의 <span class="ui">표시 이름</span>·<span class="ui">메일</span>이 자동으로 들어옵니다.</p>
+        <div class="note info"><span class="ic">🙋</span><div><b>요청자 이름은 자동으로 채워집니다.</b> 대화하는 사람이 곧 요청자이므로, 트리거 입력으로 따로 받지 않고 <span class="ui">내 프로필 가져오기</span>의 <span class="ui">표시 이름</span>(Display Name)을 쓰면 됩니다. 아래 파일 이름·콘텐츠에서 이 값을 끼워 넣습니다.</div></div>
+        <p><b>동작 3 · SharePoint <span class="ui">파일 만들기</span>(Create file).</b> <span class="ui">사이트 주소</span>를 고르고, <span class="ui">폴더 경로</span>는 3.6a에서 만든 <code>/문서/에이전트 요청 백로그</code>를 선택합니다.</p>
         <div class="prompts"><div class="pcard"><div class="pbody">
-          <div class="prow"><span class="plabel">파일 이름</span><span class="ptext">설계서_[업무명].docx</span><button class="cbtn" data-copy="설계서_">복사</button></div>
+          <div class="prow"><span class="plabel">파일 이름</span><span class="ptext">설계서_[업무명]_[표시 이름].docx</span><button class="cbtn" data-copy="설계서_">복사</button></div>
           <div class="prow"><span class="plabel">파일 콘텐츠</span><span class="ptext">동작 1의 출력 → 설계서 문서 (Document Output Content)</span><button class="cbtn" data-copy="설계서 문서">복사</button></div>
         </div></div></div>
-        <div class="note info"><span class="ic">📄</span><div><b>여기가 핵심입니다.</b> <span class="ui">파일 이름</span>은 <code>설계서_</code> 뒤에 동적 콘텐츠 <code>업무명</code> 칩을 넣고 <b>확장자를 <code>.docx</code></b>로 끝냅니다(예: <code>설계서_주간보고서.docx</code>). <span class="ui">파일 콘텐츠</span>에는 <b>동작 1(프롬프트 실행)의 출력 중 문서 결과</b>(<span class="ui">설계서 문서</span> / Document Output Content)를 연결합니다. 이렇게 해야 <b>프롬프트가 만든 Word가 그대로 .docx 파일로 저장</b>됩니다. (<code>.md</code>나 텍스트 출력이 아니라 문서 출력을 연결하는 것이 중요합니다.)</div></div>
-        <p><b>동작 3 · <span class="ui">Respond to the agent</span>(에이전트에 응답).</b> 요청자에게 보낼 결과에 동작 2가 돌려준 <b>파일 <span class="ui">링크</span></b>를 함께 담습니다.</p>
+        <div class="note info"><span class="ic">📄</span><div><b>여기가 핵심입니다.</b> <span class="ui">파일 이름</span>은 <code>설계서_</code> + 동적 콘텐츠 <code>업무명</code> + <code>_</code> + <span class="ui">내 프로필 가져오기</span>의 <code>표시 이름</code> 칩을 넣고 <b>확장자를 <code>.docx</code></b>로 끝냅니다(예: <code>설계서_주간보고서_홍길동.docx</code>). <span class="ui">파일 콘텐츠</span>에는 <b>동작 1(프롬프트 실행)의 출력 중 문서 결과</b>(<span class="ui">설계서 문서</span> / Document Output Content)를 연결합니다. 이렇게 해야 <b>프롬프트가 만든 Word가 그대로 .docx로 저장</b>되고, <b>파일명에 요청자 이름</b>이 자동으로 붙습니다.</div></div>
+        <p><b>동작 4 · <span class="ui">Respond to the agent</span>(에이전트에 응답).</b> 요청자에게 보낼 결과에 동작 3이 돌려준 <b>파일 <span class="ui">링크</span></b>를 함께 담습니다.</p>
         <div class="prompts"><div class="pcard"><div class="pbody">
           <div class="prow"><span class="plabel">응답 메시지(예시)</span><span class="ptext">설계서가 생성되어 담당자 폴더에 저장되었습니다. 링크에서 확인하실 수 있습니다.</span><button class="cbtn" data-copy="설계서가 생성되어 담당자 폴더에 저장되었습니다. 링크에서 확인하실 수 있습니다.">복사</button></div>
         </div></div></div>
@@ -1034,10 +1036,10 @@
       </div></div>
       <div class="panel step-card"><div class="sn"></div><div class="st">
         <h4>D · 테스트로 전 과정 확인</h4>
-        <div class="note info"><span class="ic">🧪</span><div><span class="ui">테스트</span>에서 요청자처럼 대화 → 설계서 초안 확인 → <b>“이대로 좋아요”</b>로 확정해 보세요. ① 흐름이 호출되어 프롬프트가 실행되고 ② <b>에이전트 요청 백로그 폴더에 <code>설계서_OOO.docx</code> 파일</b>이 새로 저장되며 ③ 요청자에게 <b>파일 링크</b>가 응답으로 오면 성공입니다. SharePoint 폴더를 열어 .docx가 쌓였는지 확인하세요.</div></div>
+        <div class="note info"><span class="ic">🧪</span><div><span class="ui">테스트</span>에서 요청자처럼 대화 → 설계서 초안 확인 → <b>“이대로 좋아요”</b>로 확정해 보세요. ① 흐름이 호출되어 프롬프트가 실행되고 ② <b>에이전트 요청 백로그 폴더에 <code>설계서_OOO_[내 이름].docx</code></b>가 저장되며(파일명에 로그인한 요청자 이름이 자동으로 붙음) ③ 요청자에게 <b>파일 링크</b>가 응답으로 오면 성공입니다.</div></div>
       </div></div>
     </div>
-    <div class="note info"><span class="ic">🔁</span><div><b>더 해보고 싶다면(선택, 지금은 안 함).</b> 담당자 검토·승인 단계를 넣고 싶다면, 동작 2(파일 저장)와 응답 사이에 <span class="ui">표준 승인</span> → <span class="ui">승인 시작 및 대기</span>를 추가해 AX 팀에 승인 요청을 보낼 수 있습니다. (이번 실습에서는 승인 없이 저장까지만 진행합니다.)</div></div>
+    <div class="note info"><span class="ic">🔁</span><div><b>더 해보고 싶다면(선택, 지금은 안 함).</b> 담당자 검토·승인 단계를 넣고 싶다면, 파일 저장(동작 3)과 응답 사이에 <span class="ui">표준 승인</span> → <span class="ui">승인 시작 및 대기</span>를 추가해 AX 팀에 승인 요청을 보낼 수 있습니다. (이번 실습에서는 승인 없이 저장까지만 진행합니다.)</div></div>
     <div class="note info"><span class="ic">💬</span><div><b>참고 · 사람 상담사로 연결</b>: 에이전트가 처리하기 어려운 질문을 실제 상담사에게 넘기려면 시스템 토픽 <span class="ui">에스컬레이션(Escalate)</span>에서 <span class="ui">+</span> → <span class="ui">토픽 관리</span> → <span class="ui">대화 전환</span> 노드를 추가합니다.</div></div>
   </section>
 
