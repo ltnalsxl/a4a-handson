@@ -913,28 +913,41 @@
         <p><span class="ui">새 도구</span> → <span class="ui">프롬프트</span>를 선택하면 <b>프롬프트 편집기</b>가 열립니다. 화면이 두 칸으로 나뉘는데, <b>왼쪽 <span class="ui">지침</span> 칸이 곧 프롬프트 본문</b>이고 오른쪽 <span class="ui">모델 응답</span>은 <span class="ui">테스트</span> 결과가 보이는 곳입니다.</p>
         <figure class="shot"><img src="assets/cs-17-prompt-tool-editor.png" alt="프롬프트 편집기, 왼쪽 지침 칸과 콘텐츠 추가, 오른쪽 모델 응답" loading="lazy"><figcaption>프롬프트 도구 편집기: <span class="ui">지침</span> 칸에 프롬프트를 쓰고, <span class="ui">+ 콘텐츠 추가</span> 또는 <code>/</code>로 입력 변수를 넣습니다</figcaption></figure>
         <div class="note warn"><span class="ic">❓</span><div><b>어디에 붙여넣나요?</b> 가운데 큰 <span class="ui">지침</span> 칸(“Copilot을 사용하여 지침을 만들거나 여기에 작성하세요…”)에 붙여넣습니다. 아래쪽 작은 <span class="ui">프롬프트 도우미</span> 칸은 “자연어로 설명하면 프롬프트를 자동 생성”해 주는 보조 도구라, <b>직접 붙여넣을 때는 쓰지 않습니다.</b></div></div>
-        <p><b>① 먼저 아래 본문을 <span class="ui">지침</span> 칸에 붙여넣습니다.</b></p>
+        <p><b>① 먼저 아래 본문을 <span class="ui">지침</span> 칸에 붙여넣습니다.</b> 이 프롬프트는 ③에서 올릴 <b>Word 레이아웃의 각 필드</b>(에이전트 이름·추천 플랫폼·지침 초안 등)를 채우는 규칙입니다.</p>
         <div class="codecard copyable-code"><div class="cap">지침 칸에 붙여넣어 사용</div>
-<pre>아래 업무 인터뷰 내용을 바탕으로 에이전트 제작 설계서를 만들어 주세요.
-사내 규정(Security_Rule)과 플랫폼 기준(Platform_Rule)에 어긋나지 않게 작성합니다.
+<pre>당신은 사내 에이전트 설계 전문가입니다.
+아래 [업무 인터뷰 내용]을 바탕으로, 사내 규정(Security_Rule)과
+플랫폼 기준(Platform_Rule)에 근거해 '에이전트 제작 설계서'를 작성합니다.
+
+[작성 원칙]
+- 인터뷰에서 확인된 사실만 사용하고, 빠진 항목은 "추가 확인 필요"로 표시한다.
+- 데이터 보안 등급을 먼저 판단하고, 그 등급에 허용되는 플랫폼만 추천한다.
+- 모든 추천·판단에는 근거(어떤 규정·기준 때문인지)를 한 줄로 덧붙인다.
+- 막연한 표현 대신, 그대로 실행할 수 있는 구체적인 문장으로 쓴다.
 
 [업무 인터뷰 내용]
 （여기에 입력 변수 인터뷰내용 삽입）
 
-[다음 항목의 내용을 각각 작성]
-1. 에이전트 이름과 한 줄 목적
-2. 추천 플랫폼(Agent Builder 또는 Copilot Studio)과 선정 이유
-3. 지침(Instructions) 초안
-4. 필요한 참조 자료(Knowledge Source) 목록
-5. 테스트 시나리오 3개
-6. 보안 체크리스트 확인 결과</pre>
+[설계서 각 항목 작성 지침]
+- 에이전트 이름: 업무를 직관적으로 나타내는 한국어 이름
+- 한 줄 목적: 이 에이전트가 해결하는 문제를 한 문장으로
+- 추천 플랫폼: Agent Builder 또는 Copilot Studio 중 하나.
+  대외비 이상이거나 사내 시스템 연동·승인이 필요하면 Copilot Studio,
+  공개·내부 데이터에 개인·소수 사용이면 Agent Builder.
+- 선정 이유: 위 플랫폼을 고른 근거(보안 등급·시스템 연동·사용 범위)
+- 지침 초안: 새 에이전트에 바로 붙여넣을 수 있는 형태로,
+  역할 / 진행 순서 / 답변 규칙을 포함해 작성
+- 필요한 참조 자료: 이 에이전트가 근거로 삼을 사내 문서 목록
+- 테스트 시나리오: 정상 1개, 예외 1개, 보안(민감정보 처리) 1개
+- 보안 체크리스트: 데이터 등급·접근 권한·외부 전송 여부·규정 준수 여부 점검 결과</pre>
         </div>
+        <div class="note info"><span class="ic">📐</span><div>이 항목 이름들은 ③에서 올릴 레이아웃의 필드(<code>{{에이전트이름}}</code>, <code>{{추천플랫폼}}</code>, <code>{{지침초안}}</code> 등)와 <b>짝을 이룹니다.</b> 그래서 모델이 각 필드에 알맞은 내용을 채워 Word 설계서를 완성합니다.</div></div>
         <p style="margin-top:12px"><b>② <span class="ui">（여기에 입력 변수 인터뷰내용 삽입）</span> 줄을 지우고, 그 자리에서 <code>/</code> 를 입력</b>합니다. 뜨는 메뉴에서 <span class="ui">입력 추가</span>(또는 <span class="ui">+ 콘텐츠 추가</span> → <span class="ui">입력</span>)를 고르고, 입력 이름을 아래처럼 만듭니다. 그러면 지침 안에 <b>파란색 입력 칩</b>이 생깁니다.</p>
         <div class="prompts"><div class="pcard"><div class="pbody">
           <div class="prow"><span class="plabel">입력 이름</span><span class="ptext">인터뷰내용</span><button class="cbtn" data-copy="인터뷰내용">복사</button></div>
-          <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)</span><button class="cbtn" data-copy="사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)">복사</button></div>
+          <div class="prow"><span class="plabel">설명</span><span class="ptext">사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 다루는 데이터와 보안 등급, 결과물 형태)</span><button class="cbtn" data-copy="사용자와의 인터뷰에서 모은 답변 요약(어떤 업무, 반복 주기, 다루는 데이터와 보안 등급, 결과물 형태)">복사</button></div>
         </div></div></div>
-        <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.1 지침의 인터뷰 항목(어떤 업무, 반복 주기, 처리 시간, 다루는 데이터, 보안 등급, 결과물 형태)에 따라 에이전트가 사용자에게 물어 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
+        <div class="note info"><span class="ic">💬</span><div><b>“인터뷰 내용”이 뭔가요?</b> 3.1 지침의 인터뷰 항목(어떤 업무, 반복 주기, 다루는 데이터와 보안 등급, 결과물 형태)에 따라 에이전트가 사용자에게 물어 모은 답변입니다. 생성형 오케스트레이션(3.3)이 켜져 있으면, 에이전트가 <b>대화 내용을 보고 이 <code>인터뷰내용</code> 입력을 자동으로 채워서</b> 이 도구를 호출합니다. 그래서 여기서는 입력을 “정의”만 해 두면 됩니다(값을 직접 넣지 않습니다).</div></div>
         <p><b>③ 출력을 <span class="ui">문서</span>로 바꾸고 레이아웃을 올립니다.</b> 설계서를 표 텍스트가 아니라 <b>깔끔한 Word 문서 파일</b>로 받기 위해, 프롬프트 편집기 <b>오른쪽 위 <span class="ui">출력</span></b>에서 <span class="ui">텍스트</span> 대신 <span class="ui">문서</span>를 고른 뒤 그 옆 <span class="ui">문서 설정</span>을 엽니다. 먼저 아래 레이아웃 파일을 내려받으세요.</p>
         <div class="dls">
           <a class="dl dl-zip" href="https://ltnalsxl.github.io/a4a-handson/KnowledgeSource/A4A_Design_Layout.docx" download><span class="ico">📄</span><div class="t"><h4>A4A_Design_Layout.docx</h4><p>설계서 문서 레이아웃(빈칸 서식). 프롬프트 도구의 문서 출력에 업로드</p></div><span class="arrow">↓ 다운로드</span></a>
